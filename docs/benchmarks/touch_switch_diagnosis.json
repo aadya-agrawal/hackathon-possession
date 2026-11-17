@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-11-15",
+  "scope": "Missed possession-switch diagnosis and stronger touch carry on top of the ball-free default. External only (Metrica Games 1-3, DFL dev 4; DFL J03WPY/J03WQQ/J03WR9 confirm once).",
+  "switch_structure_dfl_dev": {
+    "provider_direct_switches": 1447,
+    "predicted": [
+      791,
+      1008
+    ],
+    "still_outgoing_after_2s": [
+      418,
+      326
+    ],
+    "note": "restart-dead -> ball-free default"
+  },
+  "missed_switch_profile": {
+    "incoming_spell_under_2s": 0.61,
+    "outgoing_player_median_distance_m": 0.4,
+    "caught_outgoing_distance_m": 1.35,
+    "incoming_touch_detected": 0.29,
+    "detected_spell_median_s": 1.56
+  },
+  "duel_attribution_rules_accuracy": {
+    "nearest_at_turn": 0.56,
+    "nearest_at_slowest": 0.58,
+    "ball_moves_away": 0.53,
+    "ball_heads_to_attack": 0.532,
+    "vote": 0.562,
+    "n_contested": 400,
+    "uncontested_rule_accuracy": 0.969
+  },
+  "decision_duels": "Contested touches cannot be attributed from tracking; no duel rule adopted.",
+  "carry_weight": {
+    "0.75": {
+      "metrica_guards": "58/52/58",
+      "dfl_dev": [
+        0.449,
+        0.439,
+        0.483,
+        0.471
+      ]
+    },
+    "1.0": {
+      "metrica_guards": "58/56/54",
+      "metrica_objective": [
+        [
+          0.625,
+          0.647
+        ],
+        [
+          0.618,
+          0.651
+        ],
+        [
+          0.598,
+          0.63
+        ]
+      ],
+      "dfl_dev": [
+        [
+          0.434,
+          0.465
+        ],
+        [
+          0.404,
+          0.463
+        ],
+        [
+          0.445,
+          0.508
+        ],
+        [
+          0.403,
+          0.48
+        ]
+      ],
+      "dfl_held_out": {
+        "J03WPY": [
+          0.425,
+          0.496
+        ],
+        "J03WQQ": [
+          0.469,
+          0.485
+        ],
+        "J03WR9": [
+          0.438,
+          0.476
+        ]
+      }
+    },
+    "1.5": {
+      "dfl_dev": [
+        0.464,
+        0.485,
+        0.508,
+        0.481
+      ]
+    },
+    "minimum_live_frames_12": "180/180 guards but negligible change; not adopted"
+  },
+  "challenge": {
+    "graded_frames_changed": 1213,
+    "dead_to_live": 372,
+    "dead_to_live_inside_broadcast_cutaways": 186,
+    "live_to_dead": 50,
+    "graded_live_spells": [
+      309,
+      329
+    ]
+  },
+  "robustness": "132/134",
+  "decision": "Promoted by the user (carry weight 1.0) with disclosed exceptions.",
+  "working": {
+    "config": "configs/submission_contact_strong.json",
+    "config_sha256": "c172a50d002f824f1e37c4c397984bc0bf5aeaa97fa10b6d82dd4bbaedcd9de7",
+    "csv_sha256": "4f5ac9529fb071cf6ddfeaf292419d266eb425a15e9599eda663a83953ec9cb3",
+    "state_counts": {
+      "H": 71620,
+      "A": 55764,
+      "D": 71935
+    },
+    "possessions": 375
+  },
+  "challenge_touch_rate": {
+    "touches_per_observed_minute": {
+      "challenge": 5.7,
+      "J03WMX": 23.3,
+      "J03WOH": 12.0
+    },
+    "sharp_turns_per_minute": {
+      "challenge": 15.7,
+      "J03WMX": 15.5,
+      "J03WOH": 11.1
+    },
+    "nearest_player_at_turn_median_m": {
+      "challenge": 1.69,
+      "J03WMX": 0.21,
+      "J03WOH": 0.48
+    },
+    "share_within_0_75m": {
+      "challenge": 0.31,
+      "J03WMX": 0.91,
+      "J03WOH": 0.88
+    },
+    "time_lag_test": "Shifting players by -25..+25 frames lowers median distance only 2.33 -> 2.09 m; no lag.",
+    "spatial_bias_m": [
+      -0.07,
+      -0.07
+    ],
+    "conclusion": "About two thirds of challenge ball direction changes occur with no player nearby (likely automatic ball-tracking artifacts); near-player turns are already detected. Relaxing the distance would mostly add false touches. No change."
+  }
+}

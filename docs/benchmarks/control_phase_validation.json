@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-11-07",
+  "scope": "Aggregate external Game 1 development and previously inspected Game 2 diagnostic; no frame-level data.",
+  "runtime_fps": 25,
+  "selected_submission_changed": false,
+  "challenge_spell_f1": null,
+  "source_reports_sha256": {
+    "initial_game1": "d75e0f07b42d7bd8b0fc08f8a3be0e4f3a041c210e0da109ddfb5a9bd1295bae",
+    "decoded_anchor_game1": "cbbcbba5b4773def90936a6b7859a45231fc0f426a540ae0ff3aab5d7f3710d5",
+    "uncontested_game1": "3cb4a8fd0f424eaf7c6fe1b7356390c8f03573ca608fd3d8192d91ff42c66207",
+    "frozen_game2_diagnostic": "7280dfd8dec43d6fd22260f9475088f5c72f8058657feca15af5d1502e83fe16"
+  },
+  "development_game": "Sample_Game_1",
+  "previously_inspected_diagnostic_game": "Sample_Game_2",
+  "external_revision": "e706dd506b360d69d9d123d5b8026e7294b13996",
+  "baseline_sha256": "874c4c8ed85a98f13a29b954b08bbc7315b50ad85b57fd0231ae0f56355ccd5e",
+  "scenario_protocol": "configs/metrica_core_development.json",
+  "scenario_protocol_sha256": "da223b82a4a91e477e318a30e63b4e86f87ef3de4ec73f19300aa8745d680bbf",
+  "source_fps_override": 25,
+  "frozen_model_files_sha256": {
+    "control_phase.py": "6735ad6a6e18334c5ee56e6eb7284fd2fcb841ac6b792d82f292075bd6f20f30",
+    "decoder.py": "be2af48c00891e341f837ca4286cc4ec90295b8166cf14a4e0a5f55c7ee956dc",
+    "external_metrica_validation.py": "ea1e667b8b75cbeee3960893c97ee0c313380fde697eb6bb6752fcde51f16140"
+  },
+  "frozen_game2_values": {
+    "semi_markov_phase_enabled": true,
+    "phase_contact_minimum_frames": 8,
+    "phase_flight_max_frames": 20,
+    "phase_minimum_ball_speed_mps": 2.0,
+    "phase_contact_distance_metres": 1.5,
+    "phase_flight_weight": 0.25,
+    "phase_turnover_transition_cost": 10.0
+  },
+  "game1": {
+    "deployment": {
+      "objective": 0.40539123093620044,
+      "masked_none_spell_f1_0.75": 0.2740740740740741,
+      "passed_guards": 60,
+      "total_guards": 60
+    },
+    "soft_contact_comparator": {
+      "objective": 0.44199767154373026,
+      "masked_none_spell_f1_0.75": 0.2611683848797251,
+      "passed_guards": 59,
+      "total_guards": 60
+    },
+    "initial_soft_phase": {
+      "objective": 0.45530547194011084,
+      "masked_none_spell_f1_0.75": 0.25517241379310346,
+      "passed_guards": 57,
+      "total_guards": 60
+    },
+    "decoded_contact_confirmation": {
+      "deployment_objective": 0.4065398706913098,
+      "deployment_passed_guards": 52,
+      "soft_objective": 0.43913890987687987,
+      "soft_passed_guards": 59
+    },
+    "uncontested_deployment_phase": {
+      "objective": 0.4225007703301007,
+      "masked_none_spell_f1_0.75": 0.27106227106227104,
+      "passed_guards": 56,
+      "total_guards": 60,
+      "failed_guard_type": "recovery accuracy in four degraded-tag scenarios"
+    },
+    "uncontested_soft_phase": {
+      "objective": 0.4554658288789034,
+      "masked_none_spell_f1_0.75": 0.25517241379310346,
+      "passed_guards": 56,
+      "total_guards": 60
+    },
+    "phase_coverage_clean_none": {
+      "paired_recoveries": 192,
+      "incoming_turnover_within_0.48_seconds": 14,
+      "pass_events": 799,
+      "pass_with_flight": 621,
+      "same_team_reception_within_0.48_seconds_of_pass_end": 75
+    },
+    "phase_coverage_recovery_masked_none": {
+      "paired_recoveries": 192,
+      "incoming_turnover_within_0.48_seconds": 0
+    }
+  },
+  "game2_frozen_diagnostic": {
+    "deployment_objective": 0.34011922113977033,
+    "phase_objective": 0.350085397154268,
+    "passed_guards": 52,
+    "total_guards": 60,
+    "failure": "recovery accuracy in all eight scenarios"
+  },
+  "decision": "No phase candidate clears the unchanged Game 1 guards; Game 2 reproduces recovery-accuracy failures. Keep all phase logic opt-in and retain the selected submission.",
+  "limitations": [
+    "Phase contacts are tracking heuristics, not physical-contact or owner ground truth.",
+    "Reference events are used only for scoring, never as no-tag inference features.",
+    "Game 2 has been inspected previously and is diagnostic, not an unseen holdout.",
+    "Objective is a weighted provider-reference diagnostic, not a challenge spell score.",
+    "Masked recovery windows remove observed-ball contact evidence; missing phase detections are expected.",
+    "No threshold or guard was relaxed; reports with detailed rows remain ignored locally."
+  ]
+}

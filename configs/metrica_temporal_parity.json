@@ -1,0 +1,29 @@
+{
+  "validation_protocol": "configs/external_transfer_validation_v2.json",
+  "scenario_protocol": "configs/metrica_core_development.json",
+  "scenario_protocol_sha256": "da223b82a4a91e477e318a30e63b4e86f87ef3de4ec73f19300aa8745d680bbf",
+  "baseline_config": "configs/compliant_tracking.json",
+  "baseline_sha256": "874c4c8ed85a98f13a29b954b08bbc7315b50ad85b57fd0231ae0f56355ccd5e",
+  "deployment_source_fps": 25,
+  "historical_source_fps": 50,
+  "fixed_gap_correction": {
+    "selection_source_fps": 50,
+    "selection_frames": 38,
+    "config_key": "max_interpolation_gap_frames"
+  },
+  "games": {
+    "development": ["Sample_Game_1"],
+    "previously_inspected_diagnostic": ["Sample_Game_2"]
+  },
+  "historical_game1_report": "artifacts/development_weak_transition_restore.json",
+  "historical_game1_report_sha256": "0c5021a51b4c285284fd2cdb4053c2b871e636ed2479fb123bd485db9f5134ec",
+  "require_historical_replay": false,
+  "official_baseline_half_window_seconds": 2.0,
+  "minimum_objective_improvement": 0.002,
+  "policy": {
+    "parameters_searched": false,
+    "submission_changed": false,
+    "guards_relaxed": false,
+    "historical_sources_rewritten": false
+  }
+}

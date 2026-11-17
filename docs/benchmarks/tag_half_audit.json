@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-11-08",
+  "scope": "Input-only Smart Tagging semantics and opt-in half-local decoder structural checks; no challenge possession scoring.",
+  "source_report_sha256": "4215967b9369839238c33cb574937265047349a6ba9ceeb74942cb61946900e0",
+  "model_code_sha256": {
+    "tagging.py": "5eebd4ad96047f5eebaca1064990f5120373a9b8f8381133d11159a3b31f9310",
+    "cli.py": "34d7ee01e623ad6ecd702a02280fb893bc461e75079a2fb849199589f7bb6f79"
+  },
+  "selected_baseline_config_sha256": "874c4c8ed85a98f13a29b954b08bbc7315b50ad85b57fd0231ae0f56355ccd5e",
+  "challenge_tracking_or_video_used_for_selection": false,
+  "challenge_truth_used": false,
+  "smart_tagging": {
+    "instances": 638,
+    "defensive_phase_active_frames": 57432,
+    "defensive_phase_frames_with_other_team_tag": 57432,
+    "exclude_defending_prior_changed_graded_frames": 57394,
+    "dead_and_restart_hints_unchanged": true,
+    "interpretation": "Defensive tags overlap tags for the opposing team, but overlapping automatic labels do not establish which Team field is possession truth."
+  },
+  "half_local_decoding": {
+    "blocks": [[1, 11185, 90651], [2, 110808, 190197]],
+    "option": "decode_halves_separately_enabled",
+    "research_config_sha256": "d0d0bc3c730e68c20fa0357e79ae5faacf02c21d152a7dd205f75b30b4aaadaf",
+    "research_csv_sha256": "b6a5d970f5c89b70779a9aec385f3386ba843557b061de565f23a968309fb664",
+    "format_validated": true,
+    "external_harness_already_period_local": true
+  },
+  "decision": "Keep code-aware team prior and half-local decoding opt-in. The external degraded-tag harness only synthesizes set pieces, and automatic challenge format/activation cannot establish an accuracy improvement.",
+  "selected_submission_changed": false,
+  "limitations": [
+    "No protected possession truth, challenge-video review or candidate selection based on challenge outputs.",
+    "Defending Team semantics require vendor documentation or independent annotated external tactical tags.",
+    "The half-local structural run passes output formatting only and is not an external-scored transfer claim.",
+    "Original Game 1 and frozen Game 2 exit-bracket scores remain the scored research candidate."
+  ]
+}

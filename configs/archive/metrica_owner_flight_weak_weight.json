@@ -1,0 +1,17 @@
+{
+  "base_owner_protocol": "configs/metrica_owner_flight.json",
+  "base_owner_protocol_sha256": "b224c7bdda45d55510663dfac93b9c33aa1dfcc63218e09381ff71bbeb9f29c2",
+  "source_owner_report": "artifacts/owner_flight_sustained_game1.json",
+  "source_owner_report_sha256": "1eb4c282fb133062666f932081af104607af29cdb5c590d24ad980d7b1b0a7c2",
+  "owner_flight_reset_on_gap": true,
+  "owner_flight_require_sustained_player": true,
+  "owner_flight_contact_minimum_source": "semi_markov_strong_transition_minimum_frames",
+  "owner_flight_weight_source": "tag_weight",
+  "policy": {
+    "development_game": "Sample_Game_1",
+    "change": "use existing weaker tag evidence weight for sustained owner-flight prior",
+    "remaining_parameters_unchanged": true,
+    "no_challenge_output_review": true,
+    "game2_diagnostic_only_after_development_guards": true
+  }
+}

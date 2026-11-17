@@ -1,0 +1,93 @@
+{
+  "candidate_comparison": {
+    "reference": "external_semi_markov",
+    "event_mask_seconds": 0.75,
+    "candidates": [
+      {
+        "name": "nearest_raw",
+        "config": "configs/compliant_tracking.json",
+        "source_fps": 50,
+        "baseline_half_window_seconds": 0.0
+      },
+      {
+        "name": "nearest_smooth_1s",
+        "config": "configs/compliant_tracking.json",
+        "source_fps": 50,
+        "baseline_half_window_seconds": 1.0
+      },
+      {
+        "name": "legacy_state_machine",
+        "config": "configs/default.json",
+        "source_fps": 50,
+        "overrides": {"decoder_mode": "state_machine"}
+      },
+      {
+        "name": "legacy_semi_markov",
+        "config": "configs/default.json",
+        "source_fps": 50
+      },
+      {
+        "name": "external_state_machine",
+        "config": "configs/compliant_tracking.json",
+        "source_fps": 50,
+        "overrides": {"decoder_mode": "state_machine"}
+      },
+      {
+        "name": "external_semi_markov",
+        "config": "configs/compliant_tracking.json",
+        "source_fps": 50
+      }
+    ]
+  },
+  "frozen_config": "configs/compliant_tracking.json",
+  "recovery_analysis": {
+    "loss_pair_tolerance_seconds": 0.2,
+    "boundary_search_seconds": 2.0,
+    "boundary_tolerance_seconds": [0.0, 0.2, 0.5, 1.0],
+    "post_recovery_seconds": [0.2, 0.5, 1.0, 2.0],
+    "short_reference_seconds": 1.0,
+    "mask_seconds": 0.75
+  },
+  "metrica": {
+    "event_control_types": [
+      "CARRY",
+      "PASS",
+      "RECOVERY",
+      "SET PIECE",
+      "SHOT"
+    ],
+    "games": {
+      "validation": [
+        "Sample_Game_1",
+        "Sample_Game_2"
+      ],
+      "untouched_test": [
+        "Sample_Game_3"
+      ]
+    },
+    "gap_checks": [
+      {
+        "duration_seconds": 0.2,
+        "maximum_p90_error_metres": 0.5,
+        "minimum_recovery_fraction": 0.95
+      },
+      {
+        "duration_seconds": 0.75,
+        "maximum_p90_error_metres": 2.0,
+        "minimum_recovery_fraction": 0.9
+      },
+      {
+        "duration_seconds": 2.0,
+        "maximum_p90_error_metres": 5.0,
+        "minimum_abstention_fraction": 0.5
+      }
+    ],
+    "minimum_event_team_accuracy": 0.8,
+    "repository_commit": "e706dd506b360d69d9d123d5b8026e7294b13996",
+    "source": "https://github.com/metrica-sports/sample-data"
+  },
+  "policy": {
+    "failed_checks_trigger_retuning": false,
+    "metrica_role": "validation_only"
+  }
+}

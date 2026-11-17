@@ -1,0 +1,18 @@
+{
+  "base_owner_protocol": "configs/metrica_owner_flight.json",
+  "base_owner_protocol_sha256": "b224c7bdda45d55510663dfac93b9c33aa1dfcc63218e09381ff71bbeb9f29c2",
+  "source_owner_report": "artifacts/owner_flight_weak_game1.json",
+  "source_owner_report_sha256": "9204abcb28950e2f9a94bdafa48012f951ed7b1bce15b70310d2a40bb98af2d9",
+  "owner_flight_reset_on_gap": true,
+  "owner_flight_require_sustained_player": true,
+  "owner_flight_contact_minimum_source": "semi_markov_strong_transition_minimum_frames",
+  "owner_flight_weight_source": "tag_weight",
+  "owner_flight_require_same_team_reception": true,
+  "policy": {
+    "development_game": "Sample_Game_1",
+    "change": "only support observed flights bracketed by trusted contacts of the same team",
+    "no_challenge_output_review": true,
+    "no_new_numeric_thresholds": true,
+    "game2_diagnostic_only_after_development_guards": true
+  }
+}

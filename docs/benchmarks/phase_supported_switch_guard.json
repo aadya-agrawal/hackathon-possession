@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-11-08",
+  "scope": "One predeclared source-only protection of baseline H/A switches with existing 8-of-20 strong-control support; external Game 1 development only.",
+  "external_revision": "e706dd506b360d69d9d123d5b8026e7294b13996",
+  "runtime_source_fps": 25,
+  "selected_exit_config_sha256": "ea6db9d99ebe3bda68f19869bd4ec6da73b9eb49d3375ed9a9f11575f2471ac9",
+  "prior_combination_development_report_sha256": "c831f0c4b9d31131a483643a1c4de58f8ad8596d9fea33b8fa31de97d5510016",
+  "only_new_value": {"phase_preserve_supported_switch_enabled": true},
+  "rule": "Inside a bounded phase-edit interval, retain the exit-only baseline label for its existing 20-frame minimum live duration after a baseline H/A handover if the incoming team has at least eight observed strong-control frames in the existing future 20-frame support window.",
+  "source_code_sha256": {
+    "decoder.py": "a15e6ba16f8fd379d72bdfcb6f3c2e931510d0f80e2f3c35532296471261f82d",
+    "control_phase.py": "618dff708ed8e5c82a1d3da25d450c6efb9244b70df9c6ac2f48e1c635c2c160"
+  },
+  "game1_development": {
+    "exit_only_objective": 0.45063724390460297,
+    "previous_bounded_phase_objective": 0.45360514631799204,
+    "supported_switch_candidate_objective": 0.450454061528318,
+    "minimum_required_objective_gain": 0.002,
+    "passed_original_guards": "60/60",
+    "clean_no_tag_supported_switches_preserved": 49,
+    "clean_no_tag_changed_live_frames": {"previous_bounded_phase": 62, "supported_switch_candidate": 23},
+    "clean_no_tag_reference_mean_spell_f1_iou_0_3_to_0_7": {
+      "exit_only": 0.503859649122807,
+      "previous_bounded_phase": 0.5052631578947369,
+      "supported_switch_candidate": 0.5052631578947369
+    }
+  },
+  "frozen_games_2_3_or_dfl_evaluated": false,
+  "local_development_report_sha256": "0b657d7206740506a48e1416f82cf4c768d54432aedcda4f61c01ebe7fb43519",
+  "decision": "Reject as a selection candidate before transfer. It passes the no-regression guards but loses 0.000183 external objective against exit-only and does not meet the predeclared 0.002 Game 1 development gain. Do not select or tune it on previously inspected Games 2-3 or the challenge public window.",
+  "selected_csv_sha256_unchanged": "c9a2f41a76d7d070cc3afead3524fab90d21e87dd198259759b95b7a22536dac"
+}

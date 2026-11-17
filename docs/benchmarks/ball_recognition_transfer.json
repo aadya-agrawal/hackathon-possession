@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-11-08",
+  "scope": "External SoccerNet GSR human-ball annotations only; no possession labels, challenge video, or public-window selection.",
+  "checkpoint": "generic COCO YOLO26l",
+  "checkpoint_sha256": "9fe3c544f2b19bebad7ea41e76d7ad3d88b7c2f10d11d24430c5311f6b32db26",
+  "source_manifest_sha256": "45210cb95f468ec455dd0bedf208a688801c484b4b59dd91742afd4539f20671",
+  "training_overlap": "Checkpoint metadata reports COCO training; clip-level overlap is not proven absent. SoccerNet-specific checkpoint is explicitly excluded because its training overlap is unresolved.",
+  "detector_selection_on_development": {
+    "sampled_clips": 12,
+    "unambiguous_human_ball_frames": 108,
+    "confidence": 0.03,
+    "image_size": 1280,
+    "YOLO26l_oracle_recall_at_40px": 0.9074074074074074,
+    "YOLO26l_highest_confidence_recall_at_40px": 0.7222222222222222,
+    "YOLO11l_oracle_recall_at_40px": 0.8796296296296297,
+    "YOLO11l_highest_confidence_recall_at_40px": 0.7222222222222222,
+    "YOLO26l_confidence_0_10_oracle_recall_at_40px": 0.7962962962962963,
+    "decision": "Use generic YOLO26l at confidence 0.03 for externally scored anchored recovery; direct highest-confidence fusion is unsafe."
+  },
+  "frozen_validation_detector_only": {
+    "sampled_clips": 12,
+    "unambiguous_human_ball_frames": 105,
+    "YOLO26l_oracle_recall_at_40px": 0.8761904761904762,
+    "YOLO26l_highest_confidence_recall_at_40px": 0.6761904761904762
+  },
+  "anchored_recovery_policy": {
+    "synthetic_gap_frames": 50,
+    "gap_start_frame": 200,
+    "maximum_frames_per_side": 25,
+    "minimum_tracklet_frames": 4,
+    "minimum_endpoint_detector_confidence": 0.1,
+    "maximum_consecutive_detection_misses": 5,
+    "beam_width": 24,
+    "process_acceleration_std_mps2": 15.0,
+    "measurement_noise_base_metres": 0.5,
+    "initial_velocity_std_mps": 30.0,
+    "innovation_gate": 4.0,
+    "inference_anchors": "external human annotated balls only at the two unmasked endpoints; no human ball inside the gap",
+    "ground_mapping": "external human annotated player feet, never the ball reference",
+    "scoring": "unambiguous human annotated ball position within 1.5 m of projected ground path"
+  },
+  "anchored_development": {
+    "sampled_clips": 12,
+    "eligible_clips": 8,
+    "human_ball_reference_frames": 399,
+    "highest_confidence_correct": 242,
+    "highest_confidence_recall": 0.606516290726817,
+    "anchored_accepted_positions": 303,
+    "anchored_correct": 279,
+    "anchored_precision": 0.9207920792079208,
+    "anchored_recall": 0.6992481203007519
+  },
+  "anchored_frozen_validation": {
+    "sampled_clips": 12,
+    "eligible_clips": 10,
+    "human_ball_reference_frames": 489,
+    "highest_confidence_correct": 412,
+    "highest_confidence_recall": 0.8425357873210634,
+    "anchored_accepted_positions": 460,
+    "anchored_correct": 454,
+    "anchored_precision": 0.9869565217391304,
+    "anchored_recall": 0.9284253578732107
+  },
+  "long_gap_250_frame_post_validation_diagnostic": {
+    "fresh_holdout": false,
+    "development": {
+      "eligible_clips": 9,
+      "human_ball_reference_frames": 1928,
+      "highest_confidence_correct": 257,
+      "anchored_accepted_positions": 313,
+      "anchored_correct": 291,
+      "anchored_precision": 0.9297124600638977
+    },
+    "previously_inspected_validation": {
+      "eligible_clips": 5,
+      "human_ball_reference_frames": 1194,
+      "highest_confidence_correct": 177,
+      "anchored_accepted_positions": 233,
+      "anchored_correct": 221,
+      "anchored_precision": 0.9484978540772532
+    },
+    "interpretation": "Only the first and last 25 frames have detections; the 200-frame center remains missing. Do not interpret edge gains as full-gap reconstruction."
+  },
+  "challenge_shaped_gap_followup": {
+    "source": "Input-only post-repair missing-ball gap p50 269 frames and p90 approximately 938 frames at 25 fps; not challenge possession truth.",
+    "269_frame_external_ball_reference": {
+      "development": {
+        "eligible_clips": 8,
+        "human_ball_reference_frames": 1906,
+        "highest_confidence_correct": 269,
+        "anchored_accepted_positions": 309,
+        "anchored_correct": 279,
+        "anchored_precision": 0.9029126213592233
+      },
+      "previously_inspected_validation": {
+        "fresh_holdout": false,
+        "eligible_clips": 7,
+        "human_ball_reference_frames": 1751,
+        "highest_confidence_correct": 241,
+        "anchored_accepted_positions": 287,
+        "anchored_correct": 274,
+        "anchored_precision": 0.9547038327526133
+      },
+      "interpretation": "Improvement is 10/1906 and 33/1751 additional correct positions, concentrated in 25-frame edge windows. No possession labels are available."
+    },
+    "938_frame_structural_test": {
+      "scored_video_transfer": false,
+      "reason": "Available GSR clips contain only 750 frames. A data-free regression test confirms at most 50 edge observations and an untouched 888-frame center.",
+      "challenge_input_only": "28 homography-qualified raw-ball endpoints belong to gaps at least 938 frames; 22/28 had a generic detector candidate within 40 pixels of projected tracking, which is not an accuracy label."
+    }
+  },
+  "noisy_anchor_post_validation_stress": {
+    "fresh_holdout": false,
+    "method": "Each human endpoint is displaced by exactly 0.5, 1 or 2 m. Four deterministic, paired 90-degree rotations per clip use independent left/right directions. These are hypothetical perturbations, not measured challenge tracking errors.",
+    "gap_frames": 50,
+    "development": {
+      "eligible_clips": 8,
+      "reference_frames_per_radius": 1596,
+      "highest_confidence_correct_per_radius": 968,
+      "radius_0_5m": {"accepted": 1207, "correct": 1107, "precision": 0.9171499585749793},
+      "radius_1m": {"accepted": 1208, "correct": 1099, "precision": 0.9097682119205298},
+      "radius_2m": {"accepted": 1189, "correct": 1007, "precision": 0.8469301934398654}
+    },
+    "previously_inspected_validation": {
+      "eligible_clips": 10,
+      "reference_frames_per_radius": 1956,
+      "highest_confidence_correct_per_radius": 1648,
+      "radius_0_5m": {"accepted": 1837, "correct": 1816, "precision": 0.9885683179096353},
+      "radius_1m": {"accepted": 1838, "correct": 1813, "precision": 0.9863982589771491},
+      "radius_2m": {"accepted": 1794, "correct": 1645, "precision": 0.9169453734671126}
+    },
+    "interpretation": "At 2 m the development accepted-position precision is 84.69%, and the previously inspected validation correct-position count no longer beats highest-confidence selection (1645 versus 1648 over paired trials). This is a hypothetical sensitivity limit, not a measured challenge condition or standalone release gate. Preserve it without quietly relaxing its numbers."
+  },
+  "release_gate_policy": "Use challenge-input-only gap, endpoint continuity and homography statistics to define external tests. Retain the original 2 m stress as a labeled sensitivity diagnostic rather than a presumed typical-error must-pass. Do not promote solely on input consistency or annotated ball localization: require non-regressed external possession guards, including tagged-path transfer, and a reproducible candidate. Do not tune against public challenge possession truth or inspect challenge output against video.",
+  "tracking_only_challenge_edge_dropout": {
+    "source": "Existing working config versus itself on provided raw tracking and tags; no possession truth, video review, or tuning.",
+    "perturbation": "Hide five or 25 observed frames immediately outside same-half 269/938+ frame raw-ball gaps at homography-qualified endpoints. These widths supplement, rather than replace, the unchanged periodic-mask policy.",
+    "original_policy_unchanged": "135/135 checks passed independently",
+    "scenarios": {
+      "gap_269_drop_5": {"eligible_endpoints": 143, "hidden_observed_frames": 715, "changed_frames_global": 2186, "changed_frames_near_endpoints": 854, "endpoint_window_frames": 14138},
+      "gap_269_drop_25": {"eligible_endpoints": 143, "hidden_observed_frames": 3548, "changed_frames_global": 6657, "changed_frames_near_endpoints": 2474, "endpoint_window_frames": 14138},
+      "gap_938_drop_5": {"eligible_endpoints": 28, "hidden_observed_frames": 140, "changed_frames_global": 316, "changed_frames_near_endpoints": 77, "endpoint_window_frames": 2772},
+      "gap_938_drop_25": {"eligible_endpoints": 28, "hidden_observed_frames": 695, "changed_frames_global": 1872, "changed_frames_near_endpoints": 518, "endpoint_window_frames": 2772}
+    },
+    "interpretation": "The current tracking-only decoder is more sensitive to removing observations at real long-gap edges than the existing periodic 10/25-frame tests reveal. Differences from its own clean output are not errors against ground truth and cannot select a better model."
+  },
+  "challenge_input_only_edge_path_activation": {
+    "selection": "Four evenly spaced long raw-ball gaps per half and duration band (269-937 or 938+ frames), using only two observed tracking anchors and homography quality; no decoded possession or manually inspected video frames.",
+    "sampled_runs": 16,
+    "scanned_detector_edge_frames": 800,
+    "edge_frames_with_at_least_one_ball_candidate": 800,
+    "runs_with_any_path": 16,
+    "runs_with_both_sides": 14,
+    "selected_observation_frames": 356,
+    "missing_frames_in_sampled_runs": 20245,
+    "cohorts": {
+      "half_1_gap_269_to_937": {"runs": 4, "candidate_edge_frames": 200, "selected_observation_frames": 104, "runs_with_both_sides": 4},
+      "half_1_gap_938_plus": {"runs": 4, "candidate_edge_frames": 200, "selected_observation_frames": 85, "runs_with_both_sides": 4},
+      "half_2_gap_269_to_937": {"runs": 4, "candidate_edge_frames": 200, "selected_observation_frames": 55, "runs_with_both_sides": 2},
+      "half_2_gap_938_plus": {"runs": 4, "candidate_edge_frames": 200, "selected_observation_frames": 112, "runs_with_both_sides": 4}
+    },
+    "interpretation": "The frozen policy activates across both halves, including long gaps, but selects just 356/20,245 missing frames in the sampled runs. Every scanned edge frame has at least one candidate; this is detector coverage, not verified ball identity. No input-only activation result can prove a possession-spell improvement."
+  },
+  "local_reports_sha256": {
+    "detector_development": "faa49ff55587cffa3c0d1a15d3680cd24560cf179c5502184fa0950632d1808c",
+    "detector_validation": "95640dcf5f0625530dd0dc975e88fbeadc30addc3d1955fa6bb2fd69a6fc634d",
+    "anchored_development": "4c8f6bc0aa71ab6efda4aebc83220881261436001cd851bdfc1b8bc2534315bc",
+    "anchored_validation": "e8c06ea7e48ac824adb15774a3ae43f69027c2fb5ecf357a8bae54c0f1ed2787",
+    "long_gap_development_diagnostic": "4449f26e2dd4fb47b7e31f57539b927a1725b403ff2d7dcccc21d986dffcce60",
+    "long_gap_validation_diagnostic": "f2be1b2f22bc8c68931c3c6d553adb04e7003011f0ede48dcfbad9e2ae67c518",
+    "noisy_anchor_development": "b38824cbdead40a638efd3ce4cf9f54d40c2c0c75a66d3bef0c207c963dd32b8",
+    "noisy_anchor_previously_inspected_validation": "f9094551cfc903b487444ca00d98425c817d1f1fdd79df37798f1325264b141c",
+    "challenge_269_frame_development": "78d3a6908edf34a33cb7c179db0c1206758e3a353877c01bdcc30bc9e089d8f3",
+    "challenge_269_frame_previously_inspected_validation": "517746f2ad101777e8eeaac840329eec2a63f090713d28caccc7319cc81d0535",
+    "tracking_only_edge_dropout": "1b099df78e532ea33408f128f346b0fdc42781f2fbe8170d5d0080b0644e32b7",
+    "unchanged_135_check_robustness": "9707f25ec68b5d63665e37cf6184978559eb97f3103aeeee6fd2dc736a33427e",
+    "challenge_input_only_edge_path_activation": "53bbdd6d5d72a84563626267c3be33c41dad860557f997ad69ceecbc591d315e"
+  },
+  "decision": "Keep opt-in diagnostic, do not change the selected submission. Challenge-shaped 269-frame external tests improve ball localization only near endpoints. Unlabeled/absent ball frames cannot establish false-positive rates; noisy real-world tracking anchors, different camera geometry, tagged-path possession guards and private challenge spell-F1 remain unverified.",
+  "selected_submission_csv_sha256_unchanged": "c9a2f41a76d7d070cc3afead3524fab90d21e87dd198259759b95b7a22536dac"
+}

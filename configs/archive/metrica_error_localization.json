@@ -1,0 +1,21 @@
+{
+  "development_game": "Sample_Game_1",
+  "excluded_games": ["Sample_Game_2", "Sample_Game_3"],
+  "source_protocol": "configs/metrica_reliability_development.json",
+  "cases": [
+    "clean:degraded_restart_tags",
+    "recovery_masked:none",
+    "recovery_masked:degraded_restart_tags"
+  ],
+  "primary_case": "recovery_masked:degraded_restart_tags",
+  "metric_iou": 0.5,
+  "lineage_iou": 0.5,
+  "reappearance_bins_seconds": [0.5, 1.0, 3.0],
+  "tag_bins_seconds": [1.0, 3.0],
+  "repair_evidence_minimum_fraction": 0.5,
+  "policy": {
+    "reference_metric_changed": false,
+    "inference_parameters_changed": false,
+    "new_rule_justified_before_testing": true
+  }
+}

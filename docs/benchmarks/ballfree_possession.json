@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-11-15",
+  "scope": "Ball-free possession evidence on top of the broadcast-stoppage default. Learned only from external provider possession truth (Metrica Sample Games 1-3, DFL J03WMX/J03WN1/J03WOH/J03WOY); DFL J03WPY/J03WQQ/J03WR9 confirm once. No challenge labels, public-window scores, video or hand labels.",
+  "headroom": "Hiding the ball in challenge-shaped live gaps (lengths 137-916 frames, 31% of live frames) costs DFL spell-F1 0.10-0.12; perfect gap labels would add about 0.20.",
+  "features": [
+    "movement_1s",
+    "movement_3s",
+    "spread_difference",
+    "pressure_difference",
+    "territory"
+  ],
+  "single_feature_dev_accuracy": {
+    "movement": 0.63,
+    "spread_difference": 0.75,
+    "pressure_difference": 0.51,
+    "territory": 0.56
+  },
+  "coefficients": [
+    0.421493,
+    0.117187,
+    0.385885,
+    -0.572559,
+    -1.242248
+  ],
+  "coefficients_command": "python -m possession.external_ballfree --metrica-root <metrica-sample-data> --dfl <matchinformation.xml>:<positions_raw_observed.xml> (x4 development matches)",
+  "per_frame_accuracy_players_only": {
+    "held_out_dfl": [
+      0.835,
+      0.828,
+      0.845
+    ],
+    "confident_frames": "0.90-0.92 on ~70% of frames"
+  },
+  "error_breakdown": {
+    "first_2s_after_change": {
+      "share_of_frames": 0.22,
+      "accuracy": 0.549,
+      "share_of_errors": 0.58
+    },
+    "own_third_accuracy": 0.78,
+    "middle_third": 0.854,
+    "final_third": 0.844,
+    "goalkeeper_on_ball_accuracy": 0.877
+  },
+  "lookahead": "Reading players 1 s ahead raises accuracy on all 10 matches (first 2 s after a change ~0.55 -> ~0.61); chosen on development matches.",
+  "integration": "Penalty on the team the players disfavour, only inside ball-unobserved stretches >= 5 s; confident lean (|2p-1| >= 0.5) supports a team switch; two-pass decoding keeps live/dead from the pass without ball-free evidence. Rejected along the way: applying to all gaps (49-55/60 guards, false dead in 2-5 s dropouts) and a dead-neutral penalty (removed true Metrica stoppages).",
+  "masked_gap_spell_f1_iou_0_3_to_0_7": {
+    "Sample_Game_1": [
+      0.4915,
+      0.5342
+    ],
+    "Sample_Game_2": [
+      0.4379,
+      0.4801
+    ],
+    "Sample_Game_3": [
+      0.4788,
+      0.5358
+    ],
+    "J03WMX": [
+      0.3294,
+      0.3628
+    ],
+    "J03WN1": [
+      0.2841,
+      0.3028
+    ],
+    "J03WOH": [
+      0.35,
+      0.3831
+    ],
+    "J03WOY": [
+      0.2996,
+      0.3341
+    ],
+    "J03WPY": [
+      0.2896,
+      0.345
+    ],
+    "J03WQQ": [
+      0.3678,
+      0.4012
+    ],
+    "J03WR9": [
+      0.3643,
+      0.4111
+    ]
+  },
+  "held_out": [
+    "J03WPY",
+    "J03WQQ",
+    "J03WR9"
+  ],
+  "metrica_guards": {
+    "Sample_Game_1": "57/60",
+    "Sample_Game_2": "60/60",
+    "Sample_Game_3": "60/60",
+    "objective": {
+      "Sample_Game_1": [
+        0.62,
+        0.6252
+      ],
+      "Sample_Game_2": [
+        0.6018,
+        0.6175
+      ],
+      "Sample_Game_3": [
+        0.5951,
+        0.5978
+      ]
+    },
+    "failures": "Game 1 recovery_accuracy in clean, live_missing_2s and live_missing_5s: 2 of 192 turnover frames (0.0104 drop vs 0.01). Traced: frame 38233 the candidate fixes ~3 s of wrong team before the turnover and switches 5 frames late; frame 44353 fixed before, switches ~3 s late."
+  },
+  "robustness": "133/134 (prototype dead-share drift 0.171, unchanged from the previous default); framework now runs independent pipeline runs in parallel (270 s vs ~20 min, identical check values).",
+  "challenge": {
+    "graded_frames_changed": 5475,
+    "dead_frames_changed": 0,
+    "graded_live_spells": [
+      292,
+      309
+    ],
+    "state_counts": {
+      "H": 71588,
+      "A": 55474,
+      "D": 72257
+    },
+    "possessions": 355
+  },
+  "working": {
+    "config": "configs/submission_ballfree.json",
+    "config_sha256": "0bfe6f04977d6b2000f0110fc9c670c8ee627d4f005d0b52aa60bd0595fef5b7",
+    "csv_sha256": "831cd2d491e4fc83db8a52432bb3b195bdb34d2d7784e5408d28fab42bf78348",
+    "rollback_csv": "submissions/possession_broadcast_stoppage_fallback.csv",
+    "rollback_csv_sha256": "c816d9527aef8730bcde8729d0e66da91637f5d0224b7330528f54d8b974be46"
+  },
+  "decision": "Promoted by the user with the disclosed exceptions.",
+  "rejected_buildup_features": {
+    "features": [
+      "backline_width_difference",
+      "length_difference",
+      "high_press_difference"
+    ],
+    "coefficients_dev_fit": [
+      -0.017,
+      0.317,
+      0.28
+    ],
+    "overall_accuracy": [
+      0.828,
+      0.826
+    ],
+    "own_third_accuracy": [
+      0.78,
+      0.775
+    ],
+    "decision": "Not adopted: direction-neutral shape cues did not reduce own-third or post-change errors; code reverted."
+  }
+}

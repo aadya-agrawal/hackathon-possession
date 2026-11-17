@@ -1,0 +1,18 @@
+{
+  "base_owner_protocol": "configs/metrica_owner_flight.json",
+  "base_owner_protocol_sha256": "b224c7bdda45d55510663dfac93b9c33aa1dfcc63218e09381ff71bbeb9f29c2",
+  "source_owner_report": "artifacts/owner_flight_confirmed_pass_game1.json",
+  "source_owner_report_sha256": "80e978d03eddee76348430e52f83b892cd0f71dea36c0bf933fb94840125d14f",
+  "owner_flight_reset_on_gap": true,
+  "owner_flight_require_sustained_player": true,
+  "owner_flight_contact_minimum_source": "semi_markov_strong_transition_minimum_frames",
+  "owner_flight_weight_source": "restart_weight",
+  "owner_flight_require_same_team_reception": true,
+  "policy": {
+    "development_game": "Sample_Game_1",
+    "change": "use existing stronger restart weight only for same-team bracketed pass flight",
+    "no_challenge_output_review": true,
+    "no_new_numeric_thresholds": true,
+    "game2_diagnostic_only_after_development_guards": true
+  }
+}

@@ -1,0 +1,579 @@
+{
+  "name": "video_adversarial_review_follow_up",
+  "snapshot_date": "2026-11-15",
+  "review": "GPT-6.1 adversarial review of previous video experiments (session rubber-duck); key claims verified before acting",
+  "fused_ball_join_fix": {
+    "bug": "fuse_video_ball_observations checked speeds only between consecutive fused observations, not joins with retained tracking; 23 of 37 joins of the broadcast-ball fusion exceeded 65 m/s (median 80 m/s), 22 of them against predicted (extrapolated) frames",
+    "fix": "possession/trajectory.py _repair_fused_joins: a contradicted predicted run is dropped in favour of the observation; at observed/interpolated neighbours the fused run is trimmed until the join is feasible",
+    "effect": {
+      "fused_frames": [
+        2160,
+        2159
+      ],
+      "joins": [
+        37,
+        14
+      ],
+      "joins_over_65mps": [
+        23,
+        0
+      ],
+      "graded_frames_changed": 94,
+      "dead_live_changes": 2
+    },
+    "robustness": "128/134 (unchanged)",
+    "csv_sha256": "ceebeea7f4b8c4ea0a7da70ca7d3445a33e6b6abbdc95ebd900b23f1cb099a41"
+  },
+  "cached_tactical_fills_retest": {
+    "design": "masked windows (tracking-observed ball hidden; fills cover ~70% of masked frames), today's default pipeline, official one-to-one spell F1 (IoU 0.3-0.7) vs the unmasked current run (teacher); development = half 1, frozen test = half 2",
+    "development": {
+      "nofill": {
+        "whole": 0.9289,
+        "local": 0.797,
+        "agreement": 0.8947
+      },
+      "fill": {
+        "whole": 0.9318,
+        "local": 0.8059,
+        "agreement": 0.8926
+      },
+      "filltouch": {
+        "whole": 0.912,
+        "local": 0.789,
+        "agreement": 0.8919
+      }
+    },
+    "test": {
+      "nofill": {
+        "whole": 0.9112,
+        "local": 0.7689,
+        "agreement": 0.8405
+      },
+      "fill": {
+        "whole": 0.9072,
+        "local": 0.7584,
+        "agreement": 0.8386
+      },
+      "filltouch": {
+        "whole": 0.8995,
+        "local": 0.7681,
+        "agreement": 0.864
+      }
+    },
+    "real_gaps": {
+      "fill_graded_frames_changed": 1135,
+      "filltouch_graded_frames_changed": 1813
+    },
+    "decision": "killed: frozen test negative; today's sequence model + broadcast fusion already recover what the fills add"
+  },
+  "replay_feasibility_count": {
+    "design": "other-view broadcast frames (valid homography, >=6 players, stride 5) matched by formation to tactical frames 3-180 s earlier (<=1 m)",
+    "candidates": 3056,
+    "replay_hits": 259,
+    "hits_graded": 259,
+    "original_tactical_ball_missing": 9,
+    "with_replay_ball": 7,
+    "estimated_frames": 35,
+    "replay_ball_vs_original_tactical_ball": {
+      "n": 232,
+      "median_m": 1.18,
+      "share_lt_2m": 0.69
+    },
+    "decision": "killed (< 500 useful frames): replays mostly re-show moments where the tactical ball was tracked"
+  },
+  "tactical_video_visibility_pilot": {
+    "finding": "the ball is usually visible to the tactical camera in real gaps: 3% of broadcast-ball references project off-screen; the ball model (yolo-sn-ball-opt) has a candidate within 5 m of the reference in 79% of on-screen reference frames",
+    "previous_failure_causes": [
+      "wrong detector (generic COCO / weak fine-tune)",
+      "off-pitch candidates discarded",
+      "1.5 m match to a tracked ball that is itself 1-6 m off"
+    ],
+    "conservative_operating_point": {
+      "rule": "ball model >= 0.3, no rival candidate, static-object exclusion, 4/4 neighbour persistence, within 1.5 m of a tracked player",
+      "control_precision_5m": "61/61",
+      "control_precision_1.5m": 0.9,
+      "broadcast_reference_agreement_5m": 0.95,
+      "gap_fire_rate": 0.13,
+      "projected_graded_frames": 6063
+    }
+  },
+  "broadcast_video_ball_detection": {
+    "operating_point": "yolo-sn-ball-opt full frame 1920 px conf >= 0.3; inside pitch +2 m; within 1.5 m of a tactical or broadcast player; 2-frame temporal support; raised-ball (over a person) rejection; outlier/step cleaning, 5-frame median",
+    "new_graded_frames": 1978,
+    "precision_1.5m": {
+      "vs_broadcast_tracking": 0.85,
+      "vs_feeds_agree": 0.937,
+      "feeds_agree_slow_ball": 0.953
+    },
+    "deterministic_gpu": true,
+    "real_gap_effect": {
+      "positions": {
+        "graded_frames_changed": 151
+      },
+      "positions_plus_touches": {
+        "graded_frames_changed": 567
+      }
+    }
+  },
+  "video_ball_swap_tests_vs_current_pipeline": {
+    "design": "masked windows (tactical ball hidden), today's default, official spell F1 vs unmasked teacher; local = windows +-10 s; touch variants also let broadcast-tracking fused frames count as touches match-wide, so 'whole' is confounded for them",
+    "baseline": {
+      "development": [
+        0.9289,
+        0.797,
+        0.8947
+      ],
+      "test": [
+        0.9112,
+        0.7689,
+        0.8405
+      ]
+    },
+    "tactical_dense": {
+      "fill": {
+        "development": [
+          0.9342,
+          0.8148,
+          0.8947
+        ],
+        "test": [
+          0.9081,
+          0.7639,
+          0.8323
+        ]
+      },
+      "filltouch": {
+        "development": [
+          0.9126,
+          0.7903,
+          0.9002
+        ],
+        "test": [
+          0.9113,
+          0.7937,
+          0.851
+        ]
+      },
+      "observations": {
+        "development": 5553,
+        "test": 4608
+      }
+    },
+    "broadcast_video": {
+      "fill": {
+        "development": [
+          0.9302,
+          0.8029,
+          0.8903
+        ],
+        "test": [
+          0.9103,
+          0.7691,
+          0.8368
+        ]
+      },
+      "filltouch": {
+        "development": [
+          0.9132,
+          0.7857,
+          0.8864
+        ],
+        "test": [
+          0.9061,
+          0.7797,
+          0.8453
+        ]
+      },
+      "observations": {
+        "development": 6123,
+        "test": 4836
+      }
+    },
+    "columns": "[whole spell F1, local spell F1, masked-frame agreement]",
+    "decision": "not promoted: no consistent gain across halves; the sequence model + broadcast-tracking fusion already resolve what ball positions add; remaining errors need direct team/touch evidence"
+  },
+  "broadcast_scene_classes": {
+    "classes": "wide / zoomed / close-up / graphics / crowd-other from green share, person sizes and counts, red wipe share",
+    "player_speed_median": {
+      "wide": 1.85,
+      "zoomed": 1.11,
+      "close_up": 0.94,
+      "graphics": 0.87,
+      "crowd_other": 1.01
+    },
+    "boundaries": "scene changes coincide with homography loss/recovery (median +0.12 s / -0.08 s): nothing to refine",
+    "play_looking_frames_in_cutaway_D": "replays (0.99 m/s): not false D",
+    "close_ups_labelled_live": "mostly broadcaster still on a replay after play resumed; flagging them hits 1.4% of live controls (fails 1%)",
+    "narrow_rule": "other-view close-up/crowd/graphics join cutaways: +544 live->D graded frames, 0 live controls hit; needs a committed per-frame scene array",
+    "decision": "not adopted (tiny, unproven, adds a frame-level artifact); confirms the broadcast cutaway cue"
+  },
+  "team_at_ball_from_kit_colours": {
+    "colour_model": "label-free kit prototypes from tracked players; 98.8% agreement on held-out matched players at confidence 0.9 (4.4% abstain); 24/24 disagreements were tracking errors",
+    "control_agreement": {
+      "conservative_ball": 0.988,
+      "dense_ball": 0.984
+    },
+    "swap_test": {
+      "development": {
+        "team": [
+          0.9363,
+          0.8217,
+          0.9102
+        ],
+        "team_plus_fill": [
+          0.9352,
+          0.8203,
+          0.906
+        ]
+      },
+      "test": {
+        "team": [
+          0.9234,
+          0.8039,
+          0.8585
+        ],
+        "team_plus_fill": [
+          0.9132,
+          0.7807,
+          0.846
+        ]
+      },
+      "baseline": {
+        "development": [
+          0.9289,
+          0.797,
+          0.8947
+        ],
+        "test": [
+          0.9112,
+          0.7689,
+          0.8405
+        ]
+      },
+      "columns": "[whole spell F1, local, masked-frame agreement] vs unmasked teacher"
+    },
+    "status": "consistent gain on both halves (first video evidence to do so); not yet deployed: needs real-gap extraction, repo integration, weight licence check"
+  },
+  "goalkeeper_identity_swap": {
+    "finding": "metadata Goalkeeper tracks 23 (home) and 45 (away) swap identities: track 45 follows Barcelona's keeper on 16,392 graded frames (track 23 then a stray copy on grass), track 23 follows Athletic's keeper on 1,566 (7 episodes, shirt 26 readable)",
+    "evidence": {
+      "slot45_sample": "120/150 lime home GK by automatic kit colour; ball at his feet 105/132",
+      "slot23_sample": "87/102 mint away GK by automatic kit colour"
+    },
+    "submission_impact_before": {
+      "slot45_nearest_to_ball_frames": 640,
+      "labelled_A": 403,
+      "slot23_nearest_to_ball_frames": 405,
+      "labelled_H": 402
+    },
+    "fix": "possession/tracking.py goalkeeper_frame_teams + extract_control_features(frame_teams): a goalkeeper track within goalkeeper_end_radius_metres (30) of the opponent's goal counts for the team defending it",
+    "threshold_sensitivity": {
+      "20": [
+        1539,
+        16392
+      ],
+      "25": [
+        1554,
+        16392
+      ],
+      "30": [
+        1566,
+        16392
+      ],
+      "40": [
+        1586,
+        16392
+      ]
+    },
+    "residual": "33 midfield frames of track 23 after a swapped stretch stay misassigned (sticky rule not adopted)",
+    "challenge": {
+      "graded_frames_changed": 1304,
+      "slot45_on_ball_after": {
+        "H": 481,
+        "A": 0,
+        "D": 159
+      }
+    },
+    "robustness": "127/134",
+    "decision": "promoted (user) as configs/submission_goalkeeper_fix.json",
+    "csv_sha256": "c1f6ced929371ef9ab1f6749834fa66ed0323aa966dafa78a518ec3b4d05aa1b",
+    "automatic_revalidation": {
+      "method": "tracking positions only (no video, kit colour or labels); same 30 m rule; a goalkeeper track counts as acting as keeper when it is the deepest player toward the goal it stands at",
+      "challenge_graded": {
+        "slot45_away_metadata": {
+          "rule_fires": 16392,
+          "fire_fraction": 0.112,
+          "deepest_at_that_goal": 9731
+        },
+        "slot23_home_metadata": {
+          "rule_fires": 1566,
+          "fire_fraction": 0.011,
+          "deepest_at_that_goal": 837
+        }
+      },
+      "dfl_7_matches_metadata_goalkeepers": {
+        "goalkeeper_halves": 28,
+        "tracked_frames": 2005288,
+        "rule_fires": 1912,
+        "fire_fraction": 0.00095,
+        "max_fire_fraction_per_goalkeeper_half": 0.0097,
+        "deepest_at_that_goal": 0
+      },
+      "conclusion": "real goalkeepers at the opponent's goal (set pieces) are never the deepest player there; on the challenge both metadata goalkeeper tracks are, on 59% and 53% of rule-fire frames, so they follow the other team's keeper"
+    }
+  },
+  "track_team_audit": {
+    "method": "kit-colour classification of the person at every track's projected position, sampled each second (+0.2 s around stretch edges), automatic only",
+    "outfield_tracks": "98-99.6% matched to a person; 95-99.8% colour agreement with team",
+    "goalkeeper_positive_control": "detected (track 23: 49, track 45: 189 on-screen samples)",
+    "new_identity_swaps": {
+      "stretches": 41,
+      "tracks": 27,
+      "seconds": 983,
+      "ball_nearest_frames": 283,
+      "labels_metadata_team": 269
+    },
+    "second_half_start": "6 away tracks follow home players for 124 s (5 ball-nearest frames, all D)",
+    "tracking_only_rule": "killed (23/73 checkable events confirmed)",
+    "ghosts": "6 affected frames; no action",
+    "override_trial": {
+      "file": "track_team_override.npz (int8 frame x track, -1 keep)",
+      "graded_frames_changed": 611,
+      "target_frame_agreement_with_colour_team": [
+        0.01,
+        0.69
+      ],
+      "robustness": "128/134"
+    }
+  },
+  "restart_taker_kit_team": {
+    "confident_agreement": {
+      "tagged_team": "12/13",
+      "pipeline_owner": "17/18",
+      "labels_2s_after": "22/24"
+    },
+    "decision": "check only; no systematic restart-ownership error"
+  },
+  "team_at_ball_real_gaps": {
+    "evidence_frames": 6013,
+    "real_gap_frames": 64643,
+    "script": "files/team_at_ball/extract_team_at_ball.py reproduces the swap-test evidence bit for bit; GPU bit-identical across GPUs; CPU 0 team disagreements but 5/52 fewer decisions",
+    "challenge": {
+      "graded_frames_changed": 1131,
+      "dead_live_changes": 277,
+      "d_to_live": 237,
+      "live_to_d": 40,
+      "live_frame_agreement_with_image_team": [
+        0.859,
+        0.91
+      ]
+    },
+    "robustness": "128/134",
+    "caveat": "45% of evidence frames fall in stoppages (restarts); the swap test covered live windows only, so the 237 dead->live boundary shifts are untested"
+  },
+  "combinations": {
+    "override+team": {
+      "graded_frames_changed": 1714,
+      "robustness": "127/134"
+    },
+    "override+team+augmented_ballfree": {
+      "graded_frames_changed": 3128,
+      "robustness": "127/134"
+    }
+  },
+  "team_at_ball_team_pass": {
+    "design": "team-at-ball evidence enters only the second (team-choice) decoding pass via the ball-free penalty/support arrays; live/dead from the first pass",
+    "swap_test": {
+      "development": [
+        0.9335,
+        0.8143,
+        0.9044
+      ],
+      "test": [
+        0.9253,
+        0.809,
+        0.8571
+      ],
+      "baseline": {
+        "development": [
+          0.9289,
+          0.797,
+          0.8947
+        ],
+        "test": [
+          0.9112,
+          0.7689,
+          0.8405
+        ]
+      },
+      "dead_live_changes_in_windows": "identical to no-fill"
+    },
+    "challenge_alone": {
+      "graded_frames_changed": 990,
+      "dead_live_changes": 0,
+      "robustness": "128/134"
+    },
+    "promoted_combination": {
+      "config": "configs/submission_video_evidence.json",
+      "graded_frames_changed": 2982,
+      "dead_live_changes": 66,
+      "robustness": "127/134",
+      "image_team_agreement_live_evidence_frames": 0.939,
+      "csv_sha256": "ffc5d1f52e996d956fddb5535db01cddd036d6f432ac423fb84e5fa255b3233b"
+    }
+  },
+  "team_at_ball_tracked_frames": {
+    "frames": "graded tracked-ball live frames that are contested (both teams < 2 m) or near-miss (nearest 1.5-3 m): 24,670, every 2nd used (12,353); 3,139 decided",
+    "agreement_with_image_team": {
+      "tracking_nearest": 0.841,
+      "current_label": 0.856,
+      "next_controller": 0.856
+    },
+    "tracking_vs_next_controller_same_frames": 0.854,
+    "disagreement_frames_next_controller_sides_with_image": {
+      "all": "102/201 = 0.507 (Wilson 0.44-0.58)",
+      "contested": "33/69 = 0.478",
+      "near_miss": "69/132 = 0.523",
+      "confidence_ge_0.99": "65/115 = 0.57 (CI includes 0.5)"
+    },
+    "decision": "killed: no better than tracking on tracked-ball frames; team-at-ball stays limited to tracking gaps",
+    "caveat": "next_controller uses the same tracked ball as the tracking baseline"
+  },
+  "regeneration_tools": {
+    "tools": [
+      "tools/fetch_video_weights.py",
+      "tools/extract_team_at_ball.py",
+      "tools/audit_track_teams.py",
+      "tools/train_ballfree_augmented.py"
+    ],
+    "verified": {
+      "evidence/team_at_ball_gaps.npz": "bit-identical full rerun (66 min, 3 L40S)",
+      "evidence/track_team_override.npz": "bit-identical after removing label statistics and paths from its provenance (sha 97179f97...)",
+      "models/ballfree_seq_cnn3_aug.npz": "bit-identical (4.6 min, one GPU)",
+      "models/ballfree_seq_cnn3.npz": "bit-identical with --mix-clean 1"
+    },
+    "determinism": "GPU detection identical across GPUs and shard counts; CPU inference differs slightly"
+  },
+  "broadcast_team_at_ball": {
+    "method": "same rule on broadcast live-view frames with a separate label-free broadcast kit-colour model (GK slots 25/50)",
+    "colour_model": {
+      "held_out_persons_5class": 0.985,
+      "player_team": 0.99,
+      "cross_block_5class": "0.975-0.978"
+    },
+    "controls_vs_tracking_nearest": "934/945 = 0.988",
+    "masked_windows": {
+      "new_frames": {
+        "development": 1370,
+        "test": 1077
+      },
+      "agreement_with_tactical_where_both": 0.999,
+      "new_frames_vs_tracking": {
+        "development": 0.978,
+        "test": 0.934
+      }
+    },
+    "real_gaps": {
+      "decided": 3240,
+      "new_beyond_tactical": 1432,
+      "agreement_with_tactical": 0.997
+    },
+    "swap_test_team_pass": {
+      "tactical_only": {
+        "development": [
+          0.9335,
+          0.8143
+        ],
+        "test": [
+          0.9253,
+          0.809
+        ]
+      },
+      "tactical_plus_broadcast": {
+        "development": [
+          0.9345,
+          0.8171
+        ],
+        "test": [
+          0.9236,
+          0.8064
+        ]
+      },
+      "with_3m_filter": {
+        "development": [
+          0.934,
+          0.8157
+        ],
+        "test": [
+          0.9236,
+          0.8064
+        ]
+      }
+    },
+    "decision": "not promoted: mixed (dev up, frozen test down); the added frames are lower quality"
+  },
+  "restart_timing_from_video": {
+    "transitions": {
+      "graded_D_to_live": 126,
+      "tracked_both_sides": 45,
+      "partial": 43,
+      "untracked": 38
+    },
+    "coverage": "video rest-then-kick found for 21 of 72 transitions without a tracked kick",
+    "validation_vs_tracked_kick": {
+      "as_specified": {
+        "median_s": 1.44,
+        "within_0.4s": 0.37,
+        "closer_than_label": 0.37
+      },
+      "best_confidence": {
+        "median_s": 0.52,
+        "closer_than_label": 0.42
+      },
+      "conf_ge_0.5": {
+        "n": 18,
+        "median_s": 0.39,
+        "closer_than_label": 0.61,
+        "note": "threshold chosen post hoc; 0.57 at 0.6"
+      }
+    },
+    "would_apply": {
+      "transitions": 10,
+      "graded_frames_changed": 159
+    },
+    "decision": "killed: fails the pre-set gate as specified; the passing variant is post hoc on 18 cases and the effect is tiny"
+  },
+  "team_at_ball_coverage_variants": {
+    "controls_agreement": {
+      "current": 0.9838,
+      "K0.35": 0.9801,
+      "K0.5": 0.98,
+      "extra_tier": 0.984,
+      "carry_0.5s": 0.9851
+    },
+    "swap_test_whole_delta_vs_current": {
+      "K0.35": {
+        "dev": -0.0019
+      },
+      "K0.5": {
+        "dev": -0.0007
+      },
+      "extra_tier": {
+        "dev": 0.0
+      },
+      "carry_0.5s": {
+        "dev": 0.006,
+        "test": 0.0
+      },
+      "carry_1s": {
+        "dev": 0.006,
+        "test": 0.0
+      }
+    },
+    "real_gap_frames": {
+      "current": 6013,
+      "carry_0.5s": 8480
+    },
+    "decision": "none accepted (acceptance needs both halves); current extractor kept"
+  }
+}

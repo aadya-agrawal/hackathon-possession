@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-11-08",
+  "scope": "Automatic input-only tracking/video/homography consistency; no possession labels, predictions, manual video inspection, or public-window selection.",
+  "local_aggregate_report_sha256": "45c6b13e7373dc985a718ae6638543364923919aaae25c7ea4cb839d562b47f7",
+  "generic_coco_detector_sha256": "9fe3c544f2b19bebad7ea41e76d7ad3d88b7c2f10d11d24430c5311f6b32db26",
+  "policy": {
+    "source": "Provided tactical video, raw ATD ball tracking and supplied homography only",
+    "minimum_raw_missing_gap_frames": 50,
+    "same_half_anchors_required": true,
+    "homography_valid_and_maximum_reprojection_error": 2.0,
+    "motion_support": "Five consecutive observed tracking positions to the known side, with maximum local step speed at most 65 m/s",
+    "stable_reference_sampling": "120 deterministic frames balanced 60 per half, each observed for five frames before and after",
+    "video_detector": "Generic COCO YOLO26l, sports-ball class 32, tiled 1280-pixel inference at confidence 0.03; frozen external-study choice",
+    "comparison": "Minimum pixel distance from independently generated ball detections to homography-projected tracking position; 40 px is a diagnostic association radius, not an accuracy tolerance"
+  },
+  "tracking": {
+    "raw_observed_frames": 113488,
+    "all_missing_runs": 186,
+    "missing_runs_at_least_50_frames": 142,
+    "same_half_long_runs": 131,
+    "candidate_observed_endpoints": 262,
+    "homography_qualified_endpoints": 259,
+    "five_consecutive_observed_positions_at_qualified_endpoints": 259,
+    "qualified_endpoints_with_maximum_local_step_speed_at_most_65_mps": 258,
+    "maximum_local_step_speed_mps_p50_rounded": 5.58,
+    "maximum_local_step_speed_mps_p90_rounded": 19.55,
+    "stable_reference_frames": 120
+  },
+  "video_agreement": {
+    "all_endpoints": {"denominator": 259, "any_ball_candidates": 259, "nearest_40px": 182, "highest_confidence_40px": 111},
+    "long_250_plus_endpoints": {"denominator": 153, "nearest_40px": 107},
+    "very_long_938_plus_endpoints": {"denominator": 28, "nearest_40px": 22},
+    "stable_reference": {"denominator": 120, "any_ball_candidates": 120, "nearest_40px": 83, "highest_confidence_40px": 67},
+    "half_1_endpoints": {"denominator": 117, "nearest_40px": 80},
+    "half_1_stable": {"denominator": 60, "nearest_40px": 45},
+    "half_2_endpoints": {"denominator": 142, "nearest_40px": 102},
+    "half_2_stable": {"denominator": 60, "nearest_40px": 38}
+  },
+  "interpretation": "Observed long-gap endpoints generally have locally coherent tracking and about the same detector agreement as stable comparison frames overall (182/259 versus 83/120 within 40 px). Per-half differences go in opposite directions. This does not establish absolute accuracy, the challenge endpoint-error distribution, or that a detector candidate is the ball.",
+  "release_decision": "Retain the tracking-only working default. Do not select thresholds or fuse video paths from this challenge input-only audit; a scored independent transfer still requires authorized synchronized external video and possession references.",
+  "working_csv_sha256_unchanged": "c9a2f41a76d7d070cc3afead3524fab90d21e87dd198259759b95b7a22536dac"
+}

@@ -1,0 +1,1074 @@
+{
+  "name": "review_follow_up_items_4_to_9",
+  "snapshot_date": "2026-11-16",
+  "baseline": "configs/submission_signed_tags.json",
+  "metric_note": "DFL/Metrica headline = mean live-spell F1 over IoU 0.3-0.7 (fast_eval ranking_iou_mean / guarded objective)",
+  "item_4_per_support_switch_costs": {
+    "decision": "not adopted; code removed",
+    "dev": {
+      "touch_cost_1.0": {
+        "dfl_iou": [
+          0.005,
+          0.0021,
+          0.0038,
+          0.0029
+        ],
+        "metrica_objective": [
+          0.0034,
+          0.0,
+          -0.0028
+        ],
+        "guards": "60/59/53"
+      },
+      "touch_cost_1.5": {
+        "dfl_iou": [
+          0.0016,
+          0.0013,
+          0.0,
+          0.0029
+        ],
+        "metrica_objective": [
+          0.0008,
+          0.0009,
+          0.0007
+        ],
+        "guards": "60/60/60"
+      },
+      "touch_cost_5.0": "worse",
+      "ballfree_cost_1_or_6": "no effect / slightly negative on masked gaps"
+    },
+    "heldout_once_touch_cost_1.5": {
+      "J03WPY": -0.0007,
+      "J03WQQ": 0.0035,
+      "J03WR9": -0.003
+    },
+    "reason": "held-out mean ~0; within noise"
+  },
+  "item_5_half_local_decoding": {
+    "decision": "not adopted",
+    "graded_frames_changed": 9
+  },
+  "item_6_minimum_live_spell": {
+    "decision": "rejected",
+    "ml25": {
+      "metrica": [
+        -0.008,
+        -0.0012,
+        -0.0105
+      ],
+      "guards": "45/60/44"
+    },
+    "ml30": {
+      "metrica": [
+        -0.0211,
+        0.0024,
+        -0.014
+      ],
+      "guards": "42/60/42"
+    }
+  },
+  "item_7_broadcast_ball_fusion": {
+    "decision": "promoted (user decision) as configs/submission_broadcast_ball.json",
+    "gate": "matched live view, tactical ball missing, broadcast player within 1.5 m, broadcast ball speed (0.16 s span) <= 15 m/s, no impossible jumps",
+    "input_only_position_agreement": {
+      "all_live_view": {
+        "median_m": 0.52,
+        "p90_m": 4.64
+      },
+      "gated": {
+        "median_m": 0.45,
+        "p90_m": 2.49,
+        "share_under_2m": 0.876
+      }
+    },
+    "swap_test": {
+      "design": "mask tactical ball in challenge-shaped blocks (25% of frames where both feeds see the ball), rerun full pipeline",
+      "masked_graded_frames": 16273,
+      "agreement_with_unmasked_labels": {
+        "no_fusion": 0.846,
+        "fusion": 0.875
+      },
+      "dead_live_agreement": {
+        "no_fusion": 0.951,
+        "fusion": 0.951
+      }
+    },
+    "challenge_effect": {
+      "fused_frames": 2160,
+      "graded_frames_changed": 591,
+      "live_spells": [
+        366,
+        366
+      ]
+    },
+    "robustness": "130/134 (new: decoded_boundary_strong_persistence 0.8489 vs 0.85)",
+    "caveat": "nearest-team agreement is a position-consistency check only, not a possession check; the swap test is the possession-level evidence"
+  },
+  "item_8_cutaway_corroboration": {
+    "decision": "gate not adopted (no-op); evidence supports the broadcast cue",
+    "external_calibration": {
+      "dfl_dead_episodes_median_player_speed_pct50_90": [
+        1.09,
+        1.66
+      ],
+      "dfl_live_5s_windows_pct50": 2.26
+    },
+    "challenge_cutaways_median_player_speed_pct50_90": [
+      0.98,
+      1.62
+    ],
+    "gate_2.0mps": {
+      "cutaways_failing": "2 of 97 (>=5 s)",
+      "graded_frames_changed": 0
+    }
+  },
+  "item_9_alignment_ambiguity": {
+    "decision": "no change needed",
+    "other_offset_distance_p1_m": 3.89,
+    "matched_distance_p50_p95_m": [
+      0.52,
+      0.9
+    ],
+    "ambiguous_other_offset": "0/3000",
+    "local_ambiguity_within_30s": "1/300"
+  },
+  "round_2": {
+    "review_2_cutaway_boundaries": {
+      "finding": "no boundary fix needed",
+      "evidence": {
+        "cutaway_intervals": 87,
+        "observed_ball_share_in_cutaway_D": 0.17,
+        "motion_episodes_2_to_12mps_sustained_1s": 42,
+        "episodes_with_slow_players_lt_1.5mps": 33,
+        "episodes_with_fast_players_ge_2mps": 3,
+        "fast_episode_review": "2 are deceleration right after the whistle (players then 1.1-1.3 m/s); 1 (frames 37155-37384) looks live but stays D without the cutaway cue (other cues)",
+        "player_speed_median": {
+          "cutaway_D": 0.92,
+          "non_cutaway_D": 1.0,
+          "predicted_live": 1.84
+        }
+      },
+      "calibration_limit": "external dead-ball ball motion cannot be calibrated (Metrica ball untracked when dead, DFL frozen)"
+    },
+    "review_4_supported_switch_under_challenge_like_tracking": {
+      "stress_model": "DFL dev; smooth drifting ball offset (Gaussian-smoothed noise, sigma 1.5 m/tau 1 s and 2 m/2 s) calibrated so nearest player at sharp ball turns matches the challenge with full players (median ~1.9 m, ~17% <0.75 m; clean DFL 0.5-0.7 m); player dropout replays challenge per-frame missing counts; paired noise across configs",
+      "score_drop": {
+        "clean": [
+          0.4778,
+          0.4882,
+          0.5219,
+          0.4954
+        ],
+        "sigma1.5": [
+          0.2563,
+          0.248,
+          0.2403,
+          0.2482
+        ],
+        "sigma2.0": [
+          0.233,
+          0.2418,
+          0.2176,
+          0.2242
+        ],
+        "ball_error_only": "0.29-0.32",
+        "dropout_only": "0.35-0.40"
+      },
+      "cost_10_minus_current": {
+        "sigma1.5_mean": -0.0036,
+        "sigma2.0_mean": -0.0121
+      },
+      "min_live_25_minus_current": {
+        "sigma1.5_mean": 0.0001,
+        "sigma2.0_mean": -0.0026
+      },
+      "min_live_50_minus_current": {
+        "sigma1.5_mean": -0.0002,
+        "sigma2.0_mean": -0.0087
+      },
+      "finding": "supported-switch gain survives challenge-like degradation; short-spell suppression does not help"
+    },
+    "review_5_spell_level_breakdown": {
+      "data": "DFL dev, current default, recall at IoU 0.5 by true spell duration",
+      "clean_recall": {
+        "<1s": 0.12,
+        "1-2s": 0.25,
+        "2-5s": 0.42,
+        "5-10s": 0.67,
+        ">10s": 0.77
+      },
+      "clean_main_miss": "merged into a longer same-team prediction (missed switches)",
+      "stressed_sigma1.5_recall": {
+        "<1s": 0.02,
+        "1-2s": 0.08,
+        "2-5s": 0.18,
+        "5-10s": 0.39,
+        ">10s": 0.58
+      },
+      "stressed_false_prediction_share": {
+        "<1s": 0.88,
+        "1-2s": 0.91,
+        "2-5s": 0.8,
+        "5-10s": 0.74,
+        ">10s": 0.62
+      },
+      "stressed_new_failure": "long true spells split into fragments; wrong-team short spells"
+    }
+  },
+  "round_3_noise_aware_distance_tuning": {
+    "method": "one-at-a-time distance parameters on DFL dev, clean + challenge-calibrated stress (sigma 1.5/2.0 + dropout), paired noise; mean of 4 matches, delta vs current",
+    "screen": {
+      "contact_carry_distance_1.5": [
+        0.0219,
+        0.014,
+        0.0076
+      ],
+      "contact_carry_distance_2.5": [
+        0.0233,
+        0.0274,
+        0.024
+      ],
+      "closeness_scale_4.5": [
+        -0.0069,
+        -0.0056,
+        -0.0009
+      ],
+      "closeness_scale_6": [
+        -0.0068,
+        -0.0081,
+        -0.0007
+      ],
+      "strong_control_distance_2.25": [
+        -0.0201,
+        -0.0064,
+        0.0037
+      ],
+      "strong_control_distance_3_margin_1.5": [
+        -0.0399,
+        -0.0171,
+        -0.0107
+      ],
+      "distance_thresholds_1.5_3_6": [
+        -0.0062,
+        -0.0009,
+        -0.0014
+      ],
+      "control_margin_weight_0.25": [
+        0.0019,
+        0.0025,
+        -0.0011
+      ],
+      "control_margin_weight_1.0": [
+        -0.0136,
+        0.0005,
+        -0.0017
+      ],
+      "restart_ownership_max_distance_3": [
+        0,
+        0,
+        0
+      ]
+    },
+    "carry_refinement": {
+      "2.0": [
+        0.0228,
+        0.0253,
+        0.017
+      ],
+      "3.0": [
+        0.0233,
+        0.028,
+        0.0284
+      ],
+      "4.0": [
+        0.0234,
+        0.0296,
+        0.0278
+      ],
+      "2.5+margin0.25": [
+        0.0286,
+        0.0331,
+        0.0261
+      ],
+      "2.5+turn0.5": [
+        0.0147,
+        0.0354,
+        0.0247
+      ],
+      "2.5+turn0.2": [
+        0.0254,
+        0.0237,
+        0.0277
+      ]
+    },
+    "candidate_contact_carry_distance_2.5": {
+      "metrica_objective": [
+        0.0173,
+        0.0092,
+        0.0123
+      ],
+      "metrica_guards": "60/55/59 (dips <= 0.004)",
+      "heldout_dfl_clean": {
+        "J03WPY": 0.0313,
+        "J03WQQ": 0.0348,
+        "J03WR9": 0.0615
+      },
+      "heldout_dfl_sigma1.5": {
+        "J03WPY": 0.0194,
+        "J03WQQ": 0.0039,
+        "J03WR9": 0.0155
+      },
+      "heldout_dfl_sigma2.0": {
+        "J03WPY": 0.0179,
+        "J03WQQ": -0.0089,
+        "J03WR9": 0.0118
+      },
+      "masked_gap_spell_f1": {
+        "G1": 0.0104,
+        "G2": 0.0006,
+        "G3": 0.0078,
+        "J03WMX": 0.0265,
+        "J03WN1": 0.028,
+        "J03WOH": 0.0134,
+        "J03WOY": 0.023
+      },
+      "challenge": {
+        "graded_frames_changed": 3238,
+        "dead_live_changes": 573,
+        "graded_live_spells": [
+          366,
+          416
+        ],
+        "touches": [
+          430,
+          839
+        ]
+      },
+      "robustness": "122/134 (new: noise 0.10/0.25 m agreement 0.968/0.941, retain-50% boundary recall 0.38-0.39 vs 0.40, boundary strong persistence 0.81, switch ratio 1.81)"
+    },
+    "alternative_2.0": {
+      "robustness": "126/134",
+      "heldout_dfl_clean": [
+        0.0313,
+        0.0321,
+        0.0615
+      ],
+      "heldout_sigma1.5": [
+        0.0034,
+        0.0154,
+        0.0045
+      ],
+      "heldout_sigma2.0": [
+        0.0034,
+        -0.0093,
+        0.0107
+      ],
+      "challenge_graded_frames_changed": 2394
+    },
+    "not_chosen": "margin 0.25 combo: little extra on held-out, doubles challenge changes (5977 frames, 1737 dead/live)"
+  },
+  "round_4_proxy_fidelity_and_touch_radius": {
+    "concern": "user: validation sets may not be a good proxy for the touch radius",
+    "proxy": "DFL (all 7 matches, truth known) degraded by replaying one random graded challenge segment: per-frame missing-player counts and the raw ball-missing mask, plus optional smooth ball drift (sigma 0/1.5/2.0 m); ball-free sequence probabilities fill gaps as deployed",
+    "fidelity_challenge_vs_proxy": {
+      "touches_per_observed_minute_le_0.75m": {
+        "challenge": 5.51,
+        "proxy_sigma0": 13.58,
+        "proxy_sigma1.5": 4.53,
+        "proxy_sigma2.0": 3.05
+      },
+      "touches_per_observed_minute_0.75_2.5m": {
+        "challenge": 4.92,
+        "proxy_sigma0": 1.99,
+        "proxy_sigma1.5": 10.69,
+        "proxy_sigma2.0": 9.7
+      },
+      "next_controller_found": {
+        "challenge": 0.51,
+        "proxy_sigma0": 0.54,
+        "proxy_sigma1.5": 0.36,
+        "proxy_sigma2.0": 0.32
+      }
+    },
+    "touch_band_check": {
+      "definition": "label-free: team of nearest player (<=2 m) when the observed ball next stays slow equals the touching team",
+      "challenge_next_controller_agreement": {
+        "0-0.75": 0.87,
+        "0.75-1.5": 0.82,
+        "1.5-2.5": 0.63
+      },
+      "proxy_sigma0": {
+        "next_controller": {
+          "0-0.75": 0.91,
+          "0.75-1.5": 0.84,
+          "1.5-2.5": 0.69
+        },
+        "truth_precision": {
+          "0-0.75": 0.92,
+          "0.75-1.5": 0.88,
+          "1.5-2.5": 0.58
+        }
+      },
+      "proxy_sigma1.5": {
+        "next_controller": {
+          "0-0.75": 0.84,
+          "0.75-1.5": 0.87,
+          "1.5-2.5": 0.82
+        },
+        "truth_precision": {
+          "0-0.75": 0.76,
+          "0.75-1.5": 0.78,
+          "1.5-2.5": 0.79
+        }
+      },
+      "reading": "the challenge's agreement falls with distance like the undrifted proxy, so 1.5-2.5 m touches are probably near coin-flip on the challenge; 0.75-1.5 m touches look reliable"
+    },
+    "radius_scores_delta_vs_current_7_matches": {
+      "2.5": {
+        "sigma0": 0.0197,
+        "sigma1.5": 0.0105,
+        "sigma2.0": 0.0053
+      },
+      "2.0": {
+        "sigma0": 0.0202,
+        "sigma1.5": 0.0096,
+        "sigma2.0": 0.0026
+      },
+      "1.5": {
+        "sigma0": 0.0191,
+        "sigma1.5": 0.0026,
+        "sigma2.0": 0.0001
+      }
+    },
+    "candidate_1.5m": {
+      "metrica_objective": [
+        0.0088,
+        0.0128,
+        0.0099
+      ],
+      "metrica_guards": "60/60/59",
+      "robustness": "128/134 (new: noise 0.10/0.25 m agreement 0.972/0.948, switch ratio 1.57, boundary strong persistence 0.83)",
+      "challenge": {
+        "graded_frames_changed": 1253,
+        "dead_live_changes": 181,
+        "graded_live_spells": [
+          366,
+          385
+        ]
+      }
+    },
+    "recommendation": "1.5 m: keeps the gain on the proxy that matches the challenge's touch behaviour best and excludes the band the label-free check flags as unreliable",
+    "decision": "1.5 m promoted (user decision) as configs/submission_touch_radius.json"
+  },
+  "round_5_proxy_parameter_sweep": {
+    "design": "one-at-a-time changes to the touch-radius default on the challenge-replayed DFL proxy (7 matches; sigma 0 and 1.5 m drift), mean spell-F1 delta and matches improved",
+    "base": {
+      "sigma0": 0.4326,
+      "sigma1.5": 0.3189
+    },
+    "results": {
+      "dead_cost_15": [
+        0.004,
+        0.0023
+      ],
+      "carry_weight_1.5": [
+        0.004,
+        -0.0013
+      ],
+      "live_cost_20": [
+        0.0028,
+        -0.0011
+      ],
+      "ballfree_weight_2": [
+        0.0,
+        0.0013
+      ],
+      "live_cost_45": [
+        0.0019,
+        -0.0017
+      ],
+      "strong_cost_4": [
+        -0.0018,
+        -0.0002
+      ],
+      "turn_0.5": [
+        -0.0045,
+        0.0024
+      ],
+      "turn_0.2": [
+        0.001,
+        -0.0032
+      ],
+      "strong_cost_1.5": [
+        -0.0008,
+        -0.0016
+      ],
+      "dead_threshold_0.26": [
+        -0.0007,
+        -0.0026
+      ],
+      "carry_max_100": [
+        0.0015,
+        -0.0051
+      ],
+      "ballfree_weight_0.5": [
+        -0.0025,
+        -0.0015
+      ],
+      "dead_cost_6": [
+        -0.0007,
+        -0.0037
+      ],
+      "carry_weight_0.6": [
+        -0.0087,
+        0.0001
+      ],
+      "carry_max_25": [
+        -0.0136,
+        -0.0035
+      ],
+      "dead_threshold_0.18": [
+        -0.0195,
+        -0.0347
+      ]
+    },
+    "dead_cost_follow_up": {
+      "12.5": [
+        0.001,
+        0.0004
+      ],
+      "20": [
+        0.0037,
+        0.0045
+      ],
+      "25": [
+        0.0031,
+        0.0051
+      ],
+      "15_metrica_objective": [
+        -0.0012,
+        -0.0127,
+        -0.0023
+      ],
+      "15_metrica_guards": "60/49/56",
+      "15_clean_dfl_dev": [
+        0.0003,
+        -0.0014,
+        -0.0004,
+        0.0029
+      ],
+      "15_challenge": {
+        "graded_frames_changed": 643,
+        "dead_live_changes": 534
+      },
+      "15_robustness": "128/134"
+    },
+    "decision": "no change: current settings are near-optimal on the challenge-like proxy; the dead-cost gain does not transfer to Metrica (DFL's frozen-ball stoppage convention likely drives it)"
+  },
+  "round_6_ballfree_degradation_augmentation": {
+    "recipe": "cnn3 retrained with 50% of chunks from copies of each training period degraded by the challenge's per-frame tracked-player counts (random 4-minute graded segments; persistent random removal); architecture, features, normalisation, 500 iterations, seed 0 unchanged",
+    "heldout_dfl": {
+      "clean_acc_early": [
+        [
+          0.9,
+          0.7533
+        ],
+        [
+          0.9001,
+          0.7483
+        ]
+      ],
+      "degraded_acc_early": [
+        [
+          0.8889,
+          0.7423
+        ],
+        [
+          0.895,
+          0.7448
+        ]
+      ],
+      "proxy_spell_f1_sigma0": [
+        0.4382,
+        0.4442
+      ],
+      "proxy_spell_f1_sigma1.5": [
+        0.325,
+        0.3278
+      ]
+    },
+    "seeds": "mix50 beat the clean recipe on proxy spell F1 for training seeds 0/1/2 at both sigmas",
+    "determinism": "retraining reproduces the weights bit for bit (L40S, torch 2.4.1)",
+    "challenge": {
+      "graded_frames_changed": 2059,
+      "dead_live_changes": 0,
+      "graded_live_spells": [
+        369,
+        354
+      ]
+    },
+    "robustness": "126/134 (retain-50% second-half recall 0.345)",
+    "note": "proxy_eval.py computed ball-free probabilities from the first config only; model comparisons were run in separate calls"
+  },
+  "round_7_breakdown_and_tracked_frame_ballfree": {
+    "oracle_breakdown_challenge_like_proxy": {
+      "design": "current default on 7 DFL matches degraded with the challenge's player dropout and ball-missing mask; each error class fixed with truth",
+      "sigma0": {
+        "current": 0.4352,
+        "oracle_dead_live": 0.2232,
+        "oracle_team_ball_unseen": 0.1366,
+        "oracle_team_ball_seen": 0.1805,
+        "live_team_wrong_seen": 0.106,
+        "live_team_wrong_unseen": 0.118
+      },
+      "sigma1.5": {
+        "current": 0.3225,
+        "oracle_dead_live": 0.1965,
+        "oracle_team_ball_unseen": 0.1354,
+        "oracle_team_ball_seen": 0.2731,
+        "live_team_wrong_seen": 0.206,
+        "live_team_wrong_unseen": 0.119
+      },
+      "reading": "with challenge-like ball error, team choice on tracked-ball frames is the largest lever; dead/live headroom is inflated by DFL's frozen-ball convention"
+    },
+    "ballfree_on_tracked_frames": {
+      "option": "ballfree_seen_weight (penalty weight on tracked-ball frames) + ballfree_seen_min_distance_metres (only where no tracked player is within the gate of the ball); team-choice pass only",
+      "ungated": {
+        "0.25": {
+          "s0": 0.0005,
+          "s15": 0.0096,
+          "metrica_guards": "46/58/59"
+        },
+        "0.5": {
+          "s0": 0.0028,
+          "s15": 0.0254,
+          "metrica_guards": "44/50/53"
+        },
+        "1.0": {
+          "s0": 0.0037,
+          "s15": 0.048,
+          "metrica_guards": "35/42/54"
+        }
+      },
+      "weight_0.5_gated": {
+        "1.0": {
+          "s0": 0.0014,
+          "s15": 0.0232,
+          "metrica": [
+            0.0032,
+            0.011,
+            0.0129
+          ],
+          "guards": "44/58/57"
+        },
+        "1.5": {
+          "s0": 0.001,
+          "s15": 0.0205,
+          "metrica": [
+            0.0035,
+            0.0075,
+            0.0127
+          ],
+          "guards": "48/58/58"
+        },
+        "2.0": {
+          "s0": -0.0001,
+          "s15": 0.0185,
+          "metrica": [
+            0.0042,
+            0.0121,
+            0.0103
+          ],
+          "guards": "54/58/58",
+          "challenge_changed": 1345,
+          "robustness": "128/134"
+        },
+        "2.5": {
+          "s0": 0.0007,
+          "s15": 0.0144,
+          "metrica": [
+            0.0059,
+            0.0077,
+            0.0146
+          ],
+          "guards": "56/58/60"
+        },
+        "3.0": {
+          "s0": 0.0021,
+          "s15": 0.0123,
+          "s15_matches_up": "7/7",
+          "metrica": [
+            0.0061,
+            0.0088,
+            0.0128
+          ],
+          "guards": "58/59/58",
+          "challenge_changed": 772,
+          "dead_live_changes": 0,
+          "robustness": "126/134"
+        }
+      },
+      "weight_1.0_gated": {
+        "1.0": {
+          "s15": 0.0401,
+          "guards": "36/58/58"
+        },
+        "2.0": {
+          "s15": 0.0306,
+          "guards": "42/56/58"
+        }
+      }
+    },
+    "ballfree_seed_ensemble": {
+      "seeds": "augmented recipe seeds 0-4 (probabilities averaged; ballfree_weights_path list support)",
+      "heldout_proxy_alone": {
+        "3_seeds": [
+          0.0022,
+          0.0004
+        ],
+        "5_seeds": [
+          0.0033,
+          0.0019
+        ]
+      },
+      "on_top_of_gate_3.0": [
+        0.0025,
+        0.0003
+      ],
+      "decision": "dropped: small, mixed under drift, 5x inference"
+    },
+    "slow_ball_only_check": {
+      "question": "user: gated frames may be passes in flight",
+      "challenge_gated_frames": {
+        "n": 26625,
+        "in_flight_gt8": 0.65,
+        "3_to_8": 0.21,
+        "slow_lt3": 0.14
+      },
+      "changed_frames": {
+        "n": 402,
+        "in_flight_gt8": 0.41,
+        "3_to_8": 0.27,
+        "slow_lt3": 0.32,
+        "runs_shifting_a_switch": 33,
+        "runs_creating_new_team_run": 10
+      },
+      "variants": {
+        "g2_v3": {
+          "s0": -0.0023,
+          "s15": 0.0009,
+          "metrica": [
+            -0.0007,
+            -0.0003,
+            -0.0003
+          ],
+          "guards": "58/60/60"
+        },
+        "g2_v8": {
+          "s0": -0.003,
+          "s15": 0.0081,
+          "metrica": [
+            -0.0059,
+            -0.0022,
+            -0.0022
+          ],
+          "guards": "52/58/58"
+        },
+        "g3_v3": {
+          "s0": 0.0,
+          "s15": 0.0,
+          "metrica": [
+            0.0001,
+            -0.0026,
+            0.0009
+          ],
+          "guards": "60/60/60"
+        },
+        "g3_v8": {
+          "s0": -0.0001,
+          "s15": 0.0047,
+          "metrica": [
+            -0.0017,
+            -0.0033,
+            0.0025
+          ],
+          "guards": "60/60/58"
+        }
+      },
+      "reading": "the gain comes mostly from ball-in-flight frames (switch timing during passes/interceptions), validated against Metrica and DFL truth; speed limits remove it"
+    },
+    "decision": "3 m gate, weight 0.5, all ball speeds promoted (user) as configs/submission_tracked_ballfree.json; csv 3a3d56695fc186e3eecd866985b1602a2ab431e934804d3927cd7aba0dd81827"
+  },
+  "round_8_duration_prior": {
+    "fit": "Metrica + DFL dev: live spells n=2732 median 3.8 s, 29% < 2 s, hazard nearly flat (0.0095 -> 0.003/frame); dead spells n=653 median 18.3 s",
+    "implementation": "exact hazard-based exit/continue costs up to 600/900 frames (session repo copy; not merged)",
+    "results": {
+      "geo_w1": {
+        "s0": -0.0011,
+        "s15": -0.0014
+      },
+      "raw_w1": {
+        "s0": 0.0,
+        "s15": -0.0006,
+        "metrica": [
+          -0.011,
+          -0.009,
+          -0.007
+        ]
+      },
+      "dead_only_w8": {
+        "s0": 0.0002,
+        "s15": -0.0002,
+        "metrica": [
+          -0.0016,
+          -0.0054,
+          0.0016
+        ]
+      },
+      "ratio_w2": {
+        "s0": 0.0001,
+        "s15": -0.0011,
+        "metrica": [
+          0.0003,
+          -0.0063,
+          0.0045
+        ]
+      }
+    },
+    "decision": "rejected: no weight improves the proxy at both sigmas; Metrica Game 2 drops for every candidate; the switch costs already encode the near-flat hazard"
+  },
+  "round_9_metrica_oracle_breakdown": {
+    "design": "current default (submission_tracked_ballfree) on Metrica Sample Games 1-3 (same vendor as the challenge); each error class fixed with truth; unknown truth frames excluded",
+    "clean": {
+      "current": 0.6857,
+      "oracle_dead_live_gain": 0.0631,
+      "oracle_team_gain": 0.2116,
+      "team_wrong_live": [
+        0.025,
+        0.025,
+        0.027
+      ],
+      "false_D": [
+        0.005,
+        0.004,
+        0.003
+      ],
+      "missed_D": [
+        0.513,
+        0.438,
+        0.738
+      ]
+    },
+    "recovery_masked": {
+      "current": 0.6316,
+      "oracle_dead_live_gain": 0.0564,
+      "oracle_team_gain": 0.2653
+    },
+    "live_missing_5s": {
+      "current": 0.6873,
+      "oracle_dead_live_gain": 0.065,
+      "oracle_team_gain": 0.2078
+    },
+    "reading": "under the vendor's convention dead/live headroom is modest (+0.06; DFL's +0.22 was mostly its frozen-ball convention); team errors on only 2.5% of live frames cost +0.21 because they are missed short spells"
+  },
+  "round_10_ball_aware_model": {
+    "model": "1D CNN on players + noisy ball (ball relative to team centroids/attack direction, distances to nearest players, speed, observed flag), trained on Metrica + DFL dev with player dropout, challenge ball-missing mask (mask only) and ball drift sigma U(0,2) m; 1500 iterations; NumPy inference",
+    "config": {
+      "ballfree_model": "sequence_ball",
+      "scope": "all",
+      "ballfree_seen_weight": 1.0,
+      "ballfree_seen_min_distance_metres": 1.0,
+      "ballfree_lookahead_frames": 5
+    },
+    "selection": "dev out-of-fold proxy + Metrica leave-one-game-out only",
+    "dev_oof_proxy": {
+      "sigma0": 0.006,
+      "sigma1.5": 0.032
+    },
+    "metrica": {
+      "objective": [
+        0.03,
+        0.033,
+        0.023
+      ],
+      "guards": "60/60/60"
+    },
+    "heldout_reported_only": {
+      "sigma0": [
+        0.4532,
+        0.4595
+      ],
+      "sigma1.5": [
+        0.3449,
+        0.3943
+      ]
+    },
+    "per_frame_live_accuracy_heldout": {
+      "players_only": [
+        0.9,
+        0.895,
+        0.895
+      ],
+      "ball_aware": [
+        0.927,
+        0.911,
+        0.909
+      ],
+      "pipeline_current": [
+        0.913,
+        0.905,
+        0.852
+      ],
+      "pipeline_ball_aware": [
+        0.924,
+        0.914,
+        0.882
+      ],
+      "columns": "clean, sigma0, sigma1.5"
+    },
+    "neighbourhood": "gate 0.75-1.5 m x look-ahead 5-8: dev +0.002..+0.006 / +0.024..+0.034, Metrica guards >= 58 every game; look-ahead 3 fails game 1 (54-56); seeds 1/2 pass 60/60/60; 1000/2000 iterations miss one guard (56)",
+    "variants": {
+      "gaps_only": "no gain",
+      "no_gate": "large drift gains but Metrica guards 35-56"
+    },
+    "challenge": {
+      "graded_frames_changed": 6569,
+      "dead_live_changes": 0,
+      "live_spells": [
+        366,
+        359
+      ],
+      "under_1s": [
+        15,
+        20
+      ],
+      "agreement_with_image_team_at_ball": [
+        0.939,
+        0.959
+      ]
+    },
+    "robustness": "128/134 (base 126)",
+    "decision": "promoted (user) as configs/submission_ball_aware.json",
+    "csv_sha256": "a0ce1766f4b1bebdc7a0146d3f6f8dd0a0417464fcac2dcb2166b73ff55b4863"
+  },
+  "round_11_adversarial_review_experiments": {
+    "protocol": "designs and kill criteria frozen before scoring; actual ranking F1 (mean one-to-one spell F1, IoU 0.3-0.7) headlined; held-out DFL matches reported as consumed diagnostics; tooling in validation/",
+    "swap_test_baseline_previous_default": {
+      "development": [
+        0.9292,
+        0.8105
+      ],
+      "test": [
+        0.9474,
+        0.8582
+      ]
+    },
+    "A_touch_window_fix": {
+      "change": "contact_carry_evidence incoming velocity aligned with its visibility window (old code reads one frame before it)",
+      "metrica_ranking_f1_mean": [
+        0.7486,
+        0.7385
+      ],
+      "dfl_proxy_dev": {
+        "sigma0": [
+          0.4287,
+          0.4292
+        ],
+        "sigma1.5": [
+          0.3622,
+          0.3633
+        ]
+      },
+      "artifact_family_dev": [
+        0.3936,
+        0.3923
+      ],
+      "swap_test_development": [
+        0.9337,
+        0.8228
+      ],
+      "swap_test_test": [
+        0.9536,
+        0.8759
+      ],
+      "robustness": "129/134",
+      "decision": "not deployed: Metrica ranking F1 -0.010 and 15-18 guard failures per game vs old"
+    },
+    "A2_reappearance_cue": {
+      "metrica_ranking_f1_mean": 0.7291,
+      "guards": "58/50/45",
+      "decision": "rejected (criteria a, c); the bug's useful touches come from 1-5 frame ball dropouts, not restarts"
+    },
+    "A3_short_dropout_bridge": {
+      "metrica_ranking_f1_mean": 0.7542,
+      "guards_vs_old": "55/60/52",
+      "artifact_family_dev": 0.3923,
+      "challenge_change_vs_fixed": 0,
+      "decision": "rejected (guards; artifact -0.0013)"
+    },
+    "B_cnn_frame_teams": {
+      "synthetic_swap_recovery": "exact",
+      "swap_family_degradation": {
+        "uncorrected": -0.0002,
+        "corrected": 0.0003
+      },
+      "decision": "rejected: no measurable ranking-F1 gain"
+    },
+    "C_cnn_supported_switches": {
+      "dfl_proxy_dev": {
+        "sigma0": -0.0027,
+        "sigma1.5": -0.0121
+      },
+      "metrica_guards": "44/45/39",
+      "decision": "rejected: more spurious than matched short spells"
+    },
+    "D_postprocessing": {
+      "bridge_dead_gaps_25": {
+        "metrica_ranking_f1_mean_delta": 0.0001,
+        "dfl_proxy_dev": [
+          0.0038,
+          0.0028
+        ],
+        "decision": "not promoted (noise-level)"
+      },
+      "delay_boundaries_5": {
+        "metrica_ranking_f1_mean_delta": -0.0106,
+        "decision": "rejected (convention-dependent: helps DFL, hurts Metrica)"
+      }
+    },
+    "E_ball_aware_retest": {
+      "dev_mean_delta_vs_rollback": {
+        "clean": 0.0037,
+        "mask_only": 0.0049,
+        "drift_sigma1.5": 0.036,
+        "artifact": 0.022
+      },
+      "artifact_family": "0.12 s ball smoothing + 0.3 m smooth per-player error, fitted to label-free challenge touch statistics (dev fit loss 8.5 vs drift 211)",
+      "decision": "keep ball-aware with uncertainty (likely 0 to +0.03)"
+    },
+    "K_pre_kickoff_dead": {
+      "rule": "each graded half block is D from its published start to its first automatically detected corroborated kickoff",
+      "detected_kickoffs": {
+        "first_half": 11207,
+        "second_half": 113765
+      },
+      "challenge": {
+        "graded_frames_changed": 277,
+        "all_before_detected_second_half_kickoff": true,
+        "possessions": [
+          403,
+          400
+        ],
+        "graded_spells": [
+          359,
+          355
+        ]
+      },
+      "external": "unchanged (external halves start at kickoff); Metrica guards 60/60/60",
+      "robustness": "128/134",
+      "decision": "promoted (user) as configs/submission_pre_kickoff.json",
+      "csv_sha256": "f91eccb244277037d81b2910b44f52bd7b09041c00e7fb599195c68554c92734"
+    },
+    "goalkeeper_rule_tracking_only_revalidation": "see video_review.json goalkeeper_identity_swap.automatic_revalidation"
+  }
+}

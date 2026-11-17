@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-11-15",
+  "scope": "Frame-alignment audit of tactical, broadcast and Smart Tagging inputs, and an opt-in broadcast-cutaway stoppage cue. Inputs only: tracking, homography validity and tags; no video frames, labels, public-window scores or hand choices. Offsets are discovered by code at runtime.",
+  "rules_checked": "RULES.md allows any algorithmic use of provided data; forbids hand labels/corrections and rules or constants tied to specific frames. Broadcast is optional input with no provided mapping.",
+  "within_view": {
+    "tactical": {
+      "atd_frames": 199319,
+      "homography_rows": 199319,
+      "contiguous": true,
+      "homography_valid": 1.0,
+      "mass_player_jumps": 0
+    },
+    "broadcast": {
+      "atd_frames": 164488,
+      "homography_rows": 164488,
+      "contiguous": true,
+      "homography_valid": 0.658,
+      "video_container_frames": 164487,
+      "note": "Video container has one frame fewer than tracking; only the final record is affected. Players are present in 91% of invalid-homography frames but the ball almost never (0.8%)."
+    }
+  },
+  "broadcast_to_tactical": {
+    "method": "Player-formation matching (mean capped nearest same-team distance); global vote for offsets, per-frame verification within +-3 frames, bracketed coverage.",
+    "offsets_discovered": [
+      4014,
+      26919
+    ],
+    "within_half": "Constant offset with 1-2 frame drift; 5 s ball-trajectory windows confirm +-1-2 frame jitter and no persistent steps (no dropped or inserted frames). Replays replace live footage in real time.",
+    "halftime_edit": "Broadcast cuts away ~74 s before the first-half end and shows ~23 s of unmatched pitch footage; live second-half footage resumes 130 s after the tactical second-half start. Tactical 88712-90651 and 110808-114048 have no broadcast coverage, nor do the last 38 s of the match.",
+    "graded_frames_by_state": {
+      "uncovered": 0.039,
+      "live_view": 0.54,
+      "other_view": 0.122,
+      "no_pitch": 0.299
+    },
+    "ball_agreement_where_both_observed_m": {
+      "median": 0.73,
+      "within_1m": 0.59,
+      "within_3m": 0.82
+    },
+    "broadcast_ball_fills_tactical_live_gaps": 0.103
+  },
+  "smart_tagging_timing": "Throw-in tags hit the touchline equally at -2..+2 s shifts and degrade beyond +-10 s; consistent with the documented seconds*25 mapping at seconds precision.",
+  "stoppage_evidence_input_only": {
+    "open_play_phase_coverage": {
+      "predicted_D": 0.34,
+      "predicted_live_live_view": 0.79,
+      "predicted_live_no_pitch_ball_missing": 0.26
+    },
+    "collective_speed_median_mps": {
+      "no_pitch_predicted_live": 1.21,
+      "no_pitch_predicted_D": 0.93,
+      "live_view_control": 1.98
+    },
+    "collective_speed_p90_mps": {
+      "no_pitch_predicted_live": 1.99,
+      "no_pitch_predicted_D": 1.7,
+      "live_view_control": 3.68
+    },
+    "set_piece_tag_follows": {
+      "no_pitch_predicted_live": 0.16,
+      "no_pitch_predicted_D": 0.74,
+      "live_view_control": 0.06,
+      "note": "Only 5 free-kick tags exist, so foul stoppages are mostly untagged."
+    }
+  },
+  "cue": "Dead evidence 0.9 across covered broadcast no-pitch runs >= 5 s, truncated at a tagged restart or when the observed tactical ball moves >= 12 m/s over 0.2 s for 3 frames. Thresholds fixed a priori; 0.2 s speed span introduced to fix a 0.25 m-noise robustness failure.",
+  "trial": {
+    "config": "configs/broadcast_stoppage_trial.json",
+    "config_sha256": "b1588a510111df2d0886ea8389e2f9ba3a6d03a2d94da7fba8a482b23701504e",
+    "csv": "submissions/possession_broadcast_stoppage_trial.csv",
+    "csv_sha256": "c816d9527aef8730bcde8729d0e66da91637f5d0224b7330528f54d8b974be46",
+    "graded_D_share": [
+      0.213,
+      0.344
+    ],
+    "graded_new_D_frames": 21049,
+    "graded_live_spells": [
+      287,
+      292
+    ],
+    "new_D_open_play_coverage": 0.3,
+    "external_metrica_dfl": "Byte-identical (no broadcast view externally); the cue cannot be validated against possession truth.",
+    "robustness": "133/134; only the prototype dead-share drift guard fails (0.171 > 0.05).",
+    "deterministic": true,
+    "unit_tests": 232
+  },
+  "decision": "Promoted by the user as the working default; contact-carry CSV kept as rollback (submissions/possession_contact_carry_fallback.csv, 44dd3c69...).",
+  "working": {
+    "config": "configs/submission_broadcast_stoppage.json",
+    "config_sha256": "ed21c1f215b1f40eb198ee8cbc750bfebfd282ff354adecdfc11f7cb1c31d42a",
+    "csv_sha256": "c816d9527aef8730bcde8729d0e66da91637f5d0224b7330528f54d8b974be46",
+    "state_counts": {
+      "H": 71199,
+      "A": 55863,
+      "D": 72257
+    }
+  },
+  "replay_extension_trial": {
+    "config": "configs/broadcast_replay_trial.json",
+    "method": "Broadcast frames with pitch view but no live formation match are searched against the preceding 3 minutes of tactical play; a match (<=1 m) marks a replay, which then counts like a cutaway.",
+    "detection": "9% of other-view frames match an earlier moment (median 19 s earlier); 0/300 live-view controls do. Broadcast tracking follows the screen, so replays describe the past.",
+    "challenge": {
+      "replay_frames": 1201,
+      "graded_new_dead_frames": 710,
+      "graded_dead_share": [
+        0.343,
+        0.347
+      ],
+      "new_dead_median_player_speed_mps": 1.23,
+      "tactical_ball_seen": 0.2,
+      "open_play_tag_coverage": 0.6
+    },
+    "decision": "Not promoted: open-play tag coverage (0.60) is far above the promoted cutaway frames (0.30), suggesting some replays overlap resumed play; effect is 0.45% of graded frames. Flag broadcast_replay_enabled stays off."
+  },
+  "runtime": "Offset discovery, per-frame verification and replay search run in forked worker pools with identical results; full default pipeline 75 s (was ~7 min)."
+}

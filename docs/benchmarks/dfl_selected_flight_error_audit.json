@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-11-08",
+  "source": "DFL and Bassek et al. (2025), CC BY 4.0, https://doi.org/10.6084/m9.figshare.28196177",
+  "match": "J03WOH",
+  "role": "Previously consumed full-match provider-flag diagnostic; not an untouched holdout or challenge score.",
+  "comparison": "Frozen selected exit-only decoder versus official known-live home/away flags and raw nearest-player attribution on identical frames.",
+  "model_config_sha256": "ea6db9d99ebe3bda68f19869bd4ec6da73b9eb49d3375ed9a9f11575f2471ac9",
+  "model_label_sha256": "3383f39cc9866d92076c76c18137ed8f94f9326337005ffb797c7fdf50c56c83",
+  "input_cohorts": {
+    "all_known_live": {"frames": 71945, "model_correct": 61828, "model_accuracy": 0.859378692056432, "nearest_accuracy": 0.76495934394329},
+    "near_player_at_most_1_5m": {"frames": 37295, "model_correct": 33709, "model_accuracy": 0.9038477007641775, "nearest_accuracy": 0.8930955892210752},
+    "far_over_4m": {"frames": 14645, "model_correct": 12259, "model_accuracy": 0.8370775008535336, "nearest_accuracy": 0.5869580061454421},
+    "fast_over_10mps": {"frames": 21201, "model_correct": 17741, "model_accuracy": 0.8368001509362766, "nearest_accuracy": 0.554832319230225},
+    "fast_and_far": {"frames": 9517, "model_correct": 8390, "model_accuracy": 0.8815803299359042, "nearest_accuracy": 0.5364085321004518},
+    "fast_but_within_4m": {"frames": 11684, "model_correct": 9351, "model_accuracy": 0.8003252310852448, "nearest_accuracy": 0.5698390961999316}
+  },
+  "external_metrica_game1_crosscheck": {
+    "source": "Corrected 25-fps clean/no-tag exit-only model; censored provider-known live frames, not challenge possession truth.",
+    "frozen_model_label_sha256": "2add645c3bc7367bdafbd2b641a1760b392079c8071baeaff9b339f387c7c729",
+    "all_known_live": {"frames": 73302, "model_accuracy": 0.9231126026574991},
+    "fast_and_far": {"frames": 8880, "model_accuracy": 0.8888513513513514},
+    "fast_but_within_4m": {"frames": 13584, "model_accuracy": 0.8766195524146054},
+    "interpretation": "The large DFL fast-near versus fast-far contrast does not reproduce on Metrica Game 1; do not select a speed/proximity gate from a consumed provider match."
+  },
+  "local_reports_sha256": {
+    "selected_flight_cohorts": "d0cd5c2153d558c7514ddf66f061a3c8ec8bd2948699c327ce8da9b37926cad4",
+    "frozen_first_evaluation": "a76f1f7309929c14d0a71037f8858120e3d6bffb4a45dfb2a5d3e6cc4a5296e2",
+    "metrica_game1_crosscheck": "f48ed2315608f89d397f98a305cff0d19e22e88fe3b7229b40896e73c9e3e272"
+  },
+  "interpretation": "Raw nearest-player error during fast and distant flight is not a selected-model error; the temporal decoder is already 88.2% correct there. DFL fast-near accuracy is lower, but the split does not repeat on Metrica. Provider flags are not independently reviewed physical touches, and earlier contact-motion/owner-flight prototypes failed high-IoU or masked-recovery guards.",
+  "decision": "No blanket flight-owner prior, no DFL-fitted fast-near gate, and no new challenge submission. Obtain independent physical-touch evidence or a predeclared source-only cue that passes external Game 1 and frozen transfer guards before modifying the selected exit-only model.",
+  "selected_submission_csv_sha256_unchanged": "c9a2f41a76d7d070cc3afead3524fab90d21e87dd198259759b95b7a22536dac"
+}

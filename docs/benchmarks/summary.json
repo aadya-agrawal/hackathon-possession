@@ -1,0 +1,239 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-11-16",
+  "scope": "Aggregate collaborator status only; no frame-level observations or labels.",
+  "selected": {
+    "config": "configs/submission_pre_kickoff.json",
+    "config_sha256": "59caff7fcae80ab93ed28ecbf73e8af00b177e3425a1b5a44692fc5f1cf108e4",
+    "csv_sha256": "f91eccb244277037d81b2910b44f52bd7b09041c00e7fb599195c68554c92734",
+    "frames": 199319,
+    "live_possessions": 400,
+    "live_spells_under_one_second": 19,
+    "video_frames": 0,
+    "state_counts": {
+      "H": 70872,
+      "A": 57196,
+      "D": 71251
+    },
+    "challenge_spell_f1": null,
+    "full_active_provenance_cleared": false,
+    "unlabeled_historical_match_proxy_selection_disclosed": true,
+    "selection_policy": "published_rules_unlabeled_methods_user_approved",
+    "original_baseline_fallback_config": "configs/compliant_tracking.json",
+    "original_baseline_fallback_csv": "submissions/possession_baseline_fallback.csv",
+    "original_baseline_fallback_csv_sha256": "4390fd4bd6509eb95fc35f24be69384feb6f365dc6dfb3cff087194d9e41dd72",
+    "challenge_declared_fps": 25,
+    "calibration_declared_source_fps": 50,
+    "time_unit_mapping_audit_pending": false,
+    "runtime_validation_source_fps": 25,
+    "calibration_gap_duration_differs_from_selected_runtime": true,
+    "current_deployment_comparison": "review_follow_up.json",
+    "historical_owner_player_diagnostics": "owner_player_continuity.json",
+    "working_selection_record": "structure_review_switch_cost.json",
+    "model_weights": "models/ballfree_seq_cnn3.npz",
+    "model_weights_sha256": "1ad27e3f352cdf20a4d657940cbcfcd2639bf35377fa38c523885c6d67d43a28"
+  },
+  "previous_working_exit_only": {
+    "config": "configs/submission_tracking.json",
+    "config_sha256": "ea6db9d99ebe3bda68f19869bd4ec6da73b9eb49d3375ed9a9f11575f2471ac9",
+    "csv": "submissions/possession_exit_only_fallback.csv",
+    "csv_sha256": "c9a2f41a76d7d070cc3afead3524fab90d21e87dd198259759b95b7a22536dac",
+    "live_possessions": 317,
+    "working_selection_record": "working_submission_selection.json",
+    "role": "Former working default and byte-identical rollback, not a second current selection"
+  },
+  "historical_selected_baseline": {
+    "config": "configs/compliant_tracking.json",
+    "config_sha256": "874c4c8ed85a98f13a29b954b08bbc7315b50ad85b57fd0231ae0f56355ccd5e",
+    "csv_sha256": "4390fd4bd6509eb95fc35f24be69384feb6f365dc6dfb3cff087194d9e41dd72",
+    "frames": 199319,
+    "live_possessions": 319,
+    "state_counts": {
+      "H": 90901,
+      "A": 70362,
+      "D": 38056
+    },
+    "role": "preserved byte-identical fallback and comparator for older benchmarks"
+  },
+  "broad_external_comparison": {
+    "timing_role": "Historical source-50-fps interpretation; not selected runtime policy.",
+    "games": [
+      "Sample_Game_1",
+      "Sample_Game_2"
+    ],
+    "metric": "Sparse event team accuracy; not possession spell F1.",
+    "common_event_anchors": 2472,
+    "candidates": {
+      "nearest_raw": {
+        "accuracy": 0.9648058252427184,
+        "live_spells": 4201,
+        "under_one_second": 2471
+      },
+      "nearest_smooth_1s": {
+        "accuracy": 0.8814724919093851,
+        "live_spells": 1252,
+        "under_one_second": 253
+      },
+      "legacy_state_machine": {
+        "accuracy": 0.8094660194174758,
+        "live_spells": 520,
+        "under_one_second": 14
+      },
+      "external_state_machine": {
+        "accuracy": 0.8078478964401294,
+        "live_spells": 519,
+        "under_one_second": 14
+      },
+      "legacy_semi_markov": {
+        "accuracy": 0.9073624595469255,
+        "live_spells": 682,
+        "under_one_second": 52
+      },
+      "external_semi_markov": {
+        "accuracy": 0.9073624595469255,
+        "live_spells": 684,
+        "under_one_second": 54
+      }
+    },
+    "short_gap_recovery": {
+      "nominal_seconds": 0.75,
+      "actual_seconds": 0.76,
+      "frames_per_window": 19,
+      "windows_per_game": 100,
+      "Sample_Game_1": {
+        "legacy_recovery_fraction": 0.5131578947368421,
+        "external_recovery_fraction": 1.0,
+        "legacy_within_2m_fraction_of_all_masked": 0.5078947368421053,
+        "external_within_2m_fraction_of_all_masked": 0.9484210526315789
+      },
+      "Sample_Game_2": {
+        "legacy_recovery_fraction": 0.5078947368421053,
+        "external_recovery_fraction": 1.0,
+        "legacy_within_2m_fraction_of_all_masked": 0.5005263157894737,
+        "external_within_2m_fraction_of_all_masked": 0.9473684210526315
+      }
+    }
+  },
+  "latest_game1_development": {
+    "timing_role": "Historical source-50-fps interpretation; see temporal_parity.json for current runtime.",
+    "metric": "Provider-reference-conditioned spell F1 at IoU 0.5, full prediction extents.",
+    "scenarios": 8,
+    "guards": 60,
+    "maximum_case_spell_f1_drop": 0.01,
+    "experiments": {
+      "baseline": {
+        "clean_none_f1": 0.454,
+        "clean_degraded_tags_f1": 0.4726,
+        "recovery_masked_degraded_tags_f1": 0.4294,
+        "objective": 0.43908,
+        "guards_passed": 60,
+        "decision": "retain_selected_baseline"
+      },
+      "core_near_miss": {
+        "clean_none_f1": 0.4916,
+        "clean_degraded_tags_f1": 0.5028,
+        "recovery_masked_degraded_tags_f1": 0.4071,
+        "objective": 0.46226,
+        "guards_passed": 59,
+        "decision": "reject"
+      },
+      "weak_transition_restore": {
+        "clean_none_f1": 0.4854,
+        "clean_degraded_tags_f1": 0.5146,
+        "recovery_masked_degraded_tags_f1": 0.3976,
+        "objective": 0.45703,
+        "guards_passed": 50,
+        "target_matched_spells": 65,
+        "target_spurious_spells": 103,
+        "decision": "reject"
+      }
+    }
+  },
+  "latest_localization": {
+    "case": "recovery_masked:degraded_restart_tags",
+    "baseline_spurious": 97,
+    "candidate_spurious": 111,
+    "shared_spurious": 83,
+    "introduced_or_degraded": 28,
+    "removed_or_fixed": 14,
+    "net_increase": 14,
+    "introduced_starts_observed": 24,
+    "introduced_starts_interpolated": 2,
+    "introduced_starts_within_1s_reappearance": 4,
+    "introduced_starts_within_3s_tags": 1,
+    "introduced_wrong_known_team": 14,
+    "introduced_correct_known_team": 9,
+    "introduced_unknown_reference": 5,
+    "observed_matched_handovers": 48,
+    "observed_wrong_live_team_handovers": 14,
+    "matched_median_relative_speed_mps": 15.822,
+    "wrong_team_median_relative_speed_mps": 12.005,
+    "matched_without_future_strong_support": 19,
+    "wrong_team_without_future_strong_support": 10,
+    "causality_established": false
+  },
+  "limitations": [
+    "Challenge correctness is unknown; automatic robustness and hashes are not accuracy scores.",
+    "Game 1 is repeatedly used development; Games 2-3 are previously inspected diagnostics.",
+    "Provider references and synthetic tags are not challenge possession truth.",
+    "Runtime validation now uses actual25fps; calibration-gap duration and inherited parameter origins remain explicit release concerns.",
+    "Metrics rounded where indicated; detailed source report hashes are recorded in sources.json.",
+    "Original detailed reports are intentionally not redistributed in this repository."
+  ],
+  "previous_working_handover": {
+    "config": "configs/submission_handover.json",
+    "config_sha256": "faf4b427a0a22451d767081e45ec74f698ca2ade231cfa5416d4e074685ec9b8",
+    "csv": "submissions/possession_handover_fallback.csv",
+    "csv_sha256": "a01547158cbbd2ec67a379ccea72ceb9f1b3e7332e7d6edcfb7097a503edc8f8",
+    "live_possessions": 321,
+    "role": "Former working default and byte-identical rollback"
+  },
+  "previous_working_restart_dead": {
+    "config": "configs/submission_restart_dead.json",
+    "config_sha256": "6da6e5bf19fb5ea32d6044944484983a10de52d82b599bcd06294602a27a4a5d",
+    "csv": "submissions/possession_restart_dead_fallback.csv",
+    "csv_sha256": "fb4a4d7d510ca7f7b2a7604cc3247f5fd54230db255bc562b9299ed2e44c41ff",
+    "live_possessions": 311,
+    "working_selection_record": "restart_dead_validation.json"
+  },
+  "previous_working_contact_carry": {
+    "config": "configs/submission_contact_carry.json",
+    "config_sha256": "3d4815571076ebf9bd9d8bd0e6f171cb6147c33d8900b6b82a38487f7ab40950",
+    "csv": "submissions/possession_contact_carry_fallback.csv",
+    "csv_sha256": "44dd3c69e3c1f87e0dcff84cb57c8dd384af523b777d778bb4b1c43b27d8e73d",
+    "live_possessions": 327,
+    "working_selection_record": "contact_carry_validation.json"
+  },
+  "previous_working_broadcast_stoppage": {
+    "config": "configs/submission_broadcast_stoppage.json",
+    "config_sha256": "ed21c1f215b1f40eb198ee8cbc750bfebfd282ff354adecdfc11f7cb1c31d42a",
+    "csv": "submissions/possession_broadcast_stoppage_fallback.csv",
+    "csv_sha256": "c816d9527aef8730bcde8729d0e66da91637f5d0224b7330528f54d8b974be46",
+    "live_possessions": 332,
+    "working_selection_record": "broadcast_alignment_and_stoppage.json"
+  },
+  "previous_working_ballfree": {
+    "config": "configs/submission_ballfree.json",
+    "config_sha256": "0bfe6f04977d6b2000f0110fc9c670c8ee627d4f005d0b52aa60bd0595fef5b7",
+    "csv": "submissions/possession_ballfree_fallback.csv",
+    "csv_sha256": "831cd2d491e4fc83db8a52432bb3b195bdb34d2d7784e5408d28fab42bf78348",
+    "live_possessions": 355,
+    "working_selection_record": "ballfree_possession.json"
+  },
+  "previous_working_contact_strong": {
+    "config": "configs/submission_contact_strong.json",
+    "config_sha256": "c172a50d002f824f1e37c4c397984bc0bf5aeaa97fa10b6d82dd4bbaedcd9de7",
+    "csv": "submissions/possession_contact_strong_fallback.csv",
+    "csv_sha256": "4f5ac9529fb071cf6ddfeaf292419d266eb425a15e9599eda663a83953ec9cb3",
+    "live_possessions": 375,
+    "working_selection_record": "touch_switch_diagnosis.json"
+  },
+  "previous_working_ballfree_seq": {
+    "config": "configs/submission_ballfree_seq.json",
+    "config_sha256": "b333e35936303cb099886976417cf5351974b72e0b896cf4f4a969e2232f75dc",
+    "csv": "submissions/possession_ballfree_seq_fallback.csv",
+    "csv_sha256": "ec99ada06a4708478b9f9cea83d57f5122d258ba9edbd5945f02649d052e5cf7",
+    "live_possessions": 376,
+    "working_selection_record": "ballfree_sequence.json"
+  }
+}

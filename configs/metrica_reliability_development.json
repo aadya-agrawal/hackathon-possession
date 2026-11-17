@@ -1,0 +1,19 @@
+{
+  "base_protocol": "configs/metrica_core_development.json",
+  "base_protocol_sha256": "da223b82a4a91e477e318a30e63b4e86f87ef3de4ec73f19300aa8745d680bbf",
+  "source_report": "artifacts/development_core_interaction.json",
+  "source_report_sha256": "f76f3859f8408b87c29182b996bd9c52ff700df7b668bb854b77be5fe044c2ad",
+  "source_candidate": "proximity_focused+strict_responsive",
+  "modes": ["geometry", "transitions", "both"],
+  "policy": {
+    "development_game": "Sample_Game_1",
+    "excluded_games": ["Sample_Game_2", "Sample_Game_3"],
+    "acceptance_thresholds_relaxed": false,
+    "new_core_on": "Observed ball frames only (trajectory source 1).",
+    "fallback_on": "Interpolated, predicted, missing, and model-derived observations.",
+    "fallback_values": "Exact current baseline values, not newly tuned values.",
+    "maximum_new_ablations": 3,
+    "dead_restart_formulas_changed": false,
+    "candidate_automatically_promoted": false
+  }
+}

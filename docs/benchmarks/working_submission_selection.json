@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-11-08",
+  "decision": "selected_working_default",
+  "policy_basis": "User elected to follow published RULES.md allowance for unlabeled provided-match methods, with historical proxy selection disclosed; no manual challenge labels, protected truth or public-window tuning accepted.",
+  "organizer_eligibility_approval_claimed": false,
+  "working_config": "configs/submission_tracking.json",
+  "working_config_sha256": "ea6db9d99ebe3bda68f19869bd4ec6da73b9eb49d3375ed9a9f11575f2471ac9",
+  "working_csv": "submissions/possession_compliant.csv",
+  "working_csv_sha256": "c9a2f41a76d7d070cc3afead3524fab90d21e87dd198259759b95b7a22536dac",
+  "frozen_research_candidate_config_sha256": "d19cc8b875b83ec5184e09390c83ee77019564b484739698a5958e7a8741b2a8",
+  "working_and_research_candidate_model_values_identical": true,
+  "original_baseline_fallback_config": "configs/compliant_tracking.json",
+  "original_baseline_fallback_config_sha256": "874c4c8ed85a98f13a29b954b08bbc7315b50ad85b57fd0231ae0f56355ccd5e",
+  "original_baseline_fallback_csv": "submissions/possession_baseline_fallback.csv",
+  "original_baseline_fallback_csv_sha256": "4390fd4bd6509eb95fc35f24be69384feb6f365dc6dfb3cff087194d9e41dd72",
+  "automatic_validation": {
+    "original_policy_passed": 135,
+    "original_policy_checks": 135,
+    "report_sha256": "55cbbc87402f5813cf498eb5c7f5620700bfab89a8da3db085c6da6155272fe7",
+    "official_format_validator_passed": true,
+    "two_default_runs_byte_identical": true,
+    "research_candidate_csv_byte_identical": true,
+    "cli_code_sha256": "cbc63cd6adaa8b3d0f837ebf0d66352ba2e2ddf7191e122f89ac9073793d605a",
+    "robustness_runner_code_sha256": "411788064f8acc989f66dbc2e03170b1299804ac774ea2992efc7db93b11d6ed"
+  },
+  "external_validation": {
+    "original_Metrica_Games_1_to_3_guards": "180/180",
+    "previously_inspected_Games_2_and_3_not_unseen": true,
+    "separate_frozen_DFL_no_tag_validation_positive_but_small": true,
+    "source": "docs/benchmarks/exit_bracket_release_candidate.json"
+  },
+  "working_output_structural_only": {
+    "frames": 199319,
+    "live_possessions": 317,
+    "shorter_than_one_second": 1,
+    "H": 89261,
+    "A": 68811,
+    "D": 41247,
+    "video_derived_ball_frames": 0
+  },
+  "challenge_spell_f1": null,
+  "public_window_post_selection_correctness": {
+    "source_scoreboard_sha256": "32691e21a82ef2e65458ecd5f21f9e9e2874743a98cacbd6f221d796d319596a",
+    "graded_frames": 7500,
+    "reference_possessions": 17,
+    "working_exit_bracket": {"spell_f1_mean": 0.412121, "macro_f1": 0.609580},
+    "original_baseline_fallback": {"spell_f1_mean": 0.412121, "macro_f1": 0.607027},
+    "model_selected_or_retuned_from_this_window": false,
+    "not_full_match_private_score": true
+  },
+  "known_limitations": [
+    "Tagged-input transfer and vendor semantics are not independently validated by DFL no-tag data.",
+    "Historic unlabeled provided-match proxy selection is disclosed, not misrepresented as external-only selection.",
+    "The earlier strict external-only release audit retains its historical decision and source hashes; this selection applies the user-approved published-rule interpretation.",
+    "Selected CSV is ignored by Git because licensed match-derived row-level data must be reproduced locally, not committed."
+  ]
+}

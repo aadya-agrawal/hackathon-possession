@@ -1,0 +1,57 @@
+{
+  "base_protocol": "configs/external_transfer_validation.json",
+  "base_protocol_sha256": "f6c944cbea107938a08e074767d1e362410c2dbd732c4793d67bd4d0c2ce022c",
+  "frozen_config_source_fps": 25,
+  "runtime_parity": {
+    "game": "BAR-ATH",
+    "fps": 25,
+    "config_sha256": "874c4c8ed85a98f13a29b954b08bbc7315b50ad85b57fd0231ae0f56355ccd5e"
+  },
+  "candidate_comparison": {
+    "reference": "deployment_semi_markov",
+    "event_mask_seconds": 0.75,
+    "candidates": [
+      {
+        "name": "nearest_raw", "config": "configs/compliant_tracking.json",
+        "source_fps": 25, "timing_role": "deployment",
+        "baseline_half_window_seconds": 0.0
+      },
+      {
+        "name": "nearest_smooth_1s", "config": "configs/compliant_tracking.json",
+        "source_fps": 25, "timing_role": "deployment",
+        "baseline_half_window_seconds": 1.0
+      },
+      {
+        "name": "organizer_smooth50_2s", "config": "configs/compliant_tracking.json",
+        "source_fps": 25, "timing_role": "deployment",
+        "baseline_half_window_seconds": 2.0
+      },
+      {
+        "name": "historical_semi_markov", "config": "configs/compliant_tracking.json",
+        "source_fps": 50, "timing_role": "historical_calibration"
+      },
+      {
+        "name": "deployment_semi_markov", "config": "configs/compliant_tracking.json",
+        "source_fps": 25, "timing_role": "deployment"
+      }
+    ]
+  },
+  "metrica": {
+    "games": {
+      "validation": ["Sample_Game_1", "Sample_Game_2"],
+      "untouched_test": []
+    },
+    "current_roles": {
+      "development": ["Sample_Game_1"],
+      "previously_inspected_diagnostic": ["Sample_Game_2"],
+      "excluded_previously_inspected": ["Sample_Game_3"]
+    }
+  },
+  "policy": {
+    "metrica_role": "development_and_reused_diagnostic",
+    "historical_protocol_rewritten": false,
+    "selected_submission_changed": false,
+    "calibration_metadata_used_as_runtime_fps": false,
+    "failed_checks_trigger_retuning": false
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "purpose": "Reselect complete semi-Markov transition/duration block at physical 25 fps using external Game 1 only.",
+  "baseline_config": "configs/compliant_tracking.json",
+  "baseline_sha256": "874c4c8ed85a98f13a29b954b08bbc7315b50ad85b57fd0231ae0f56355ccd5e",
+  "exit_candidate_config": "configs/exit_bracket_release_candidate.json",
+  "exit_candidate_sha256": "d19cc8b875b83ec5184e09390c83ee77019564b484739698a5958e7a8741b2a8",
+  "prediction_source_report_sha256": "b053e72122f1d46ae10da3a930e66e6379f1acc132a36cfa32f07656fb3dca9a",
+  "prediction_history_frames": 5,
+  "prediction_horizon_frames": 10,
+  "source_scenario_protocol": "configs/metrica_core_development.json",
+  "source_fps": 25,
+  "development_game": "Sample_Game_1",
+  "previously_inspected_diagnostics": ["Sample_Game_2", "Sample_Game_3"],
+  "external_revision": "e706dd506b360d69d9d123d5b8026e7294b13996",
+  "minimum_objective_gain_vs_exit_candidate": 0.002,
+  "selection": "Among candidates passing all sixty unchanged deployment guards, choose the highest Game 1 objective; retain current decoder policy if no alternative exceeds it by 0.002.",
+  "candidate_vectors": [
+    {"name": "current_25fps", "values": {}},
+    {"name": "lower_unsupported_switch_cost", "values": {
+      "semi_markov_live_transition_cost": 20.0,
+      "semi_markov_strong_transition_cost": 10.0
+    }},
+    {"name": "shorter_same_team_contact_support", "values": {
+      "semi_markov_strong_transition_minimum_frames": 4
+    }},
+    {"name": "longer_confirmation", "values": {
+      "semi_markov_live_transition_cost": 40.0,
+      "semi_markov_strong_transition_cost": 15.0,
+      "semi_markov_strong_transition_window_frames": 25,
+      "semi_markov_strong_transition_minimum_frames": 8,
+      "semi_markov_minimum_live_frames": 25
+    }},
+    {"name": "responsive_contact", "values": {
+      "semi_markov_live_transition_cost": 20.0,
+      "semi_markov_strong_transition_cost": 5.0,
+      "semi_markov_strong_transition_window_frames": 20,
+      "semi_markov_strong_transition_minimum_frames": 4
+    }}
+  ],
+  "forbidden_overrides": ["semi_markov_minimum_dead_frames", "restart_offset_frames", "video_ball_observations_path"],
+  "challenge_possession_truth_or_video_used": false,
+  "original_guards_unchanged": true
+}

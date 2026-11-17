@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-11-14",
+  "scope": "Challenge input-only video gap-filling trial on top of the contact-carry working default. Tracking, tactical video and supplied homography only; no challenge labels, public-window scores, human video review or per-gap choices. Plan reviewed adversarially before implementation.",
+  "gap_profile": {
+    "graded_live_frames_without_tracking_ball": 0.31,
+    "share_in_runs_at_least_5s": 0.998,
+    "real_live_gaps_at_least_125_frames": 94,
+    "frames": 38273
+  },
+  "step0_visibility_generic_coco_yolo26l": {
+    "control_frames": 300,
+    "gap_interior_frames": 470,
+    "top_conf_median": {
+      "control": 0.56,
+      "gap": 0.19
+    },
+    "top_conf_at_least_0_5": {
+      "control": 0.56,
+      "gap": 0.17
+    },
+    "top_conf_at_least_0_25": {
+      "control": 0.8,
+      "gap": 0.4
+    },
+    "control_top_candidate_within_40px_by_conf": {
+      "0.25-0.5": 0.59,
+      "0.5+": 0.82
+    }
+  },
+  "occlusion_hint": {
+    "nearest_player_within_1m": {
+      "last_ball_before_gap": 0.45,
+      "first_ball_after_gap": 0.65,
+      "random_observed_live": 0.33
+    },
+    "detector_finds_tracked_ball_by_player_distance": {
+      "0-1m": 0.52,
+      "1-2m": 0.66,
+      "2m+": 0.64
+    }
+  },
+  "kill_test": {
+    "design": "Masked tracking-observed live windows with real-gap lengths; half 1 development (57 windows, 17,704 frames), half 2 frozen test (59 windows, 16,569 frames). Reference is hidden tracking (tracking agreement, not truth). Parameters fixed before results; no tuning.",
+    "pass_rule": "local search beats linear interpolation on the same covered frames by >= 5 points at 1.5 m, also after reweighting to real-gap confidence bins and in the onset-near-player stratum",
+    "development": {
+      "local": {
+        "coverage": 0.697,
+        "agree_1_5m": 0.708,
+        "real_weighted": 0.657
+      },
+      "linear_on_same_frames": 0.105,
+      "linear_real_weighted": 0.073,
+      "top_detection": {
+        "coverage": 0.955,
+        "agree_1_5m": 0.564
+      }
+    },
+    "test_frozen": {
+      "local": {
+        "coverage": 0.658,
+        "agree_1_5m": 0.702,
+        "real_weighted": 0.659
+      },
+      "linear_on_same_frames": 0.096,
+      "onset_player_within_1m": {
+        "local": 0.772,
+        "linear": 0.059
+      }
+    },
+    "decision": "pass"
+  },
+  "possession_diagnostic_teacher_unmasked_decode_not_truth": {
+    "development": {
+      "nofill": {
+        "frame_agreement": 0.826,
+        "ha_flips": 3649,
+        "teacher_spells_matched_0_5": "57/96"
+      },
+      "fill": {
+        "frame_agreement": 0.897,
+        "ha_flips": 2014,
+        "teacher_spells_matched_0_5": "69/96"
+      },
+      "fill_plus_video_touches": {
+        "frame_agreement": 0.905,
+        "ha_flips": 1944,
+        "teacher_spells_matched_0_5": "74/96"
+      }
+    },
+    "test": {
+      "nofill": {
+        "frame_agreement": 0.794,
+        "ha_flips": 4188,
+        "teacher_spells_matched_0_5": "49/106"
+      },
+      "fill": {
+        "frame_agreement": 0.876,
+        "ha_flips": 2216,
+        "teacher_spells_matched_0_5": "67/106"
+      },
+      "fill_plus_video_touches": {
+        "frame_agreement": 0.897,
+        "ha_flips": 1889,
+        "teacher_spells_matched_0_5": "78/106"
+      }
+    }
+  },
+  "real_gap_behaviour": {
+    "fill_rate": 0.22,
+    "filled_frames": 8379,
+    "both_directions_supported": 0.03,
+    "agreement_where_both": 0.96,
+    "fill_distance_from_nearer_endpoint_median_m": 1.4,
+    "fills_more_than_15m_from_endpoints": 0.05,
+    "masked_window_comparison": {
+      "fill_rate": "0.66-0.69",
+      "distance_median_m": "8.6-9.6",
+      "more_than_15m": "0.31-0.33"
+    },
+    "interpretation": "Real-gap fills are consistent but mostly short extensions near gap edges; gap interiors are not reconstructed."
+  },
+  "self_trained_detector_round1": {
+    "labels": "First-half tracking-observed live frames (every 4th, ball speed < 25 m/s, development windows +-125 frames excluded) projected through the homography; 4,442 ball crops + 1,105 ball-free crops at native 640 px; YOLO26l fine-tuned 40 epochs.",
+    "control_top_is_tracked_ball": "0.84-0.85 at any confidence (generic 0.82 only at >= 0.5)",
+    "control_frames_with_detection": 0.62,
+    "gap_interior_conf_at_least_0_1": {
+      "fine_tuned": 0.07,
+      "generic": 0.76
+    },
+    "interpretation": "More precise on this camera but almost never fires inside real gaps, indicating the ball is mostly not visible as a ball there; many generic gap detections are likely false. Round 2 not pursued."
+  },
+  "candidates_not_promoted": {
+    "fill": {
+      "csv": "submissions/possession_video_gapfill_candidate.csv",
+      "csv_sha256": "feeaca4f0dca6936661aab8f5f6c851351e805f355b9d93b17dc721bc7f5cd7d",
+      "graded_frames_changed": 2909,
+      "graded_live_spells": [
+        287,
+        290
+      ]
+    },
+    "fill_plus_video_touches": {
+      "csv": "submissions/possession_video_gapfill_touch_candidate.csv",
+      "csv_sha256": "1e1454e42cb412952a3500f44e476b7b2d97e45cf179276527540146a54f3252",
+      "graded_frames_changed": 3009,
+      "graded_live_spells": [
+        287,
+        297
+      ],
+      "touches": [
+        430,
+        506
+      ]
+    },
+    "observations": "artifacts/video_gap_fill_observations.json (ignored; generated by session tooling, not yet a repository command)"
+  },
+  "decision": "Not promoted (decided while the user was away): using video changes the tracking-only compliance class; possession evidence is teacher-based (circular); real-gap fills are edge extensions affecting 1.8-1.9% of graded frames. Working default unchanged. contact_carry_include_video_ball added as an off-by-default decoder flag.",
+  "not_started": "Physics-and-player gap tracker: without visual support inside gap interiors it would infer touches without evidence (adversarial review issue 3)."
+}

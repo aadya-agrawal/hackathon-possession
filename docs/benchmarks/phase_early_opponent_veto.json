@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-11-08",
+  "scope": "One predeclared source-only same-track early-opponent-contact veto on the frozen bounded-phase plus exit-bracket model; no provider events or challenge labels used at inference.",
+  "source_fps": 25,
+  "external_revision": "e706dd506b360d69d9d123d5b8026e7294b13996",
+  "selected_exit_config_sha256": "ea6db9d99ebe3bda68f19869bd4ec6da73b9eb49d3375ed9a9f11575f2471ac9",
+  "prior_combination_development_report_sha256": "c831f0c4b9d31131a483643a1c4de58f8ad8596d9fea33b8fa31de97d5510016",
+  "only_new_value": {"phase_early_opponent_veto_enabled": true},
+  "rule": "Within accepted bounded contact/flight brackets, keep the baseline live H/A label where the opposing side has three consecutive observed ball/near-player strong-control frames from the same player track. Full phase contact still requires four frames. Restarts and dead frames are not overridden.",
+  "model_code_sha256": {
+    "decoder.py": "39e8667bca16ada08a8cc702ce8b62588f5939f3a599887c7260da2a8b0276b4",
+    "control_phase.py": "618dff708ed8e5c82a1d3da25d450c6efb9244b70df9c6ac2f48e1c635c2c160"
+  },
+  "metrica_games": {
+    "Sample_Game_1_development": {
+      "exit_only_objective": 0.45063724390460297,
+      "previous_phase_combination_objective": 0.45360514631799204,
+      "early_veto_objective": 0.45378891425804135,
+      "passed_original_guards": "60/60",
+      "clean_no_tag_early_veto_frames": 46
+    },
+    "Sample_Game_2_previously_inspected": {
+      "exit_only_objective": 0.39166577520013635,
+      "previous_phase_combination_objective": 0.39168976355500984,
+      "early_veto_objective": 0.39166629336510883,
+      "passed_original_guards": "60/60",
+      "clean_no_tag_early_veto_frames": 30
+    },
+    "Sample_Game_3_previously_inspected": {
+      "exit_only_objective": 0.40275442323333066,
+      "previous_phase_combination_objective": 0.402502219306322,
+      "early_veto_objective": 0.4024423946256995,
+      "passed_original_guards": "60/60",
+      "clean_no_tag_early_veto_frames": 57,
+      "correct_out_of_247_clean_no_tag_recoveries": {
+        "exit_only": 144,
+        "previous_phase_combination": 141,
+        "early_veto": 142
+      },
+      "interpretation": "Restores one of three prior lost recovery decisions; the remaining two losses fall within the unchanged guard, but overall objective remains below exit-only."
+    }
+  },
+  "dfl_no_tag_provider_flags": {
+    "J03WMX_previously_inspected": {
+      "mean_live_spell_f1_iou_0_3_to_0_7": {"exit_only": 0.3223404255319149, "early_veto": 0.32180851063829785}
+    },
+    "J03WN1_previously_inspected": {
+      "mean_live_spell_f1_iou_0_3_to_0_7": {"exit_only": 0.26251691474966166, "early_veto": 0.26251691474966166}
+    },
+    "real_smart_tagging_transfer_validated": false
+  },
+  "local_reports_sha256": {
+    "game1_development": "65ccb09803b0b0a1d9b0774771692fb4a8f698c100173bb408b89f55503eba24",
+    "game2_previously_inspected": "3715ffd6e50a820c5a38e841a53520d758a4e68df774002210d81e0862298bfa",
+    "game3_previously_inspected": "8931d1f8a3f475f05b3a874d6b2f32ac2aaad7238b16329fc8f6fd527aa03fbd",
+    "dfl_J03WMX": "e63d02d8a4f924c30b78332654113ff8559f64b333a14b330b2c98eeed3bc10c",
+    "dfl_J03WN1": "4fef0722d0a239ac557e0d1873dd9fa1573d0ae4bb4794be2802e8f1045f9476"
+  },
+  "decision": "Keep the early-opponent veto as an opt-in research ablation, not the selected model. It clears guards but lacks a meaningful frozen Game 2 gain, remains below exit-only on inspected Game 3, and regresses DFL J03WMX mean spell-F1. Do not tune further on inspected Game 3 or the challenge public window.",
+  "selected_csv_sha256_unchanged": "c9a2f41a76d7d070cc3afead3524fab90d21e87dd198259759b95b7a22536dac"
+}

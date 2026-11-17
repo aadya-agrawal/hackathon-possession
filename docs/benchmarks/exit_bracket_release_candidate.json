@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-11-08",
+  "scope": "Formal tracking-only exit-bracket candidate; original default retained until provenance and tagged-input release blockers are resolved.",
+  "selected_baseline_config_sha256": "874c4c8ed85a98f13a29b954b08bbc7315b50ad85b57fd0231ae0f56355ccd5e",
+  "candidate_config": "configs/exit_bracket_release_candidate.json",
+  "candidate_config_sha256": "d19cc8b875b83ec5184e09390c83ee77019564b484739698a5958e7a8741b2a8",
+  "release_protocol": "configs/exit_bracket_release_protocol.json",
+  "release_protocol_sha256": "7989d9cab81ea9800161788dd0a943ebc7729bf5b38f85dbcd22f936a9f317ab",
+  "local_reports_sha256": {
+    "release_audit": "2f138bac6eaaaf4891ce2e418fa8d880e13267bd5e5eab64e08edd9398c48fb8",
+    "DFL_development": "80274812a9f156183339917a64ae04b6384004eb488a4685b2c2c8d885ea1469",
+    "DFL_frozen_fresh_validation": "c8e93af727a359672b05e0c10962a12f0e5c07e5afa8cb5b6fac9a22ded2d75a"
+  },
+  "code_sha256": {
+    "DFL_parser": "eefb2714cffcc287679820782e3e3655efaa21579c152132b1fb454ee046f327",
+    "release_audit": "9adc5635af1e40813d479f201dd475874bb0d0f0ff6c05fb1c0f5de9f3f176a9"
+  },
+  "metrica_original_guards": {
+    "development_game1": "60/60",
+    "previously_inspected_game2": "60/60",
+    "previously_inspected_game3": "60/60",
+    "source": "docs/benchmarks/exit_bracket_validation.json"
+  },
+  "independent_DFL": {
+    "source": "https://github.com/spoho-datascience/idsse-data",
+    "license": "CC-BY 4.0; credit Deutsche Fussball Liga (DFL) and Bassek et al. (2025)",
+    "tracking_flags": {
+      "BallStatus": {"0": "Dead", "1": "Alive"},
+      "BallPossession": {"1": "Home", "2": "Away"}
+    },
+    "development_J03WMX": {
+      "live_reference_spells": 511,
+      "dead_recall": {"baseline": 0.15781048879500972, "candidate": 0.1676622990857784},
+      "dead_precision": {"baseline": 0.9650822484609951, "candidate": 0.9603024574669187},
+      "live_spell_f1_0.5": {"baseline": 0.32669322709163345, "candidate": 0.3271276595744681},
+      "live_spell_f1_0.75": {"baseline": 0.19389110225763612, "candidate": 0.19946808510638298},
+      "live_team_accuracy": {"baseline": 0.8630767608850988, "candidate": 0.8621396525670911},
+      "qualified_exit_intervals": 13
+    },
+    "frozen_unseen_J03WN1": {
+      "live_reference_spells": 500,
+      "dead_recall": {"baseline": 0.19994807608220377, "candidate": 0.2469665500655881},
+      "dead_precision": {"baseline": 0.9750133262260128, "candidate": 0.9750229271187355},
+      "live_spell_f1_0.5": {"baseline": 0.2435723951285521, "candidate": 0.2516914749661705},
+      "live_spell_f1_0.75": {"baseline": 0.12719891745602166, "candidate": 0.12990527740189445},
+      "live_team_accuracy": {"baseline": 0.8089416031706568, "candidate": 0.8070550038755722},
+      "qualified_exit_intervals": 21
+    },
+    "validation_scope": "No-tag per-frame official provider flags; not Metrica references, challenge truth, or independent Smart Tagging validation."
+  },
+  "candidate_challenge_format_only": {
+    "csv_sha256": "c9a2f41a76d7d070cc3afead3524fab90d21e87dd198259759b95b7a22536dac",
+    "reproduced_twice_byte_identical": true,
+    "official_format_validator_passed": true,
+    "source_video_reviewed_or_protected_truth_used": false,
+    "full_match_challenge_spell_f1": null
+  },
+  "selected_submission": {
+    "unchanged": true,
+    "csv_sha256": "4390fd4bd6509eb95fc35f24be69384feb6f365dc6dfb3cff087194d9e41dd72"
+  },
+  "decision": "retain_current_submission",
+  "release_blockers": [
+    "Inherited active semi-Markov, restart-localization, restart-ownership and prediction-window origins are not independently reselected or clarified.",
+    "Forty-four other configured inherited keys are not fully traced in this release audit; verified geometry/kinematics are listed separately in the detailed local report.",
+    "DFL has no challenge Smart Tagging; tagged-input semantics/timing are not independently transferred.",
+    "DFL independent gains are positive but much smaller than the Metrica provider-reference gains; challenge accuracy is unknown."
+  ],
+  "limitations": [
+    "Fresh DFL validation J03WN1 was first evaluated after candidate config/parser freeze and was not used for retuning; the other DFL match developed the adapter.",
+    "DFL frame-level flags are provider annotations with different tracking conventions, not official challenge possession truth.",
+    "Licensed challenge match assets, model caches and detector weights are not shared in the repository.",
+    "The candidate differs from the selected output but must not be presented as a proven challenge-score gain."
+  ]
+}

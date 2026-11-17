@@ -1,0 +1,65 @@
+{
+  "candidate_scope": "gap_release",
+  "baseline_config": "configs/compliant_tracking.json",
+  "baseline_sha256": "874c4c8ed85a98f13a29b954b08bbc7315b50ad85b57fd0231ae0f56355ccd5e",
+  "candidate_config": "configs/metrica_guarded_candidate.json",
+  "candidate_sha256": "de48bec40e7a80cb92b9106fce873a286a9222acedca169e88bb116d55306707",
+  "source_fps": 50,
+  "seed": 2027,
+  "external_repository_commit": "e706dd506b360d69d9d123d5b8026e7294b13996",
+  "games": {
+    "reused_diagnostic": ["Sample_Game_2", "Sample_Game_3"]
+  },
+  "references": {
+    "loss_pair_tolerance_seconds": 0.2,
+    "boundary_guard_seconds": 0.12
+  },
+  "recovery_scoring": {
+    "boundary_search_seconds": 2.0,
+    "boundary_tolerance_seconds": [0.0, 0.2, 0.5, 1.0],
+    "post_recovery_seconds": [0.2, 0.5, 1.0, 2.0],
+    "short_reference_seconds": 1.0
+  },
+  "recovery_mask_seconds": 0.75,
+  "tag_modes": {
+    "none": null,
+    "coarse_restart_tags": {
+      "jitter_seconds": 0.0,
+      "drop_fraction": 0.0,
+      "unknown_team_fraction": 0.0
+    },
+    "degraded_restart_tags": {
+      "jitter_seconds": 0.5,
+      "drop_fraction": 0.25,
+      "unknown_team_fraction": 0.25
+    }
+  },
+  "restart_reference_exclusion_seconds": 3.0,
+  "missing_durations_seconds": [2.0, 5.0],
+  "maximum_mask_windows": 100,
+  "minimum_mask_windows": 20,
+  "minimum_independent_reference_spells": 20,
+  "spell_ious": [0.5, 0.75],
+  "gates": {
+    "maximum_macro_f1_drop": 0.01,
+    "maximum_reference_spell_f1_drop": 0.01,
+    "maximum_recovery_accuracy_drop": 0.01,
+    "maximum_recovery_boundary_recall_drop": 0.02,
+    "maximum_excess_masked_live_dead_fraction": 0.01,
+    "maximum_excess_broken_live_window_fraction": 0.05,
+    "minimum_mean_tagged_clean_spell_gain": 0.002,
+    "minimum_per_game_tagged_clean_spell_gain": 0.0
+  },
+  "release_requirements": {
+    "external_checks_pass": true,
+    "automatic_challenge_checks_pass": true,
+    "active_tuned_parameter_provenance_cleared": true
+  },
+  "policy": {
+    "parameters_retuned": false,
+    "new_candidate_search": false,
+    "external_results_claimed_as_fresh_holdout": false,
+    "challenge_video_or_possession_ground_truth_used": false,
+    "decision": "Promote only if all required gates clear; otherwise retain the current submission."
+  }
+}

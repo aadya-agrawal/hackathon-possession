@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "purpose": "Externally reselect prediction history and horizon under label-free challenge-shaped missingness.",
+  "baseline_config": "configs/compliant_tracking.json",
+  "baseline_sha256": "874c4c8ed85a98f13a29b954b08bbc7315b50ad85b57fd0231ae0f56355ccd5e",
+  "source_scenario_protocol": "configs/metrica_core_development.json",
+  "source_fps": 25,
+  "development_game": "Sample_Game_1",
+  "external_revision": "e706dd506b360d69d9d123d5b8026e7294b13996",
+  "challenge_input_profile_sha256": "e54c16c4477ad0535057b7eb0de4c13a9b4e1c0ce9f02a9c3894a54e098d5793",
+  "masked_gap_lengths_frames": [50, 125, 250],
+  "windows_per_length": 40,
+  "prediction_history_frames": [5, 7, 10],
+  "prediction_horizon_frames": [5, 10, 20],
+  "correct_position_radius_metres": 1.5,
+  "wrong_position_penalty_relative_to_abstention": 2.0,
+  "selection": "maximize average (within-radius predicted frames minus twice wrong predicted frames) per masked frame over all three durations; ties prefer shorter horizon then shorter history",
+  "prediction_reference_source": "originally observed public external ball tracking, not match video or possession truth",
+  "frozen_diagnostics": ["Sample_Game_2", "Sample_Game_3"],
+  "challenge_possession_truth_used": false,
+  "challenge_video_output_review_used": false
+}

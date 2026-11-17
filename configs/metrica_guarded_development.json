@@ -1,0 +1,80 @@
+{
+  "baseline_config": "configs/compliant_tracking.json",
+  "baseline_sha256": "874c4c8ed85a98f13a29b954b08bbc7315b50ad85b57fd0231ae0f56355ccd5e",
+  "development_game": "Sample_Game_1",
+  "excluded_games": ["Sample_Game_2", "Sample_Game_3"],
+  "fresh_holdout_available": false,
+  "source_fps": 50,
+  "seed": 2027,
+  "references": {
+    "loss_pair_tolerance_seconds": 0.2,
+    "boundary_guard_seconds": 0.12
+  },
+  "restart_reference_exclusion_seconds": 3.0,
+  "recovery_scoring": {
+    "boundary_search_seconds": 2.0,
+    "boundary_tolerance_seconds": [0.0, 0.2, 0.5, 1.0],
+    "post_recovery_seconds": [0.2, 0.5, 1.0, 2.0],
+    "short_reference_seconds": 1.0,
+    "mask_seconds": 0.75
+  },
+  "live_missing_durations_seconds": [2.0, 5.0],
+  "maximum_mask_windows": 100,
+  "minimum_mask_windows": 20,
+  "tag_modes": {
+    "none": null,
+    "degraded_restart_tags": {
+      "jitter_seconds": 0.5,
+      "drop_fraction": 0.25,
+      "unknown_team_fraction": 0.25
+    }
+  },
+  "stoppage_profile": {
+    "tracking_stoppage_enabled": true,
+    "tracking_stoppage_minimum_missing_frames": 50,
+    "tracking_stoppage_motion_window_frames": 50,
+    "tracking_stoppage_minimum_slow_fraction": 0.8,
+    "tracking_stoppage_maximum_median_speed_mps": 1.5,
+    "tracking_stoppage_minimum_stationary_fraction": 0.5,
+    "tracking_stoppage_dead_weight": 0.9
+  },
+  "corroboration_profile": {
+    "tracking_stoppage_require_corroboration": true,
+    "tracking_stoppage_corroboration_lookback_frames": 250,
+    "tracking_stoppage_exit_minimum_observations": 2,
+    "tracking_stoppage_continuity_max_gap_frames": 250
+  },
+  "gap_profile": {
+    "semi_markov_gap_handover_enabled": true,
+    "semi_markov_gap_handover_maximum_gap_frames": 100,
+    "semi_markov_gap_handover_reappearance_frames": 10,
+    "semi_markov_gap_handover_window_frames": 10,
+    "semi_markov_gap_handover_minimum_frames": 4,
+    "semi_markov_gap_handover_distance_metres": 1.5,
+    "semi_markov_gap_handover_distance_margin_metres": 1.0,
+    "semi_markov_gap_handover_minimum_confidence": 0.5
+  },
+  "selection_weights": {
+    "spell_f1": 0.6,
+    "boundary_recall": 0.2,
+    "recovery_accuracy": 0.15,
+    "live_macro_f1": 0.05
+  },
+  "spell_ious": [0.5, 0.75],
+  "minimum_objective_improvement": 0.002,
+  "guards": {
+    "maximum_case_spell_f1_drop": 0.01,
+    "maximum_case_live_macro_f1_drop": 0.01,
+    "maximum_case_recovery_accuracy_drop": 0.01,
+    "maximum_case_boundary_recall_drop": 0.02,
+    "maximum_short_spell_increase": 5,
+    "maximum_excess_false_dead_fraction": 0.01,
+    "maximum_excess_broken_window_fraction": 0.05,
+    "maximum_excess_split_window_fraction": 0.05
+  },
+  "policy": {
+    "challenge_data_used_for_selection": false,
+    "inspected_games_reused_for_selection": false,
+    "candidate_automatically_promoted": false
+  }
+}

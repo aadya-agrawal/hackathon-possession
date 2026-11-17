@@ -1,0 +1,13 @@
+{
+  "touch_control_protocol": "configs/metrica_touch_control.json",
+  "source_soft_contact_report": "artifacts/touch_control_softening.json",
+  "source_soft_contact_sha256": "e9a1eec68969ca325f7ba0ca0a23dddca20837e9bcdec7a50f4888b5f70ce8a1",
+  "minimum_age_source": "semi_markov_strong_transition_minimum_frames",
+  "policy": {
+    "development_game": "Sample_Game_1",
+    "age_gate_source": "existing strong-control eight-frame support requirement",
+    "no_challenge_data_used_for_parameter_selection": true,
+    "no_parameter_grid_or_guard_relaxation": true,
+    "not_automatically_promoted": true
+  }
+}

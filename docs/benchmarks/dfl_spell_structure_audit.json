@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-11-14",
+  "role": "Previously consumed DFL J03WOH provider-flag diagnostic; no new model selection or challenge score.",
+  "source": "DFL and Bassek et al. (2025), CC BY 4.0, https://doi.org/10.6084/m9.figshare.28196177",
+  "match": "J03WOH",
+  "published_file_sha256": {
+    "match_information": "f23b3ee13b988b1ff9a0bce438c416dac47e71355bbc7ee1dab21aaf3e33c18c",
+    "positions": "ec4dcf30200aad694dea263d5289485fcd0ca42badddaeb7c81f5cd5a4229d4f"
+  },
+  "audit_code_sha256": "cb02d317a400afc7b257df6a6a045f17bf6d150ebe96cf36d54f8ce8084aa3ff",
+  "selected_decoder_code_sha256": "54233d3b4e56c6694a4a4f0da1e7b45eb6f835a6dc27fb9a094d9f9bdc0fd214",
+  "selected_config_sha256": "ea6db9d99ebe3bda68f19869bd4ec6da73b9eb49d3375ed9a9f11575f2471ac9",
+  "selected_label_sha256_reproduced": "3383f39cc9866d92076c76c18137ed8f94f9326337005ffb797c7fdf50c56c83",
+  "historical_first_evaluation_report_sha256": "a76f1f7309929c14d0a71037f8858120e3d6bffb4a45dfb2a5d3e6cc4a5296e2",
+  "local_spell_audit_report_sha256": "5e907ee49ec0f8a8afff684cbff7a77b615e784c63ffb08d83803c2ddc2cc813",
+  "selected_model_structure": {
+    "reference_live_spells": 402,
+    "predicted_live_spells": 206,
+    "reference_dead_spells": 102,
+    "predicted_dead_spells": 26,
+    "reference_dead_spells_completely_missed": 81,
+    "reference_dead_frames_in_completely_missed_spells": 52205,
+    "reference_dead_frames_inside_pitch": 24867,
+    "reference_dead_frames_outside_pitch": 40402,
+    "reference_dead_consecutive_stationary_steps": 65167,
+    "reference_live_starts_after_dead": 100,
+    "reference_same_team_restart_pairs": 34,
+    "reference_same_team_restart_pairs_merged": 20,
+    "reference_direct_live_switches": 301,
+    "predicted_direct_live_switches": 178,
+    "reference_direct_switches_correct_at_boundary": 169,
+    "reference_direct_switches_incoming_label_within_1s": 192,
+    "reference_direct_switches_incoming_label_within_2s": 205,
+    "reference_direct_switches_still_outgoing_for_2s": 90
+  },
+  "exit_gate_diagnosis": {
+    "observed_inside_to_outside_crossings": 74,
+    "rejected_insufficient_outward_speed": 12,
+    "rejected_no_inside_return": 1,
+    "rejected_under_25_frames": 5,
+    "rejected_over_3000_frames": 1,
+    "rejected_no_excursion_deeper_than_1m": 43,
+    "qualified": 12,
+    "role": "Diagnostic only; relaxing the depth gate based on this consumed provider match would not be an independent selection."
+  },
+  "development_shallow_dwell_probe": {
+    "policy": "One second of continuously observed shallow outside-ball positions after an outward crossing, then an observed inside return; applied only as an exploratory opt-in comparison to the selected exit-only model.",
+    "metrica_game1_extra_qualified_intervals_clean_no_tags": 1,
+    "metrica_game1_clean_no_tag_label_changes": 0,
+    "metrica_game1_baseline_and_probe_objective": 0.45063724390460297,
+    "preexisting_minimum_objective_gain": 0.002,
+    "guards_passed": "60/60",
+    "decision": "No objective gain; remove the trial implementation and stop before Games 2/3, DFL candidate scoring or challenge input. This negative exploratory probe was not frozen as a release candidate."
+  },
+  "interpretation": "The missing 196 live spells cannot be attributed solely to stoppages: 301 provider live-team switches versus 178 predicted direct switches, while 100 provider live spells start after dead. DFL freezes ball positions through dead intervals, so stationary-ball and shallow-border shortcuts cannot be assumed to transfer to other providers. Provider flags are not independently reviewed physical contacts; no default or selected CSV changed.",
+  "selected_submission_csv_sha256_unchanged": "c9a2f41a76d7d070cc3afead3524fab90d21e87dd198259759b95b7a22536dac"
+}

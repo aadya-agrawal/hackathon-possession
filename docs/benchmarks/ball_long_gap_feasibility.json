@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-11-08",
+  "scope": "External Game 1 provider-known-live, originally observed ball windows; forty deterministic nonoverlapping windows per duration.",
+  "external_revision": "e706dd506b360d69d9d123d5b8026e7294b13996",
+  "baseline_config_sha256": "874c4c8ed85a98f13a29b954b08bbc7315b50ad85b57fd0231ae0f56355ccd5e",
+  "source_reports_sha256": {
+    "current_repair": "57e455f61a14170ec7162fe4b08f58640ca3a1b82b1cd4cf47d6722159b21487",
+    "full_gap_linear_whatif": "c16c1a290e722e1b33e0a7f8e780d455e936f1af99e0f37a7b7b5117f42bb573"
+  },
+  "results": {
+    "0.76_seconds": {
+      "current_estimate_coverage": 1.0,
+      "current_within_1.5m_of_observed_reference_fraction": 0.9013157894736842,
+      "window_count": 40
+    },
+    "5_seconds": {
+      "current_estimate_coverage": 0.154,
+      "current_within_1.5m_fraction_all_masked": 0.1306,
+      "full_gap_linear_within_1.5m_fraction_all_masked": 0.1984,
+      "full_gap_linear_p90_error_metres": 10.935931740483325,
+      "window_count": 40
+    },
+    "10_seconds": {
+      "current_estimate_coverage": 0.075,
+      "current_within_1.5m_fraction_all_masked": 0.0584,
+      "full_gap_linear_within_1.5m_fraction_all_masked": 0.1143,
+      "full_gap_linear_p90_error_metres": 19.54673032458826,
+      "window_count": 40
+    }
+  },
+  "challenge_input_only": {
+    "post_repair_missing_ball_fraction_of_graded_frames": 0.392623554517585,
+    "post_repair_missing_run_frames_median": 269.0,
+    "post_repair_missing_run_frames_p90": 937.8,
+    "video_or_protected_truth_used": false
+  },
+  "decision": "Do not extend linear interpolation to multi-second gaps. Geometry-only extrapolation has low coverage; full-gap linear filling is inaccurate even on smooth external tracking. Independently validate a frozen ball detector/observation source and uncertainty-aware paths before changing possession inference.",
+  "limitations": [
+    "Externally masked ball coordinates are scored against originally observed Metrica tracking, not human-annotated physical ball positions.",
+    "Provider-known-live status selects external windows only, never enters inference.",
+    "Full-gap linear interpolation is an offline what-if, not an accepted model, challenge result or submitted output.",
+    "The public Metrica sample has much better live-ball coverage than automatic challenge tracking; distribution shift may be larger than these estimates.",
+    "No challenge video, output-video comparison or protected possession labels were used."
+  ]
+}

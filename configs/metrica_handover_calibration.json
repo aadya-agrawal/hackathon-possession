@@ -1,0 +1,47 @@
+{
+  "base_config": "configs/compliant_tracking.json",
+  "source_fps": 50,
+  "splits": {
+    "development": ["Sample_Game_1"],
+    "diagnostic_validation": ["Sample_Game_2"],
+    "unevaluated_test": ["Sample_Game_3"]
+  },
+  "split_authorization": "User approved Metrica Game 1 development, Game 2 diagnostic validation, Game 3 final unevaluated test.",
+  "references": {
+    "loss_pair_tolerance_seconds": 0.2,
+    "boundary_guard_seconds": 0.12
+  },
+  "recovery_scoring": {
+    "loss_pair_tolerance_seconds": 0.2,
+    "boundary_search_seconds": 2.0,
+    "boundary_tolerance_seconds": [0.0, 0.2, 0.5, 1.0],
+    "post_recovery_seconds": [0.2, 0.5, 1.0, 2.0],
+    "short_reference_seconds": 1.0,
+    "mask_seconds": 0.75
+  },
+  "local_handover": {
+    "window_frames": 10,
+    "minimum_frames": 4,
+    "distance_margin_metres": 0.5,
+    "minimum_confidence": 0.5
+  },
+  "candidate_grid": {
+    "distance_metres": [1.5, 2.5, 3.5],
+    "minimum_live_frames": [10, 20],
+    "strong_transition_cost": [5.0, 10.0]
+  },
+  "selection_weights": {
+    "reference_spell_f1": 0.35,
+    "boundary_recall": 0.35,
+    "recovery_accuracy": 0.2,
+    "live_macro_f1": 0.1
+  },
+  "guards": {
+    "maximum_live_macro_f1_drop": 0.01,
+    "maximum_dead_recall_drop": 0.01,
+    "maximum_short_spell_increase": 10,
+    "maximum_boundary_recall_drop": 0.02,
+    "maximum_masked_recovery_drop": 0.01,
+    "maximum_validation_objective_drop": 0.01
+  }
+}

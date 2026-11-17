@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-11-14",
+  "source": "DFL and Bassek et al. (2025), CC BY 4.0, https://doi.org/10.6084/m9.figshare.28196177",
+  "scope": "One-time, no-selection score of the frozen working default and its two rollbacks on the last three untouched DFL matches (no tags; provider ball-status and possession flags as reference). No configuration was chosen or changed using these results; the matches are now consumed.",
+  "positions_md5": {
+    "J03WPY": "e56ff1336a334f8da51110fbe7cab764",
+    "J03WQQ": "9105bad987191d3c3c362c1fce9a4fcd",
+    "J03WR9": "e060bb7d7a5a3bfbd15bbf9bc631024d"
+  },
+  "configs_sha256": {
+    "submission_tracking": "ea6db9d99ebe3bda68f19869bd4ec6da73b9eb49d3375ed9a9f11575f2471ac9",
+    "submission_handover": "faf4b427a0a22451d767081e45ec74f698ca2ade231cfa5416d4e074685ec9b8",
+    "submission_restart_dead": "6da6e5bf19fb5ea32d6044944484983a10de52d82b599bcd06294602a27a4a5d"
+  },
+  "metric": "mean live-spell F1 over IoU 0.3-0.7 against provider flags",
+  "results": {
+    "J03WPY": {
+      "exit_only": 0.3011,
+      "handover": 0.3106,
+      "restart_dead": 0.3133,
+      "f1_0.75": {
+        "exit_only": 0.1815,
+        "handover": 0.2031,
+        "restart_dead": 0.2059
+      },
+      "dead_recall_restart_dead": 0.1525
+    },
+    "J03WQQ": {
+      "exit_only": 0.3567,
+      "handover": 0.3773,
+      "restart_dead": 0.3792,
+      "f1_0.75": {
+        "exit_only": 0.192,
+        "handover": 0.2147,
+        "restart_dead": 0.2171
+      },
+      "dead_recall_restart_dead": 0.0664
+    },
+    "J03WR9": {
+      "exit_only": 0.3545,
+      "handover": 0.37,
+      "restart_dead": 0.372,
+      "f1_0.75": {
+        "exit_only": 0.1966,
+        "handover": 0.2082,
+        "restart_dead": 0.2082
+      },
+      "dead_recall_restart_dead": 0.2204
+    }
+  },
+  "mean": {
+    "exit_only": 0.3374,
+    "handover": 0.3526,
+    "restart_dead": 0.3548
+  },
+  "finding": "Both promotions transfer to unseen matches: exit-only -> handover -> restart-dead improves every holdout match. Dead-ball recall stays low (0.07-0.22) without tags."
+}

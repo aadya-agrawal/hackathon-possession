@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-11-08",
+  "scope": "Aggregate, blinded source-only external Game 1 review selection with provider-event timing added only after selection; no frame-level data.",
+  "dataset": "Official Metrica sample-data, Sample_Game_1",
+  "external_revision": "e706dd506b360d69d9d123d5b8026e7294b13996",
+  "source_benchmark": "docs/benchmarks/reception_motion_validation.json",
+  "source_benchmark_sha256": "fb37dce5824e2c26dc1b6141ea470e8661e798e879f82fc034d399acc05eff7d",
+  "generator_sha256": "4a8431b1a0f08b653643af939140fccf52e9b310b61d5fc240404fd1c6317245",
+  "ignored_local_reports_sha256": {
+    "index": "137594cde37119bbcb8269d14b70fe1faa3276a04e3f0f333f213b222ef90038",
+    "summary": "f7812c2230fe85fe6eb53301553257c2cd339b68e0acda70716467c2ebea8643"
+  },
+  "baseline_clean_no_tag_labels_sha256": "274eca96fdbef91335bf062ba7fbc67b0bc59183434a2bfbfbd6ab16b08d4aeb",
+  "selection_policy": {
+    "seed": 2027,
+    "minimum_separation_frames_within_period": 100,
+    "window_frames_each_side": 50,
+    "provider_events_used_for_selection": false,
+    "challenge_data_used": false,
+    "candidate_groups": {
+      "reception_disagreement": 4,
+      "turnover_delayed": 4,
+      "turnover_persistent": 4,
+      "reception_agreement": 4,
+      "turnover_agreement": 8
+    }
+  },
+  "provider_event_proximity_within_12_frames": {
+    "reception_disagreement": {
+      "cases": 4,
+      "same_team_recovery_start": 2,
+      "same_team_pass_end": 1,
+      "no_nearby_event": 1
+    },
+    "turnover_delayed": {
+      "cases": 4,
+      "same_team_recovery_start": 2,
+      "same_team_pass_end": 0,
+      "no_nearby_event": 0
+    },
+    "turnover_persistent": {
+      "cases": 4,
+      "same_team_recovery_start": 1,
+      "same_team_pass_end": 0,
+      "no_nearby_event": 2
+    },
+    "reception_agreement": {
+      "cases": 4,
+      "same_team_recovery_start": 0,
+      "same_team_pass_end": 3,
+      "no_nearby_event": 1
+    },
+    "turnover_agreement": {
+      "cases": 8,
+      "same_team_recovery_start": 2,
+      "same_team_pass_end": 1,
+      "no_nearby_event": 3
+    }
+  },
+  "review_status": {
+    "unreviewed": 24,
+    "independent_physical_contact_labels": 0,
+    "physical_contact_verified": false
+  },
+  "video_rights": {
+    "public_metrica_sample_checkout_has_synchronized_video": false,
+    "challenge_video_used": false
+  },
+  "decision": "Provider events alone cannot adjudicate physical contact or a precise possession boundary. Keep reviews unfilled and the selected submission unchanged until a permitted, synchronized external video source is confirmed.",
+  "limitations": [
+    "Event proximity is a scoring diagnostic, not independent contact truth; event clocks and receiver identities can be uncertain.",
+    "Blinded cards have neither predictions nor provider events; private source selection and event context are stored separately under ignored artifacts.",
+    "The public Metrica sample repo invites analysis and asks for attribution but contains no synchronized video or express video reuse permission.",
+    "No challenge video, output-video comparison, protected possession truth or frame-level source material was used to select or annotate tasks."
+  ]
+}

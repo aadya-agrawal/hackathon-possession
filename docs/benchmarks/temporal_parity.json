@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-11-07",
+  "scope": "Actual 25-fps deployment policy; aggregate external provider-reference diagnostics.",
+  "selected_config_sha256": "874c4c8ed85a98f13a29b954b08bbc7315b50ad85b57fd0231ae0f56355ccd5e",
+  "selected_submission_changed": false,
+  "runtime_fps": 25,
+  "historical_calibration_fps": 50,
+  "source_report": {
+    "local_path": "artifacts/metrica_temporal_parity.json",
+    "sha256": "d52e659eae46c5897f7d31b2641b45d9d73945a858105d85cbb76fad0539e8ce"
+  },
+  "games": {
+    "development": ["Sample_Game_1"],
+    "previously_inspected_diagnostic": ["Sample_Game_2"]
+  },
+  "pooled_clean_comparison": {
+    "common_event_anchors": 2472,
+    "metric": "Reference-conditioned spell F1 at IoU0.5; not challenge mean spellF1.",
+    "official_smoothing_2s": {
+      "event_accuracy": 0.8766181229773463,
+      "reference_spell_f1_0.5": 0.4119601328903654,
+      "matched": 124, "missed": 135, "spurious": 219
+    },
+    "deployment_no_tags": {
+      "event_accuracy": 0.8644822006472492,
+      "reference_spell_f1_0.5": 0.39316239316239315,
+      "matched": 92, "missed": 167, "spurious": 117
+    },
+    "deployment_degraded_restart_tags": {
+      "event_accuracy": 0.86084142394822,
+      "reference_spell_f1_0.5": 0.4369747899159664,
+      "matched": 104, "missed": 155, "spurious": 113
+    },
+    "historical_no_tags_not_deployment": {
+      "event_accuracy": 0.9073624595469255,
+      "reference_spell_f1_0.5": 0.4358108108108108
+    }
+  },
+  "deployment_game1": {
+    "objective": 0.40539123093620044,
+    "clean_none_spell_f1_0.5": 0.43010752688172044,
+    "clean_degraded_spell_f1_0.5": 0.4664310954063604,
+    "masked_none_spell_f1_0.5": 0.3851851851851852,
+    "masked_degraded_spell_f1_0.5": 0.41454545454545455,
+    "clean_recovery_accuracy": 0.6302083333333334,
+    "masked_recovery_accuracy": 0.4947916666666667,
+    "clean_dead_recall_none": 0.0134,
+    "clean_dead_recall_degraded": 0.3036
+  },
+  "deployment_game2": {
+    "objective": 0.34012,
+    "clean_none_spell_f1_0.5": 0.3386,
+    "clean_degraded_spell_f1_0.5": 0.3938,
+    "masked_none_spell_f1_0.5": 0.3297,
+    "masked_degraded_spell_f1_0.5": 0.3656,
+    "clean_recovery_accuracy": 0.5248,
+    "masked_recovery_accuracy_none": 0.4326,
+    "masked_recovery_accuracy_degraded": 0.4255,
+    "clean_dead_recall_none": 0.0315,
+    "clean_dead_recall_degraded": 0.2371
+  },
+  "fixed_gap_time_correction": {
+    "only_changed_parameter": "max_interpolation_gap_frames",
+    "before_frames": 38, "after_frames": 19,
+    "before_seconds": 1.52, "after_seconds": 0.76,
+    "guards_passed": 120, "guards_total": 120,
+    "game1_objective_gain": -0.0000020923740730038887,
+    "game2_objective_gain": 0.00000012014666339599245,
+    "label_hashes_identical": false,
+    "decision": "No meaningful scored gain; not promoted."
+  },
+  "frozen_core_runtime_rebase": {
+    "source_report": "artifacts/rebased_core_temporal_parity.json",
+    "source_report_sha256": "4807beea92d0bbd37781afa87b2d9bd375f9c30dea087f211ab249ddf581b475",
+    "game1_objective": 0.4333882709010316,
+    "game1_clean_degraded_spell_f1_0.5": 0.4868421052631579,
+    "game1_masked_degraded_spell_f1_0.5": 0.43986254295532645,
+    "game1_masked_recovery_accuracy": 0.4375,
+    "guards_passed": 55, "guards_total": 60,
+    "game2_evaluated": false,
+    "decision": "Rejected: masked recovery correctness and high-IoU F1 regress; no new search."
+  },
+  "diagnosis_driven_support_repair": {
+    "diagnosis_report": "artifacts/rebased_core_failure_diagnosis.json",
+    "diagnosis_sha256": "989d1b573728f402dee8eeb9f1d15c7c653ce2c16c812140d47d9f474f44d3b3",
+    "masked_degraded_recovery_regressions": 26,
+    "masked_degraded_recovery_fixes": 15,
+    "regressions_interpolated": 25,
+    "regressions_with_support_cost_inversion": 21,
+    "horizon_repair_report": "artifacts/support_horizon_repair.json",
+    "horizon_repair_sha256": "ea53e067dbab5512b2476a43b18ab35c2788301a01194b5156ee0cb2548eacc1",
+    "horizon_repair_game1_objective": 0.4399302133674996,
+    "horizon_repair_masked_none_recovery_accuracy": 0.5364583333333334,
+    "horizon_repair_masked_degraded_recovery_accuracy": 0.5260416666666666,
+    "horizon_repair_masked_none_spell_f1_0.75": 0.2593856655290102,
+    "horizon_repair_guards_passed": 59,
+    "guards_total": 60,
+    "remaining_failure": "recovery_masked:none:spell_f1_0.75",
+    "residual_masked_none_high_iou_matches": {"baseline": 37, "repair": 38},
+    "residual_masked_none_high_iou_spurious": {"baseline": 74, "repair": 96},
+    "introduced_residual_intervals": 41,
+    "introduced_wrong_live_team_at_start": 22,
+    "introduced_reference_dead_at_start": 1,
+    "introduced_correct_team_at_start": 11,
+    "introduced_unknown_reference_at_start": 7,
+    "fraction_preserving_guards_passed": 58,
+    "observed_strong_cost_restore_guards_passed": 48,
+    "game2_evaluated": false,
+    "selected_submission_changed": false,
+    "decision": "Unpromoted diagnosed component; residual refinements rejected; continue regression-driven improvement."
+  },
+  "contact_motion_control_pilot": {
+    "diagnosis_sha256": "286c62e0f42c921e3721dd5d2db4f957b6c84e01df0b77e3ceb0196abc67b62e",
+    "development_game": "Sample_Game_1",
+    "selected_quantile": 0.1,
+    "selected_threshold_scale": 0.00043801229912787676,
+    "eligible_clean_matched_handovers": 46,
+    "available_clean_matched_motion_samples": 41,
+    "clean_matched_median_motion_disturbance": 0.7106004357337952,
+    "clean_wrong_live_unmatched_median_motion_disturbance": 0.0004867892130278051,
+    "contact_horizon_frames": 20,
+    "motion_window_frames": 4,
+    "hard_gate": {
+      "report_sha256": "d05ac41794c16bf63d1a290f5017a49d199e0865fd5141f46d8702a5178a0c19",
+      "guards_passed": 59,
+      "masked_none_spell_f1_0.75": 0.2578397212543554
+    },
+    "softening": {
+      "report_sha256": "e9a1eec68969ca325f7ba0ca0a23dddca20837e9bcdec7a50f4888b5f70ce8a1",
+      "guards_passed": 59,
+      "clean_degraded_spell_f1_0.75": 0.33774834437086093,
+      "masked_none_spell_f1_0.75": 0.2611683848797251,
+      "masked_none_recovery_accuracy": 0.5364583333333334
+    },
+    "continuous_confidence": {
+      "report_sha256": "fcadf9edc3d4893216b2dd5eb41f978e8881f461c17895bcf352dfcbe096a945",
+      "guards_passed": 59,
+      "clean_degraded_spell_f1_0.75": 0.33774834437086093,
+      "masked_none_spell_f1_0.75": 0.2611683848797251
+    },
+    "remaining_guard_minimum": 0.26407407407407407,
+    "masked_observed_team_frame_pairs": 170840,
+    "masked_motion_available_team_frame_pairs": 68926,
+    "unknown_behavior": "retain_original_support",
+    "nonobserved_horizon_policy_preserved": true,
+    "game2_evaluated": false,
+    "selected_submission_changed": false,
+    "decision": "Useful clean control cue, insufficient to clear all development guards; unpromoted."
+  },
+  "frozen_game2_diagnostic": {
+    "report_sha256": "8b577c67df93903220c6c6e142d1a6e3907b4fdda08d452c0b1c1e5bedc0c7a8",
+    "candidate_source_sha256": "e9a1eec68969ca325f7ba0ca0a23dddca20837e9bcdec7a50f4888b5f70ce8a1",
+    "failed_development_diagnostic_explicitly_authorized": true,
+    "parameters_retuned": false,
+    "game1_guards_passed": 59,
+    "game2_guards_passed": 54,
+    "total_guards": 120,
+    "promotion_ready": false,
+    "game2_primary": {
+      "clean_none_f1_0.75": {"deployment": 0.2222, "candidate": 0.17},
+      "clean_degraded_f1_0.75": {"deployment": 0.2280, "candidate": 0.1990},
+      "masked_none_f1_0.75": {"deployment": 0.1868, "candidate": 0.1592},
+      "masked_degraded_f1_0.75": {"deployment": 0.1935, "candidate": 0.1872},
+      "masked_none_recovery_accuracy": {"deployment": 0.4326, "candidate": 0.4823},
+      "masked_degraded_recovery_accuracy": {"deployment": 0.4255, "candidate": 0.4610}
+    },
+    "game2_official_range_reference_mean": {
+      "thresholds": [0.3, 0.4, 0.5, 0.6, 0.7],
+      "clean_none": {"deployment": 0.3619, "candidate": 0.36},
+      "clean_degraded": {"deployment": 0.4041, "candidate": 0.4},
+      "masked_none": {"deployment": 0.3319, "candidate": 0.3403},
+      "masked_degraded": {"deployment": 0.3699, "candidate": 0.3803},
+      "is_challenge_score": false,
+      "replaces_guard": false
+    }
+  },
+  "player_input_quality": {
+    "external_audit_sha256": "5febfee307186ff5cb4e04cb9584745493e42bd8d441b3a630be7b35c6500bad",
+    "challenge_structural_audit_sha256": "9ca6e8ab6c224c22d7f7c322bb6a85f5ba5649ddc2507e3634468b54ea3c0018",
+    "external_visible_players_median_and_q10": 11,
+    "wrong_control_cohort_implausible_selected_steps": 0,
+    "legacy_proxy_valid_velocity_samples_lost": 7270,
+    "identity_aware_velocity_fixed": true,
+    "existing_positions_or_team_labels_changed": false,
+    "challenge_both_teams_tracked_frames": 196995,
+    "challenge_visible_count_q10": {"home": 5, "away": 5},
+    "challenge_more_than11_fraction": {"home": 0.11603847813396279, "away": 0.04520419299982233},
+    "unknown_challenge_metadata_team_references": 0,
+    "visual_team_label_accuracy_proven": false,
+    "challenge_parameters_fitted": false
+  },
+  "spell_structure_audit": {
+    "report_sha256": "2e8d67f6404a7711a65697e0e299ff621681a2405b985e65859c951f7ec7b119",
+    "game2_lost_high_iou_references": 8,
+    "game2_lost_still_matched_at0.5": 5,
+    "game2_lost_reference_median_seconds": 17.28,
+    "game2_lost_under_minimum_live_duration": 0,
+    "game2_lost_fragmented_into_multiple_predictions": 2
+  },
+  "limitations": [
+    "Partial provider references and synthetic tags, not challenge possession truth.",
+    "Games are development/reused diagnostic, not fresh holdout evidence.",
+    "The official baseline ignores tags; the deployed pipeline receives only automatic/synthetic restart features.",
+    "Primary spell scores exclude shared restart neighborhoods/endpoints.",
+    "Original historical reports and protocol hashes are not rewritten.",
+    "All active parameter origins are not certified merely by fixing validation time units.",
+    "Some values are rounded; exact per-scenario results and hashes remain in local source reports."
+  ]
+}

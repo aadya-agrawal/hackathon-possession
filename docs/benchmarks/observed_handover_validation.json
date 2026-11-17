@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-11-14",
+  "role": "Frozen source-only observed-ball handover experiment; external provider references and input-only challenge activation, not challenge possession truth.",
+  "frozen_trial_config": "configs/observed_handover_trial.json",
+  "frozen_trial_sha256": "2f5ac6b687b46abe19a3c34e3f9af887d5f191af6b300d43a516ca41f940a1cb",
+  "working_config_sha256": "ea6db9d99ebe3bda68f19869bd4ec6da73b9eb49d3375ed9a9f11575f2471ac9",
+  "candidate_overrides": {
+    "semi_markov_observed_handover_enabled": true,
+    "observed_handover_motion_window_frames": 4,
+    "observed_handover_motion_minimum": 0.25
+  },
+  "source_rule": "Discount a live H/A switch only at an observed-ball frame with existing strong near-player control, at least the existing 1m opposing-team distance margin, and an instantaneous normalized four-frame-before/after ball-velocity change of at least 0.25. Missing or predicted ball does not satisfy this cue. Do not change D emissions or the working configuration.",
+  "development_cohorts": {
+    "source": "Metrica Sample Game 1 paired recovery event references and deterministic stable known-live opponent-near controls; scoring/diagnostics only, never inference input.",
+    "correct_incoming_at_recovery": 127,
+    "missed_outgoing_at_recovery": 65,
+    "stable_no_switch_opponent_near_controls": 129,
+    "exact_instant_cue_at_reference": {
+      "correct_incoming": 64,
+      "missed_outgoing": 29,
+      "stable_no_switch_controls": 0
+    },
+    "exact_cue_without_existing_8_of_20_support": {
+      "correct_incoming": 18,
+      "missed_outgoing": 23,
+      "stable_no_switch_controls": 0
+    },
+    "limitation": "Provider recoveries are timing/team proxies, not verified physical touches; controls are a deterministic sample, not all potential false switches."
+  },
+  "metrica_external": {
+    "source_revision": "e706dd506b360d69d9d123d5b8026e7294b13996",
+    "source_protocol_sha256": "da223b82a4a91e477e318a30e63b4e86f87ef3de4ec73f19300aa8745d680bbf",
+    "source_fps": 25,
+    "original_guards_per_game": 60,
+    "Sample_Game_1_development": {
+      "objective_selected": 0.45063724390460297,
+      "objective_candidate": 0.47716467862397494,
+      "guards_passed": "60/60",
+      "clean_no_tag_f1_iou_0_75": [0.3719298245614035, 0.3916083916083916],
+      "clean_no_tag_mean_provider_spell_f1_iou_0_3_to_0_7": [0.503859649122807, 0.5244755244755244],
+      "clean_no_tag_recovery_accuracy": [0.6614583333333334, 0.703125],
+      "masked_no_tag_f1_iou_0_75": [0.3333333333333333, 0.33212996389891697],
+      "candidate_clean_no_tag_label_sha256": "8bf3989ea61e6343894cb8b0fe9d3972e504c1864361ed18086d2e4fc108c0c1"
+    },
+    "Sample_Game_2_previously_inspected": {
+      "objective_selected": 0.39166577520013635,
+      "objective_candidate": 0.41447648887837263,
+      "guards_passed": "60/60",
+      "clean_no_tag_f1_iou_0_75": [0.29896907216494845, 0.3163265306122449],
+      "clean_no_tag_mean_provider_spell_f1_iou_0_3_to_0_7": [0.443298969072165, 0.4612244897959184],
+      "clean_no_tag_recovery_accuracy": [0.5319148936170213, 0.5602836879432624],
+      "masked_no_tag_recovery_accuracy": [0.4397163120567376, 0.4326241134751773]
+    },
+    "Sample_Game_3_previously_inspected": {
+      "objective_selected": 0.40275442323333066,
+      "objective_candidate": 0.4480705560445087,
+      "guards_passed": "60/60",
+      "clean_no_tag_f1_iou_0_75": [0.2978723404255319, 0.3626666666666667],
+      "clean_no_tag_mean_provider_spell_f1_iou_0_3_to_0_7": [0.4659574468085107, 0.5056],
+      "clean_no_tag_recovery_accuracy": [0.582995951417004, 0.6153846153846154],
+      "masked_no_tag_recovery_accuracy": [0.4777327935222672, 0.46963562753036436],
+      "degraded_restart_tags_known_dead_recall": [0.5337889516666255, 0.5289284745009992]
+    },
+    "limitations": "Metrica provider references are censored/event-derived, not challenge truth. Synthetic degraded restart tags do not establish real Smart Tagging semantics. Games 2 and 3 were inspected previously; masked recovery and tagged dead-recall decreases remain visible despite original guard passage."
+  },
+  "dfl_provider_flags": {
+    "source": "DFL and Bassek et al. (2025), CC BY 4.0, https://doi.org/10.6084/m9.figshare.28196177",
+    "previously_inspected_no_tag_mean_live_spell_f1_iou_0_3_to_0_7": {
+      "J03WMX": [0.3223404255319149, 0.33918741808650066],
+      "J03WN1": [0.26251691474966166, 0.2929801324503311],
+      "J03WOH": [0.3223684210526315, 0.340453074433657]
+    },
+    "first_untouched_match": "J03WOY",
+    "first_untouched_input_sha256": {
+      "metadata": "4c497fac683eee8292901c18ca02c0be1d9609d0b9d4bd8aa092c61f9e0b19e9",
+      "positions": "a228ef0e676d009cefff1580fcb721b53f598454eb120ec347e0a628a3a4646b"
+    },
+    "first_untouched_local_report_sha256": "9004fdca31eccc3cde6453308085f4dbe800c2685b4cc9bc9330bbcbdd1533e6",
+    "first_untouched_reference_live_spells": 456,
+    "first_untouched_predicted_live_spells": [221, 230],
+    "first_untouched_mean_live_spell_f1_iou_0_3_to_0_7": [0.30369276218611524, 0.32886297376093293],
+    "first_untouched_live_team_accuracy": [0.824436987127389, 0.8295493275306085],
+    "first_untouched_known_dead_recall": [0.1426566037735849, 0.14227924528301886],
+    "first_untouched_false_dead_known_live_frames": [484, 434],
+    "passed_predeclared_first_untouched_gate": true,
+    "limitations": "DFL provider flags are not independently reviewed touches or challenge labels; DFL has no Smart Tags and freezes its ball during dead intervals. The small dead-recall decline is not hidden."
+  },
+  "challenge_tracking_input_only": {
+    "frames": 199319,
+    "observed_ball_frames": 113488,
+    "qualifying_team_frames": 9232,
+    "qualifying_unique_frames": 9232,
+    "qualifying_frames_within_declared_halves": [4535, 3912],
+    "qualifying_frames_outside_declared_halves": 785,
+    "video_or_possession_labels_used": false,
+    "candidate_output_or_challenge_spell_f1_measured": false
+  },
+  "decision": "Keep the handover cue opt-in, freeze these values and retain exit-only as the working submission. External matched-spell improvements and the first-untouched DFL provider gain are promising but not a measured challenge-score gain; real tagged-input transfer, code/team semantics, active-parameter provenance and a separate release decision remain open.",
+  "selected_submission_csv_sha256_unchanged": "c9a2f41a76d7d070cc3afead3524fab90d21e87dd198259759b95b7a22536dac"
+}

@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-11-14",
+  "scope": "Opt-in motion-supported contact and physics-qualified short-flight bridging against the selected exit-only policy; Metrica Sample Game 1 development only.",
+  "external_revision": "e706dd506b360d69d9d123d5b8026e7294b13996",
+  "scenario_protocol_sha256": "da223b82a4a91e477e318a30e63b4e86f87ef3de4ec73f19300aa8745d680bbf",
+  "working_config_sha256": "ea6db9d99ebe3bda68f19869bd4ec6da73b9eb49d3375ed9a9f11575f2471ac9",
+  "source_fps": 25,
+  "phase_values": {
+    "semi_markov_phase_enabled": true,
+    "phase_decode_mode": "bounded",
+    "phase_contact_minimum_frames": 4,
+    "phase_flight_max_frames": 20,
+    "phase_minimum_ball_speed_mps": 2.0,
+    "phase_contact_distance_metres": 1.5,
+    "phase_flight_weight": 0.25,
+    "phase_turnover_transition_cost": 10.0,
+    "phase_motion_continuity_enabled": true,
+    "phase_contact_motion_minimum": 0.25,
+    "phase_bridge_max_frames": 3
+  },
+  "source_code_sha256": {
+    "control_phase.py": "cb68a6a66ee2f8a2d802ae9217f1414c7b70b05b4352a3af8a39256c071e02ef",
+    "decoder.py": "54233d3b4e56c6694a4a4f0da1e7b45eb6f835a6dc27fb9a094d9f9bdc0fd214"
+  },
+  "contact_rule": "A contact needs four consecutive observed near-ball strong-control frames from the same player slot and normalized ball-velocity change of at least 0.25 within that run. It is not independently verified physical touch.",
+  "flight_rule": "Carry the contact team only inside a completed, baseline-agreeing bounded bracket with observed fast far-from-both-team flight. Allow at most three consecutive linearly interpolated frames only when four observed positions on each side, no stoppage, no near player in the gap, and speed/direction/acceleration agree. Never extrapolate long missing-ball runs or infer a touch inside a gap.",
+  "initial_hard_continuity": {
+    "baseline_objective": 0.45063724390460297,
+    "candidate_objective": 0.45104431995244176,
+    "minimum_required_objective_gain": 0.002,
+    "guards_passed": "54/60",
+    "failed_guards": "Recovery-instant accuracy in clean/no-tag, clean/degraded-tag and both tagged variants of the 2s and 5s known-live gap stresses.",
+    "distinct_recovery_decisions_lost": 2,
+    "clean_no_tag_changed_live_frames": 19,
+    "clean_no_tag_spell_f1_iou_0_75": {
+      "baseline": 0.3719298245614035,
+      "candidate": 0.37894736842105264
+    }
+  },
+  "supported_switch_safeguard": {
+    "rule": "Do not override a baseline H/A switch inside the flight when its incoming team meets the pre-existing 8-of-20 strong-control transition support condition.",
+    "objective": 0.45063724390460297,
+    "guards_passed": "60/60",
+    "clean_no_tag_changed_live_frames": 0,
+    "interpretation": "All 19 changed clean/no-tag frames disappear; guard passage by reproducing the baseline is not an improvement."
+  },
+  "clean_no_tag_bridge_coverage": {
+    "interpolated_ball_frames": 367,
+    "short_interpolated_runs_at_most_3_frames": 33,
+    "short_interpolated_frames": 56,
+    "short_runs_with_4_observed_frames_on_both_sides": 33,
+    "short_runs_far_from_both_teams": 8,
+    "short_runs_with_consistent_endpoint_velocities": 0,
+    "used_physics_bridge_frames": 0
+  },
+  "decision": "No promotion or Game 2/3/DFL transfer: the active candidate fails recovery guards and the safeguarded candidate changes no labels, missing the unchanged +0.002 development threshold. Provider recovery events score predictions but do not validate physical touches; the working submission and CSV remain unchanged.",
+  "selected_submission_csv_sha256_unchanged": "c9a2f41a76d7d070cc3afead3524fab90d21e87dd198259759b95b7a22536dac"
+}

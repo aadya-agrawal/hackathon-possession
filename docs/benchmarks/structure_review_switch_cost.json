@@ -1,0 +1,351 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-11-15",
+  "scope": "Input-only weakness review of the challenge output against external truth structure, and supported-switch cost calibration on external data (Metrica 1-3, DFL dev 4; held-out DFL 3 once).",
+  "structure": {
+    "columns": "live spells per live minute | median live spell s | share of live spells < 2 s | dead share | dead spells per minute | median dead spell s",
+    "challenge_before": [
+      4.81,
+      7.8,
+      0.09,
+      0.348,
+      1.21,
+      9.3
+    ],
+    "metrica_truth": [
+      [
+        7.09,
+        3.6,
+        0.3,
+        0.401,
+        1.02,
+        18.4
+      ],
+      [
+        6.94,
+        3.8,
+        0.38,
+        0.382,
+        1.05,
+        16.7
+      ],
+      [
+        5.94,
+        5.2,
+        0.28,
+        0.299,
+        1.01,
+        12.5
+      ]
+    ],
+    "dfl_truth": [
+      [
+        8.98,
+        3.0,
+        0.37,
+        0.415,
+        1.06,
+        15.5
+      ],
+      [
+        8.38,
+        3.9,
+        0.27,
+        0.476,
+        1.1,
+        19.2
+      ],
+      [
+        7.75,
+        3.8,
+        0.29,
+        0.443,
+        1.0,
+        22.8
+      ]
+    ]
+  },
+  "evidence_regimes": {
+    "ball_observed": 0.573,
+    "long_ball_gap": 0.388,
+    "uncovered": 0.039,
+    "gap_labelled_dead": 0.67,
+    "smart_tagging_team_phase_agreement": {
+      "ball_observed": 0.828,
+      "long_gap": 0.679
+    }
+  },
+  "dfl_dead_timing": "Of DFL truth dead spells overlapped by predictions (33%), 42% end >2 s early (p25 -15.9 s); partly DFL frozen-ball convention.",
+  "sweep": {
+    "cost20": {
+      "Sample_Game_1": [
+        0.6473,
+        0.6395,
+        "48/60"
+      ],
+      "Sample_Game_2": [
+        0.6483,
+        0.6493,
+        "55/60"
+      ],
+      "Sample_Game_3": [
+        0.6305,
+        0.6221,
+        "45/60"
+      ],
+      "J03WMX": [
+        0.4652,
+        0.4526
+      ],
+      "J03WN1": [
+        0.4632,
+        0.4637
+      ],
+      "J03WOH": [
+        0.508,
+        0.4975
+      ],
+      "J03WOY": [
+        0.4805,
+        0.4674
+      ]
+    },
+    "cost15": {
+      "Sample_Game_1": [
+        0.6473,
+        0.6199,
+        "33/60"
+      ],
+      "Sample_Game_2": [
+        0.6483,
+        0.6214,
+        "32/60"
+      ],
+      "Sample_Game_3": [
+        0.6305,
+        0.6193,
+        "39/60"
+      ],
+      "J03WMX": [
+        0.4652,
+        0.449
+      ],
+      "J03WN1": [
+        0.4632,
+        0.4591
+      ],
+      "J03WOH": [
+        0.508,
+        0.4851
+      ],
+      "J03WOY": [
+        0.4805,
+        0.4589
+      ]
+    },
+    "strong5": {
+      "Sample_Game_1": [
+        0.6473,
+        0.6671,
+        "54/60"
+      ],
+      "Sample_Game_2": [
+        0.6483,
+        0.658,
+        "55/60"
+      ],
+      "Sample_Game_3": [
+        0.6305,
+        0.6473,
+        "53/60"
+      ],
+      "J03WMX": [
+        0.4652,
+        0.4723
+      ],
+      "J03WN1": [
+        0.4632,
+        0.4781
+      ],
+      "J03WOH": [
+        0.508,
+        0.5191
+      ],
+      "J03WOY": [
+        0.4805,
+        0.4955
+      ]
+    },
+    "strong2": {
+      "Sample_Game_1": [
+        0.6473,
+        0.6797,
+        "54/60"
+      ],
+      "Sample_Game_2": [
+        0.6483,
+        0.6641,
+        "57/60"
+      ],
+      "Sample_Game_3": [
+        0.6305,
+        0.6449,
+        "48/60"
+      ],
+      "J03WMX": [
+        0.4652,
+        0.4778
+      ],
+      "J03WN1": [
+        0.4632,
+        0.4882
+      ],
+      "J03WOH": [
+        0.508,
+        0.5219
+      ],
+      "J03WOY": [
+        0.4805,
+        0.4954
+      ]
+    },
+    "strong0": {
+      "Sample_Game_1": [
+        0.6473,
+        0.6789,
+        "53/60"
+      ],
+      "Sample_Game_2": [
+        0.6483,
+        0.6613,
+        "56/60"
+      ],
+      "Sample_Game_3": [
+        0.6305,
+        0.6393,
+        "46/60"
+      ],
+      "J03WMX": [
+        0.4652,
+        0.4762
+      ],
+      "J03WN1": [
+        0.4632,
+        0.4885
+      ],
+      "J03WOH": [
+        0.508,
+        0.5204
+      ],
+      "J03WOY": [
+        0.4805,
+        0.5001
+      ]
+    },
+    "cost20_strong5": {
+      "Sample_Game_1": [
+        0.6473,
+        0.6576,
+        "52/60"
+      ],
+      "Sample_Game_2": [
+        0.6483,
+        0.6566,
+        "56/60"
+      ],
+      "Sample_Game_3": [
+        0.6305,
+        0.6391,
+        "56/60"
+      ],
+      "J03WMX": [
+        0.4652,
+        0.4633
+      ],
+      "J03WN1": [
+        0.4632,
+        0.4755
+      ],
+      "J03WOH": [
+        0.508,
+        0.5082
+      ],
+      "J03WOY": [
+        0.4805,
+        0.4868
+      ]
+    }
+  },
+  "held_out": {
+    "strong5": {
+      "J03WPY": [
+        0.4963,
+        0.5093
+      ],
+      "J03WQQ": [
+        0.4849,
+        0.4805
+      ],
+      "J03WR9": [
+        0.4762,
+        0.4877
+      ]
+    },
+    "strong2": {
+      "J03WPY": [
+        0.4963,
+        0.5078
+      ],
+      "J03WQQ": [
+        0.4849,
+        0.4816
+      ],
+      "J03WR9": [
+        0.4762,
+        0.494
+      ]
+    }
+  },
+  "decision": "Supported-switch cost 10 -> 2.5 promoted by the user; unsupported switch cost unchanged (lowering it hurt everywhere).",
+  "challenge": {
+    "graded_live_spells": [
+      336,
+      392
+    ],
+    "median_live_spell_s": [
+      7.8,
+      6.3
+    ],
+    "share_under_2s": [
+      0.09,
+      0.13
+    ],
+    "frames_changed": 2943,
+    "dead_changes": 151
+  },
+  "follow_up": {
+    "minimum_live_frames": {
+      "12": "Metrica 53/60,60/60,60/60; objective +0.003/0.000/+0.002; DFL -0.003..+0.005",
+      "15": "Metrica 56/60,60/60,60/60; objective +0.009/-0.002/+0.002; DFL -0.002..+0.005",
+      "decision": "marginal; not adopted"
+    },
+    "sequence_support_lean_0_3": {
+      "masked_dfl_dev": "+0.002..+0.014",
+      "masked_metrica": "-0.004..-0.010",
+      "decision": "mixed; not adopted"
+    },
+    "stoppage_end_diagnosis": {
+      "graded_D_runs": 125,
+      "ball_unseen_at_end": 0.36,
+      "ball_seen_still_1s_after": 0.03,
+      "ball_fast_within_0_5s": 0.46,
+      "unseen_end_wait_to_reappearance_s": {
+        "median": 4.9,
+        "p25": 3.1,
+        "p75": 14.6
+      },
+      "ball_already_fast_on_reappearance": 0.95,
+      "decision": "No fix: observed ends coincide with kicks; unseen ends cannot be timed from tracking because play has usually restarted inside the gap."
+    }
+  }
+}

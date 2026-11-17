@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-11-08",
+  "scope": "External Game 1 development, frozen previously inspected Game 2 diagnostic, and automatic challenge input/format checks only.",
+  "external_revision": "e706dd506b360d69d9d123d5b8026e7294b13996",
+  "baseline_sha256": "874c4c8ed85a98f13a29b954b08bbc7315b50ad85b57fd0231ae0f56355ccd5e",
+  "source_protocol": "configs/metrica_core_development.json",
+  "source_protocol_sha256": "da223b82a4a91e477e318a30e63b4e86f87ef3de4ec73f19300aa8745d680bbf",
+  "source_fps_override": 25,
+  "frozen_values": {
+    "tracking_exit_bracket_enabled": true,
+    "tracking_exit_bracket_minimum_frames": 25,
+    "tracking_exit_bracket_maximum_frames": 3000,
+    "tracking_exit_bracket_minimum_outward_speed_mps": 2.0
+  },
+  "reports_sha256": {
+    "baseline_dead_timeline": "d1ac5883923531c27495a7157de8d0a69d8f8a036970453b820cd4690597fc58",
+    "uncorroborated_game1": "baf437555b6494e9caa35ae88d9c9008486ddd55b105d3daeff36f43a6cb0456",
+    "margin_confirmed_game1": "914257d4685cda08aa85f35e5f02945124d5843f7592d706ea3082326a1313be",
+    "bounded_game1": "d1b2a3efdedeb8193e8a7ca4d3a014abc4ab813fad41f748d1db3ec2366f3975",
+    "frozen_game2_diagnostic": "fe0811c77dae914b7105e9151e94ce511f67466fda9d40c59b84283770c3eb2f",
+    "challenge_input_only": "72e9fa998819aa3db6cb2e4077cbc4a6f085f9f212cb312ce2aef2fea07df798",
+    "verified_game1": "b9f79a01839463081766a11bf951ff0abf2b57c92413c35cbdb972936893f508",
+    "verified_game2_diagnostic": "8a9f2c7db7987d8aba995fdf5a5cb8f62cb0a496e4b9fba55bb14b7669a15c5b",
+    "frozen_game3_diagnostic": "a5dc07cef110e21ddba8bebdc91fa4cf6a38af3356b7622047619d4cc0bbd29c",
+    "verified_challenge_input_only": "d5bed046c319864321203ec7a36c43283e89d9f2da92bb0e9e260adb6875965a"
+  },
+  "code_sha256": {
+    "decoder.py": "7915935aabfc82c83080d864ab431b1e6263993bff43da97ff7b7637316ca08d",
+    "external_guarded_calibration.py": "8961916d5937e3e1eaf48187104123d7c27ac763222b89c69645b4bff086e492",
+    "external_possession_events.py": "7b256be4fe30e5a805c914e9b83f6c85f62cc7f5903e0099bb7e713142e2771e"
+  },
+  "game1": {
+    "baseline_objective": 0.40539123093620044,
+    "candidate_objective": 0.45063724390460297,
+    "passed_guards": 60,
+    "total_guards": 60,
+    "clean_no_tag": {
+      "spell_f1_0.5": {"baseline": 0.4301, "candidate": 0.5123},
+      "spell_f1_0.75": {"baseline": 0.3082, "candidate": 0.3719},
+      "known_dead_recall": {"baseline": 0.01937653160084345, "candidate": 0.39731388081533403},
+      "candidate_known_dead_precision": 0.9773821206598439,
+      "candidate_false_dead_fraction_known_live": 0.006151812496822411,
+      "qualified_exit_to_return_intervals": 49
+    },
+    "failed_first_trial": {
+      "passed_guards": 58,
+      "total_guards": 60,
+      "reason": "Two excess false-dead known-live 5-second gap windows, each beginning near a shallow projected ball excursion outside a field line."
+    },
+    "repair": "Require an observed excursion deeper than the existing one-metre pitch margin, an outward crossing, an inside return and a bounded interval; original guards unchanged."
+  },
+  "game2_previously_inspected_diagnostic": {
+    "baseline_objective": 0.34011922113977033,
+    "candidate_objective": 0.39166577520013635,
+    "passed_guards": 60,
+    "total_guards": 60,
+    "clean_no_tag": {
+      "spell_f1_0.5": {"baseline": 0.3386, "candidate": 0.4330},
+      "spell_f1_0.75": {"baseline": 0.2222, "candidate": 0.2990},
+      "known_dead_recall": {"baseline": 0.041067633454181775, "candidate": 0.4910},
+      "candidate_known_dead_precision": 0.9935,
+      "qualified_exit_to_return_intervals": 39
+    }
+  },
+  "game3_previously_inspected_diagnostic": {
+    "baseline_objective": 0.394450612369077,
+    "candidate_objective": 0.40275442323333066,
+    "passed_guards": 60,
+    "total_guards": 60,
+    "clean_no_tag": {
+      "spell_f1_0.5": {"baseline": 0.45576407506702415, "candidate": 0.4627659574468085},
+      "spell_f1_0.75": {"baseline": 0.28418230563002683, "candidate": 0.2978723404255319},
+      "known_dead_recall": {"baseline": 0.043917001801090524, "candidate": 0.23794132885939157},
+      "candidate_known_dead_precision": 0.9730602361013015,
+      "qualified_exit_to_return_intervals": 16
+    },
+    "interpretation": "EPTS format and fewer qualified crossings; already inspected, not an unseen holdout."
+  },
+  "automatic_challenge_input_only": {
+    "graded_frames": 158857,
+    "raw_missing_ball_fraction": 0.40692572565263097,
+    "remaining_missing_ball_fraction_after_repair": 0.392623554517585,
+    "remaining_missing_ball_gap_frames_p50_p90": [269.0, 937.8],
+    "observed_border_crossings": 74,
+    "qualified_exit_to_return_intervals": 36,
+    "bracketed_graded_frames": 7307,
+    "video_or_protected_truth_used": false,
+    "candidate_format_validated": true,
+    "candidate_config_sha256": "d7f08d79d410e1704105be80e66e294ca465ca556ec814480e91ac65d41bad8a",
+    "candidate_csv_sha256": "c9a2f41a76d7d070cc3afead3524fab90d21e87dd198259759b95b7a22536dac"
+  },
+  "selected_submission_changed": false,
+  "challenge_spell_f1": null,
+  "decision": "Promising opt-in research candidate, not the selected submission. Game 1 and frozen previously inspected Games 2-3 pass all original guards with higher provider-reference scores and dead-state recall; challenge accuracy, tag semantics, fresh holdout transfer and inherited active-parameter provenance remain unverified.",
+  "limitations": [
+    "Known dead frames and spells come from censored provider event references, not challenge possession truth.",
+    "Only known live/dead external frames enter dead precision/recall; unknown provider regions are excluded, not forward-filled.",
+    "Degraded external restart tags inherit offset logic and do not independently validate real Smart Tagging timing.",
+    "Challenge asset use was input-only activation and automatic output-format validation, never video-output review or protected-truth tuning.",
+    "Game 1 is development and Game 2 has been inspected previously; no unseen held-out possession score is claimed.",
+    "When no confirmed observed return occurs within 120 seconds, the candidate abstains rather than inferring an unbounded stoppage."
+  ]
+}

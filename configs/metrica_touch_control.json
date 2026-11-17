@@ -1,0 +1,16 @@
+{
+  "source_repair_report": "artifacts/support_horizon_repair.json",
+  "source_repair_sha256": "ea53e067dbab5512b2476a43b18ab35c2788301a01194b5156ee0cb2548eacc1",
+  "diagnosis_report": "artifacts/contact_control_diagnosis.json",
+  "diagnosis_sha256": "286c62e0f42c921e3721dd5d2db4f957b6c84e01df0b77e3ceb0196abc67b62e",
+  "selection_case": "clean:none",
+  "matched_transition_quantile": 0.1,
+  "policy": {
+    "development_game": "Sample_Game_1",
+    "threshold_search": false,
+    "observed_frames_only": true,
+    "unknown_behavior": "retain_original_support",
+    "guard_relaxation": false,
+    "candidate_automatically_promoted": false
+  }
+}

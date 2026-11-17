@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-11-07",
+  "upstream": {
+    "repository": "https://github.com/metrica-sports/more-than-a-hack-2027",
+    "revision": "f8f2629ff1e0985f81d7e59d8413678514ee1530",
+    "license": "MIT for repository source, docs and public reference slice; not for licensed match assets.",
+    "original_files_retained": true,
+    "original_git_metadata_archived_locally": true
+  },
+  "purpose": "Hashes identify local historical evidence behind summary.json; these are not downloadable reports in the shared repo.",
+  "sources": [
+    {
+      "local_report": "artifacts/owner_flight_weak_game1.json",
+      "sha256": "9204abcb28950e2f9a94bdafa48012f951ed7b1bce15b70310d2a40bb98af2d9",
+      "supports": "Frozen sustained same-player owner-flight prior with existing weaker evidence weight; Game 1 58/60 guards."
+    },
+    {
+      "local_report": "artifacts/owner_flight_game2_diagnostic.json",
+      "sha256": "db4635443daf03dc85317fea10f0fe65e4358004ac7769a9a79e16d0227c6196",
+      "supports": "Previously inspected Game 2 transfer of the frozen owner prior; two high-IoU guard failures and no promotion."
+    },
+    {
+      "local_report": "artifacts/owner_weak_failure_game1.json",
+      "sha256": "59d01c29c62c71aaf42ce301a37d052101fb249fa2aaf6d81fd1739009ad22b3",
+      "supports": "Game 1 whole-spell overlap losses and introduced spurious intervals for weaker owner continuity."
+    },
+    {
+      "local_report": "artifacts/owner_weak_failure_game2.json",
+      "sha256": "38f613ff1c157dfd924f641c756a3dadb61b862e71ca6bb89de421f627352d85",
+      "supports": "Game 2 previously inspected diagnostic: shifted long spells and wrong-team starts, not a selection set."
+    },
+    {
+      "local_report": "artifacts/player_reliability_resume_game1.json",
+      "sha256": "c175adb502e0aa90b4455278954c2d29178021892404d8791a81ce3e23b53343",
+      "supports": "Age confidence with speed-plausible same-slot short-gap resume; unchanged normal labels and one remaining guard."
+    },
+    {
+      "local_report": "artifacts/player_stress_resume_game1.json",
+      "sha256": "ac317538fd1961f6e46927571358f7cc950332dcf58f4e7c2f38206613864be9",
+      "supports": "Development-game near-ball corruption: team-swap reliability improves without dropout penalty."
+    },
+    {
+      "local_report": "artifacts/player_stress_resume_game2.json",
+      "sha256": "ab7dbe4dfafed41d6931354a590fba97b50a5bc69992610f5d41c9b23d59d37a",
+      "supports": "Previously inspected Game 2 corruption: 92.55% local known-live after swaps versus 85.58% frozen soft; dropout unchanged."
+    },
+    {
+      "local_report": "artifacts/touch_game2_diagnostic.json",
+      "sha256": "8b577c67df93903220c6c6e142d1a6e3907b4fdda08d452c0b1c1e5bedc0c7a8",
+      "supports": "Explicit frozen Game2 transfer, unchanged Game1 candidate scores/labels, six stricter guard failures and separate official-range reference mean."
+    },
+    {
+      "local_report": "artifacts/player_control_quality_audit.json",
+      "sha256": "5febfee307186ff5cb4e04cb9584745493e42bd8d441b3a630be7b35c6500bad",
+      "supports": "External raw player geometry, error-cohort quality and legacy velocity-proxy availability defects."
+    },
+    {
+      "local_report": "artifacts/challenge_player_quality_audit.json",
+      "sha256": "9ca6e8ab6c224c22d7f7c322bb6a85f5ba5649ddc2507e3634468b54ea3c0018",
+      "supports": "Permitted automatic structural tracker audit only; no video/possession truth, fitting or raw-data redistribution."
+    },
+    {
+      "local_report": "artifacts/frozen_spell_structure_audit.json",
+      "sha256": "2e8d67f6404a7711a65697e0e299ff621681a2405b985e65859c951f7ec7b119",
+      "supports": "Long shifted/fragmented high-IoU losses, not short spells blocked by the minimum duration floor."
+    },
+    {
+      "local_report": "artifacts/contact_control_diagnosis.json",
+      "sha256": "286c62e0f42c921e3721dd5d2db4f957b6c84e01df0b77e3ceb0196abc67b62e",
+      "supports": "Matched versus wrong-live/partial spell control cues, contiguous contact motion and development q10 selection."
+    },
+    {
+      "local_report": "artifacts/touch_control_pilot.json",
+      "sha256": "d05ac41794c16bf63d1a290f5017a49d199e0865fd5141f46d8702a5178a0c19",
+      "supports": "One hard low-motion support gate, explicit availability, 59/60 guards and rejection."
+    },
+    {
+      "local_report": "artifacts/touch_control_softening.json",
+      "sha256": "e9a1eec68969ca325f7ba0ca0a23dddca20837e9bcdec7a50f4888b5f70ce8a1",
+      "supports": "Soft low-motion confidence handling improves clean high-IoU matching but remains 59/60."
+    },
+    {
+      "local_report": "artifacts/touch_control_confidence.json",
+      "sha256": "fcadf9edc3d4893216b2dd5eb41f978e8881f461c17895bcf352dfcbe096a945",
+      "supports": "Continuous confidence using unchanged scale/cost bounds; same primary scores and one remaining guard."
+    },
+    {
+      "local_report": "artifacts/rebased_core_failure_diagnosis.json",
+      "sha256": "989d1b573728f402dee8eeb9f1d15c7c653ce2c16c812140d47d9f474f44d3b3",
+      "supports": "Corrected-clock recovery flips, support-cost inversions and high-IoU spell losses."
+    },
+    {
+      "local_report": "artifacts/support_horizon_repair.json",
+      "sha256": "ea53e067dbab5512b2476a43b18ab35c2788301a01194b5156ee0cb2548eacc1",
+      "supports": "Conditional horizon repair improves masked recovery correctness; 59/60 development guards."
+    },
+    {
+      "local_report": "artifacts/support_horizon_failure_diagnosis.json",
+      "sha256": "1b128c5419a5cd90a05f3a61e91de40384c245e2dfbfc48f346a5e926d42e893",
+      "supports": "Residual high-IoU precision deficit and weak-contact extended-support intervals."
+    },
+    {
+      "local_report": "artifacts/support_fraction_repair.json",
+      "sha256": "edcc935b340aacdc84030f064503d113cbc14f64f0d18500b31d3a3f3d0a2585",
+      "supports": "Fraction-preserving refinement fails two development guards."
+    },
+    {
+      "local_report": "artifacts/support_observed_cost_repair.json",
+      "sha256": "c66feaeb035ee015a30341d0ed9ae9f55d3bb5719e83b924d66f46f8d7902e88",
+      "supports": "Observed strong-cost restore harms spell matching and fails twelve development guards."
+    },
+    {
+      "local_report": "artifacts/metrica_temporal_parity.json",
+      "sha256": "d52e659eae46c5897f7d31b2641b45d9d73945a858105d85cbb76fad0539e8ce",
+      "supports": "Correct deployment25, historical50, fixed gap-only correction and official smoothing across all eight scenarios in Games1-2."
+    },
+    {
+      "local_report": "artifacts/rebased_core_temporal_parity.json",
+      "sha256": "4807beea92d0bbd37781afa87b2d9bd375f9c30dea087f211ab249ddf581b475",
+      "supports": "One frozen core rebase at actual25fps, 55/60 Game1 guards, explicit Game2 non-evaluation and rejection."
+    },
+    {
+      "local_report": "artifacts/comparison_metrica_candidates.json",
+      "sha256": "ebb32637174e90b9846726738fbdf2276052f8e8b76ac49bc76fc88fdca22cd2",
+      "supports": "Broad Games 1-2 sparse-event comparison and synthetic short-gap recovery."
+    },
+    {
+      "local_report": "artifacts/analysis_metrica_recoveries.json",
+      "sha256": "e057d3e7c34e3d5208d2207a890d34cacd768290d1a1a77cb020b2b0a97456da",
+      "supports": "333 paired loss/recovery references, recovery-instant correctness, boundary recall and provider-clock offsets."
+    },
+    {
+      "local_report": "artifacts/development_weak_transition_restore.json",
+      "sha256": "0c5021a51b4c285284fd2cdb4053c2b871e636ed2479fb123bd485db9f5134ec",
+      "supports": "Baseline, original near-miss and one fixed restore on eight Game 1 scenarios with 60 unchanged guards."
+    },
+    {
+      "local_report": "artifacts/control_cues_core_spurious_spells.json",
+      "sha256": "3cb5fb0553d602b89f81388476a258511d74df55976bddb17c691c8fd98d6dc1",
+      "supports": "Spurious lineage, stable-track motion cues, observed handover comparisons and missing-value denominators."
+    },
+    {
+      "local_report": "artifacts/validation_compliant_tracking.json",
+      "sha256": "ef403ce2e1899934deb112db4447c872965e000c68d02bfc7b19cc16b31783f8",
+      "supports": "Historical framework-v3 baseline robustness 135/135; not accuracy or a current-code source hash assertion."
+    },
+    {
+      "local_report": "artifacts/release_gap_decision.json",
+      "sha256": "c53789d09d1a913fe5836fa1dc295d079761739bb361bbb6568464351ad896b4",
+      "supports": "Bounded guarded-gap release rejection, zero mean tagged spell gain and byte-identical challenge output."
+    }
+  ],
+  "provenance_notes": [
+    "Source reports retain their own input/protocol/code hashes from the original runs.",
+    "Moving the historical plan changes release_check.py, not the decoder, selected config or selected output.",
+    "Do not assert historical report source hashes equal the current checkout after documentation/tooling changes.",
+    "Detailed frame-level reports stay local; aggregate summaries do not grant redistribution rights for source datasets."
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-11-08",
+  "scope": "External-only reselection of inherited prediction and semi-Markov blocks using label-free challenge input distribution for stress design, not parameter scoring.",
+  "selected_submission_changed": false,
+  "challenge_video_or_possession_truth_used": false,
+  "input_only_profile_sha256": "e54c16c4477ad0535057b7eb0de4c13a9b4e1c0ce9f02a9c3894a54e098d5793",
+  "graded_missing_after_repair": {
+    "frames": 62371,
+    "frames_in_251_to_750_frame_gaps": 24987,
+    "frames_in_751_plus_frame_gaps": 27727,
+    "purpose": "Design external missingness stress without choosing model values from challenge output."
+  },
+  "prediction": {
+    "protocol_sha256": "f70a9590657afd7a1d67f010d0774d680af141f9058ccb69c7370dc08e645d44",
+    "source_report_sha256": "b053e72122f1d46ae10da3a930e66e6379f1acc132a36cfa32f07656fb3dca9a",
+    "code_sha256": "7b22853a99edc0ce5fadd137630beac774048e45de1a01a83951881cec56ec37",
+    "external_game1": "Sample_Game_1",
+    "predeclared_history_frames": [5, 7, 10],
+    "predeclared_horizon_frames": [5, 10, 20],
+    "masked_gap_lengths_frames": [50, 125, 250],
+    "windows_per_duration": 40,
+    "score": "correct observed external ball positions within 1.5 m minus twice wrong predicted positions outside that radius; abstention zero, average per masked frame across three gap lengths",
+    "historical_7_by_10_objective": 0.11,
+    "externally_selected_5_by_10_objective": 0.12836666666666666,
+    "external_game1_guarded_report_sha256": "d5d55697bd14427cacca4977777ea6783c0b9d665ec4f195a7d6450d64741695",
+    "previously_inspected_game2_game3_diagnostic_sha256": "8f12775b731fc15d3f085797f0e2c027d2bb0c475c5db80b870395d02387b8a6",
+    "decoded_labels_identical_to_frozen_exit_candidate_in_all_three_inspected_games": true,
+    "original_game1_guards_passed": "60/60",
+    "not_selected_for_default": true
+  },
+  "decoder": {
+    "runner_code_sha256": "4c297352fe0ff466efc9bfcb0cff1155885dade94cda77517ffa332b257bcb1b",
+    "protocol_sha256": "d15bcf858afa7fddf201522560628683c4c9f2b518e91d1b153be14a2656b886",
+    "source_report_sha256": "64c5cc4c98b573756dbf132b41179191d1fb3ecf0c39f09e4678e0ce3f70645e",
+    "external_game1": "Sample_Game_1",
+    "predeclared_vectors": 5,
+    "winner": "current_25fps",
+    "safe_vectors_passing_all_original_60_guards": 1,
+    "objective_with_exit_candidate": 0.45063724390460297,
+    "responsive_contact_objective_but_unsafe": 0.4674960896347939,
+    "selection_interpretation": "The original decoder vector also wins an external-only 25-fps comparison under fixed guard thresholds; this is new evidence, not proof the historical match-proxy origin never occurred."
+  },
+  "remaining_blocks": {
+    "restart_localization_and_fallback_timing": "External provider event times do not reproduce the challenge Smart Tagging phase-start/Team semantics; using the candidate's offset to synthesize its own tags is circular.",
+    "restart_ownership": "Needs independently tagged, rights-cleared external input or explicit vendor semantics before strict-workflow provenance can be certified.",
+    "other_inherited_keys": "All 44 remain unchanged from the legacy default and have not each been separately tuned for this candidate."
+  },
+  "decision": "Keep the versioned exit bracket as the primary working candidate and original default as fallback; do not promote default merely because one inherited block can be externally reselected. Restart/tag provenance remains unresolved.",
+  "limitations": [
+    "Metrica Game 1 is development, Games 2-3 were already inspected; ball coordinates are provider tracking, not human physical-ball truth.",
+    "No fully independent real Smart Tagging source is available in the DFL no-tag validation.",
+    "No parameter was chosen by viewing the challenge output against video, using its public possession slice, or reading protected ground truth."
+  ]
+}

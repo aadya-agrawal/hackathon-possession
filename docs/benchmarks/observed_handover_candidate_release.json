@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-11-14",
+  "decision": "versioned_submission_candidate_ready_for_selection",
+  "candidate_config": "configs/observed_handover_candidate.json",
+  "candidate_config_sha256": "6ceb85e6a0e92d287c142675aa7f89ccf4b3c6c66cd7420312a6ae2ff460bcb4",
+  "candidate_csv": "submissions/possession_observed_handover.csv",
+  "candidate_csv_sha256": "a01547158cbbd2ec67a379ccea72ceb9f1b3e7332e7d6edcfb7097a503edc8f8",
+  "source_trial_sha256": "2f5ac6b687b46abe19a3c34e3f9af887d5f191af6b300d43a516ca41f940a1cb",
+  "external_validation_aggregate": "docs/benchmarks/observed_handover_validation.json",
+  "external_guard_results": {
+    "metrica_game1_development": "60/60",
+    "metrica_games2_and3_previously_inspected": "120/120",
+    "first_untouched_dfl_J03WOY_predeclared_gate": true,
+    "external_provider_flags_are_not_challenge_truth": true
+  },
+  "automatic_release_checks": {
+    "official_submission_format_valid": true,
+    "frames": 199319,
+    "live_possessions": 321,
+    "shorter_than_one_second": 1,
+    "video_derived_ball_frames": 0,
+    "two_candidate_cli_runs_byte_identical": true,
+    "original_robustness_policy_passed": "135/135",
+    "original_robustness_report_sha256": "388aa07b8fcf918739fa3e3355c750004a77011f500276b0263fca76ae21ec0f"
+  },
+  "unchanged_exit_only_rollback": {
+    "config": "configs/submission_tracking.json",
+    "config_sha256": "ea6db9d99ebe3bda68f19869bd4ec6da73b9eb49d3375ed9a9f11575f2471ac9",
+    "csv": "submissions/possession_compliant.csv",
+    "csv_sha256": "c9a2f41a76d7d070cc3afead3524fab90d21e87dd198259759b95b7a22536dac"
+  },
+  "policy": "No challenge public-window selection, protected truth, manual challenge labels, output-versus-video review or hosted upload of licensed assets. Real Smart Tagging semantics and full-match private challenge score remain unknown, just as for the exit-only working selection.",
+  "default_cli_or_working_submission_changed": false
+}

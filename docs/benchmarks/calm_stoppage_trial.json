@@ -1,0 +1,502 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-11-14",
+  "scope": "Opt-in whistle-stoppage dead-ball cue from provider-relative collective calm, evaluated on top of the restart-dead working default. Metrica Sample Games 1-3 (60 guards each) and DFL J03WMX/J03WN1/J03WOH/J03WOY provider flags. No challenge labels, public-window scores, video or hand labels.",
+  "baseline_config": "configs/submission_restart_dead.json",
+  "baseline_config_sha256": "6da6e5bf19fb5ea32d6044944484983a10de52d82b599bcd06294602a27a4a5d",
+  "detector": "Per half: centred 2 s mean of per-frame median and upper-quartile player speed both at or below the half's 20th percentile for >=10 s with >=16 tracked players.",
+  "raw_detector_precision_on_metrica_known_frames": {
+    "Sample_Game_1": 0.938,
+    "Sample_Game_2": 0.976,
+    "Sample_Game_3": 0.98
+  },
+  "variants": {
+    "v1": {
+      "rule": "Calm D at weight 1.0, truncated at the first tagged restart, abstain on observed in-pitch ball >=12 m/s for 3 frames",
+      "metrica": {
+        "Sample_Game_1": {
+          "objective": [
+            0.47776,
+            0.47865
+          ],
+          "guards": "58/60",
+          "failed": [
+            "live_missing_5.0s:none:excess_false_dead_fraction",
+            "live_missing_5.0s:degraded_restart_tags:excess_false_dead_fraction"
+          ]
+        },
+        "Sample_Game_2": {
+          "objective": [
+            0.41833,
+            0.41827
+          ],
+          "guards": "55/60",
+          "failed": [
+            "clean:degraded_restart_tags:spell_f1_0.5",
+            "recovery_masked:none:boundary_recall",
+            "recovery_masked:degraded_restart_tags:spell_f1_0.5",
+            "live_missing_2.0s:degraded_restart_tags:spell_f1_0.5",
+            "live_missing_5.0s:degraded_restart_tags:spell_f1_0.5"
+          ]
+        },
+        "Sample_Game_3": {
+          "objective": [
+            0.45115,
+            0.45729
+          ],
+          "guards": "60/60",
+          "failed": []
+        }
+      },
+      "dfl": {
+        "J03WMX": {
+          "ranking_iou_mean": [
+            0.3435,
+            0.3528
+          ],
+          "dead_recall": [
+            0.1923,
+            0.4375
+          ],
+          "false_dead_live": [
+            460,
+            498
+          ],
+          "labels_changed": true
+        },
+        "J03WN1": {
+          "ranking_iou_mean": [
+            0.2922,
+            0.3025
+          ],
+          "dead_recall": [
+            0.2745,
+            0.3972
+          ],
+          "false_dead_live": [
+            550,
+            608
+          ],
+          "labels_changed": true
+        },
+        "J03WOH": {
+          "ranking_iou_mean": [
+            0.3497,
+            0.3725
+          ],
+          "dead_recall": [
+            0.2053,
+            0.4533
+          ],
+          "false_dead_live": [
+            366,
+            472
+          ],
+          "labels_changed": true
+        },
+        "J03WOY": {
+          "ranking_iou_mean": [
+            0.3388,
+            0.3649
+          ],
+          "dead_recall": [
+            0.2293,
+            0.4854
+          ],
+          "false_dead_live": [
+            552,
+            709
+          ],
+          "labels_changed": true
+        }
+      }
+    },
+    "v2": {
+      "rule": "v1 at calm dead weight 0.5",
+      "metrica": {
+        "Sample_Game_1": {
+          "objective": [
+            0.47776,
+            0.47848
+          ],
+          "guards": "58/60",
+          "failed": [
+            "live_missing_5.0s:none:excess_false_dead_fraction",
+            "live_missing_5.0s:degraded_restart_tags:excess_false_dead_fraction"
+          ]
+        },
+        "Sample_Game_2": {
+          "objective": [
+            0.41833,
+            0.41827
+          ],
+          "guards": "55/60",
+          "failed": [
+            "clean:degraded_restart_tags:spell_f1_0.5",
+            "recovery_masked:none:boundary_recall",
+            "recovery_masked:degraded_restart_tags:spell_f1_0.5",
+            "live_missing_2.0s:degraded_restart_tags:spell_f1_0.5",
+            "live_missing_5.0s:degraded_restart_tags:spell_f1_0.5"
+          ]
+        },
+        "Sample_Game_3": {
+          "objective": [
+            0.45115,
+            0.4573
+          ],
+          "guards": "60/60",
+          "failed": []
+        }
+      },
+      "dfl": {
+        "J03WMX": {
+          "ranking_iou_mean": [
+            0.3435,
+            0.3459
+          ],
+          "dead_recall": [
+            0.1923,
+            0.4223
+          ],
+          "false_dead_live": [
+            460,
+            495
+          ],
+          "labels_changed": true
+        },
+        "J03WN1": {
+          "ranking_iou_mean": [
+            0.2922,
+            0.2971
+          ],
+          "dead_recall": [
+            0.2745,
+            0.3509
+          ],
+          "false_dead_live": [
+            550,
+            551
+          ],
+          "labels_changed": true
+        },
+        "J03WOH": {
+          "ranking_iou_mean": [
+            0.3497,
+            0.3649
+          ],
+          "dead_recall": [
+            0.2053,
+            0.4045
+          ],
+          "false_dead_live": [
+            366,
+            398
+          ],
+          "labels_changed": true
+        },
+        "J03WOY": {
+          "ranking_iou_mean": [
+            0.3388,
+            0.3627
+          ],
+          "dead_recall": [
+            0.2293,
+            0.4587
+          ],
+          "false_dead_live": [
+            552,
+            601
+          ],
+          "labels_changed": true
+        }
+      }
+    },
+    "v3": {
+      "rule": "v1 plus abrupt-onset requirement: 2 s pre-interval median speed >=1.5x interval median",
+      "metrica": {
+        "Sample_Game_1": {
+          "objective": [
+            0.47776,
+            0.47886
+          ],
+          "guards": "60/60",
+          "failed": []
+        },
+        "Sample_Game_2": {
+          "objective": [
+            0.41833,
+            0.41446
+          ],
+          "guards": "52/60",
+          "failed": [
+            "clean:none:spell_f1_0.5",
+            "clean:degraded_restart_tags:spell_f1_0.5",
+            "recovery_masked:none:spell_f1_0.5",
+            "recovery_masked:degraded_restart_tags:spell_f1_0.5",
+            "live_missing_2.0s:none:spell_f1_0.5",
+            "live_missing_2.0s:degraded_restart_tags:spell_f1_0.5",
+            "live_missing_5.0s:none:spell_f1_0.5",
+            "live_missing_5.0s:degraded_restart_tags:spell_f1_0.5"
+          ]
+        },
+        "Sample_Game_3": {
+          "objective": [
+            0.45115,
+            0.45364
+          ],
+          "guards": "60/60",
+          "failed": []
+        }
+      },
+      "dfl": {
+        "J03WMX": {
+          "ranking_iou_mean": [
+            0.3435,
+            0.3489
+          ],
+          "dead_recall": [
+            0.1923,
+            0.3772
+          ],
+          "false_dead_live": [
+            460,
+            498
+          ],
+          "labels_changed": true
+        },
+        "J03WN1": {
+          "ranking_iou_mean": [
+            0.2922,
+            0.2992
+          ],
+          "dead_recall": [
+            0.2745,
+            0.36
+          ],
+          "false_dead_live": [
+            550,
+            552
+          ],
+          "labels_changed": true
+        },
+        "J03WOH": {
+          "ranking_iou_mean": [
+            0.3497,
+            0.3577
+          ],
+          "dead_recall": [
+            0.2053,
+            0.4019
+          ],
+          "false_dead_live": [
+            366,
+            435
+          ],
+          "labels_changed": true
+        },
+        "J03WOY": {
+          "ranking_iou_mean": [
+            0.3388,
+            0.3546
+          ],
+          "dead_recall": [
+            0.2293,
+            0.3842
+          ],
+          "false_dead_live": [
+            552,
+            655
+          ],
+          "labels_changed": true
+        }
+      }
+    },
+    "v4": {
+      "rule": "v3, kept only within 25 frames of existing dead evidence >=0.9 (extend, never create)",
+      "metrica": {
+        "Sample_Game_1": {
+          "objective": [
+            0.47776,
+            0.47825
+          ],
+          "guards": "60/60",
+          "failed": []
+        },
+        "Sample_Game_2": {
+          "objective": [
+            0.41833,
+            0.41844
+          ],
+          "guards": "60/60",
+          "failed": []
+        },
+        "Sample_Game_3": {
+          "objective": [
+            0.45115,
+            0.45336
+          ],
+          "guards": "60/60",
+          "failed": []
+        }
+      },
+      "dfl": {
+        "J03WMX": {
+          "ranking_iou_mean": [
+            0.3435,
+            0.3435
+          ],
+          "dead_recall": [
+            0.1923,
+            0.1923
+          ],
+          "false_dead_live": [
+            460,
+            460
+          ],
+          "labels_changed": false
+        },
+        "J03WN1": {
+          "ranking_iou_mean": [
+            0.2922,
+            0.2922
+          ],
+          "dead_recall": [
+            0.2745,
+            0.2745
+          ],
+          "false_dead_live": [
+            550,
+            550
+          ],
+          "labels_changed": false
+        },
+        "J03WOH": {
+          "ranking_iou_mean": [
+            0.3497,
+            0.3497
+          ],
+          "dead_recall": [
+            0.2053,
+            0.2053
+          ],
+          "false_dead_live": [
+            366,
+            366
+          ],
+          "labels_changed": false
+        },
+        "J03WOY": {
+          "ranking_iou_mean": [
+            0.3388,
+            0.3388
+          ],
+          "dead_recall": [
+            0.2293,
+            0.2293
+          ],
+          "false_dead_live": [
+            552,
+            552
+          ],
+          "labels_changed": false
+        }
+      }
+    },
+    "v5": {
+      "rule": "v1, kept only within 25 frames of existing dead evidence >=0.9",
+      "metrica": {
+        "Sample_Game_1": {
+          "objective": [
+            0.47776,
+            0.47831
+          ],
+          "guards": "58/60",
+          "failed": [
+            "live_missing_5.0s:none:excess_false_dead_fraction",
+            "live_missing_5.0s:degraded_restart_tags:excess_false_dead_fraction"
+          ]
+        },
+        "Sample_Game_2": {
+          "objective": [
+            0.41833,
+            0.41862
+          ],
+          "guards": "60/60",
+          "failed": []
+        },
+        "Sample_Game_3": {
+          "objective": [
+            0.45115,
+            0.45523
+          ],
+          "guards": "60/60",
+          "failed": []
+        }
+      },
+      "dfl": {
+        "J03WMX": {
+          "ranking_iou_mean": [
+            0.3435,
+            0.3435
+          ],
+          "dead_recall": [
+            0.1923,
+            0.1923
+          ],
+          "false_dead_live": [
+            460,
+            460
+          ],
+          "labels_changed": false
+        },
+        "J03WN1": {
+          "ranking_iou_mean": [
+            0.2922,
+            0.2922
+          ],
+          "dead_recall": [
+            0.2745,
+            0.2745
+          ],
+          "false_dead_live": [
+            550,
+            550
+          ],
+          "labels_changed": false
+        },
+        "J03WOH": {
+          "ranking_iou_mean": [
+            0.3497,
+            0.3497
+          ],
+          "dead_recall": [
+            0.2053,
+            0.2053
+          ],
+          "false_dead_live": [
+            366,
+            366
+          ],
+          "labels_changed": false
+        },
+        "J03WOY": {
+          "ranking_iou_mean": [
+            0.3388,
+            0.3388
+          ],
+          "dead_recall": [
+            0.2293,
+            0.2293
+          ],
+          "false_dead_live": [
+            552,
+            552
+          ],
+          "labels_changed": false
+        }
+      }
+    }
+  },
+  "finding": "Unanchored calm (v1-v3) raises DFL mean spell-F1 on all four matches (up to +0.026) but fails Metrica guards on Game 1 and/or Game 2 (tagged spell F1@0.5, masked boundary recall, 5 s known-live gap false dead). Anchoring calm to existing dead evidence (v4-v5) removes the DFL effect entirely (no label changes), because uncovered whistle stoppages are exactly the intervals without other dead-ball evidence.",
+  "decision": "Rejected; whistle stoppages remain undetected by design (precision-first). Code removed from the decoder; working default unchanged."
+}

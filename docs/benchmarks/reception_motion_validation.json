@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-11-08",
+  "scope": "Aggregate external Game 1 reception-cue development and frozen previously inspected Game 2 diagnostic; no frame-level data.",
+  "source_reports_sha256": {
+    "receiver_only_game1": "f0a733e8884a33b291b119a83a40f85a2f9a721a350e28f3e29f174a7398018e",
+    "extended_flight_game1": "686cbd67b2d8038af00dc238f2625d89b4c72b568c8bf49ead03b6a8c70bf0d0",
+    "extended_flight_game2_diagnostic": "93bbee84cb91409e38664b0fdceb5621c393f176fb4ae435bab4abba31991385"
+  },
+  "baseline_sha256": "874c4c8ed85a98f13a29b954b08bbc7315b50ad85b57fd0231ae0f56355ccd5e",
+  "scenario_protocol": "configs/metrica_core_development.json",
+  "scenario_protocol_sha256": "da223b82a4a91e477e318a30e63b4e86f87ef3de4ec73f19300aa8745d680bbf",
+  "external_revision": "e706dd506b360d69d9d123d5b8026e7294b13996",
+  "runtime_source_fps": 25,
+  "development_game": "Sample_Game_1",
+  "previously_inspected_diagnostic_game": "Sample_Game_2",
+  "selected_submission_changed": false,
+  "challenge_spell_f1": null,
+  "model_files_sha256": {
+    "control_phase.py": "88c9e944d7bfdd469d29ebd1173fc29efc027395fdf89d8ba08c508151989615",
+    "decoder.py": "06f7b8015bbe65674a5f6fccd658ee3902672ff02691e7f54030e5e8a48f70b9",
+    "external_guarded_calibration.py": "df833a8cf71fd48df982f43da5f2b47e80cfd845a8db198c8146eaf95cf4ffd7",
+    "external_metrica_validation.py": "ea1e667b8b75cbeee3960893c97ee0c313380fde697eb6bb6752fcde51f16140"
+  },
+  "values": {
+    "semi_markov_phase_enabled": true,
+    "phase_decode_mode": "bounded",
+    "phase_contact_minimum_frames": 4,
+    "phase_flight_max_frames": 20,
+    "phase_minimum_ball_speed_mps": 2.0,
+    "phase_contact_distance_metres": 1.5,
+    "phase_flight_weight": 0.25,
+    "phase_turnover_transition_cost": 10.0,
+    "phase_observed_reception_bridge_enabled": true,
+    "phase_observed_reception_bridge_max_frames": 50
+  },
+  "game1": {
+    "clean_no_tag_baseline_label_sha256": "274eca96fdbef91335bf062ba7fbc67b0bc59183434a2bfbfbd6ab16b08d4aeb",
+    "baseline_objective": 0.40539123093620044,
+    "bounded_without_bridge_objective": 0.4091868500235369,
+    "motion_bridge_objective": 0.4091868500235369,
+    "passed_guards": 60,
+    "total_guards": 60,
+    "clean_no_tag_long_receptions": 84,
+    "clean_no_tag_added_flight_frames": 822,
+    "clean_no_tag_baseline_agreeing_contacts": 82,
+    "clean_no_tag_bounded_changed_frames": 68,
+    "provider_pass_end_reception_within_0.48_seconds": {
+      "scorable_passes": 799,
+      "before": 202,
+      "after": 282,
+      "is_contact_ground_truth": false
+    },
+    "baseline_wrong_recovery_cue_coverage_clean_none": {
+      "wrong_at_recovery": 71,
+      "incoming_sustained_same_player_within_0.48_seconds": 39
+    },
+    "baseline_wrong_recovery_cue_coverage_recovery_masked_none": {
+      "wrong_at_recovery": 97,
+      "incoming_sustained_same_player_within_0.48_seconds": 8
+    },
+    "labels_identical_to_bounded_without_bridge_in_all_eight_scenarios": true
+  },
+  "game2_frozen_diagnostic": {
+    "baseline_objective": 0.34011922113977033,
+    "bounded_without_bridge_objective": 0.34014930870432036,
+    "motion_bridge_objective": 0.34014930870432036,
+    "passed_guards": 60,
+    "total_guards": 60,
+    "clean_no_tag_long_receptions": 89,
+    "clean_no_tag_added_flight_frames": 857,
+    "clean_no_tag_bounded_changed_frames": 73,
+    "labels_identical_to_bounded_without_bridge_in_all_eight_scenarios": true
+  },
+  "decision": "The opt-in physical reception cue improves contact hypotheses but yields zero additional decoded-frame or score gain on both inspected games; do not promote it or retune weights to force a result.",
+  "limitations": [
+    "Provider pass ends include ambiguous or unsuccessful passes; proximity to an event end is not physical-contact truth.",
+    "The existing 2 m/s relative-motion limit is applied to any frame of the same-player four-frame contact, not every frame or necessarily the exact closest-approach frame.",
+    "Continuous observed ball, uncontested geometry, same-track receiver motion and forward travel are required; missing observations explicitly abstain.",
+    "Eighty-two of the 84 clean Game 1 newly linked receptions already agree with the baseline at both endpoint teams; the bounded decoder rejects unsupported endpoint overrides.",
+    "Game 2 was inspected previously and is diagnostic, not an unseen holdout.",
+    "All provider events are for scoring only, never no-tag inference; the selected challenge submission stays unchanged.",
+    "Detailed frame-level reports remain ignored locally; historical frozen reports retain their original code hashes."
+  ]
+}

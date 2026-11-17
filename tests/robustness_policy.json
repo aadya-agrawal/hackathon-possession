@@ -1,0 +1,65 @@
+{
+  "framework_version": 3,
+  "seed": 2027,
+  "boundary_tolerance_frames": 25,
+  "maximum_short_spell_increase": 2,
+  "minimum_strong_event_persistence": 0.8,
+  "minimum_restart_speed_gain_metres_per_second": 1.0,
+  "minimum_restart_owner_proxy_coverage": 0.15,
+  "minimum_restart_owner_proxy_accuracy": 0.9,
+  "minimum_decoded_boundary_majority_persistence": 0.9,
+  "minimum_decoded_boundary_strong_persistence": 0.85,
+  "minimum_boundary_cohort_events": 20,
+  "minimum_cohort_decoded_boundary_majority_persistence": 0.8,
+  "minimum_cohort_decoded_boundary_strong_persistence": 0.75,
+  "restart_cohort_radius_frames": 75,
+  "minimum_team_switch_ratio_vs_reference": 0.75,
+  "maximum_team_switch_ratio_vs_reference": 1.5,
+  "minimum_possession_ratio_vs_reference": 0.75,
+  "maximum_possession_ratio_vs_reference": 1.5,
+  "maximum_dead_share_difference_vs_reference": 0.05,
+  "minimum_sensitivity_frame_agreement": 0.97,
+  "minimum_sensitivity_boundary_recall": 0.8,
+  "perturbations": {
+    "noise_0.10m": {
+      "minimum_frame_agreement": 0.98,
+      "minimum_boundary_recall": 0.85,
+      "minimum_restart_status_agreement": 0.95,
+      "minimum_restart_within_ten_frames": 0.95,
+      "minimum_ownership_status_agreement": 0.95,
+      "minimum_clean_owner_retention": 0.85
+    },
+    "noise_0.25m": {
+      "minimum_frame_agreement": 0.95,
+      "minimum_boundary_recall": 0.7,
+      "minimum_restart_status_agreement": 0.85,
+      "minimum_restart_within_ten_frames": 0.85,
+      "minimum_ownership_status_agreement": 0.85,
+      "minimum_clean_owner_retention": 0.7
+    },
+    "missing_10_frames": {
+      "minimum_frame_agreement": 0.99,
+      "minimum_boundary_recall": 0.9,
+      "minimum_restart_status_agreement": 0.95,
+      "minimum_restart_within_ten_frames": 0.95,
+      "minimum_ownership_status_agreement": 0.95,
+      "minimum_clean_owner_retention": 0.85
+    },
+    "missing_25_frames": {
+      "minimum_frame_agreement": 0.98,
+      "minimum_boundary_recall": 0.85,
+      "minimum_restart_status_agreement": 0.9,
+      "minimum_restart_within_ten_frames": 0.9,
+      "minimum_ownership_status_agreement": 0.9,
+      "minimum_clean_owner_retention": 0.8
+    },
+    "retain_50_percent": {
+      "minimum_frame_agreement": 0.9,
+      "minimum_boundary_recall": 0.4,
+      "minimum_restart_status_agreement": 0.75,
+      "minimum_restart_within_ten_frames": 0.75,
+      "minimum_ownership_status_agreement": 0.7,
+      "minimum_clean_owner_retention": 0.5
+    }
+  }
+}

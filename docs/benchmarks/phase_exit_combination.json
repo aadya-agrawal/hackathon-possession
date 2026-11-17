@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-11-08",
+  "scope": "Frozen bounded same-player contact/flight phase values added to the selected exit-bracket model; corrected 25-fps external provider references and previously inspected no-tag DFL flags only.",
+  "source_fps": 25,
+  "external_revision": "e706dd506b360d69d9d123d5b8026e7294b13996",
+  "working_config_sha256": "ea6db9d99ebe3bda68f19869bd4ec6da73b9eb49d3375ed9a9f11575f2471ac9",
+  "source_bounded_values_sha256": "9a5c42c37b8167b5aab314509f7447af3cab3346cdfc2d09eface25b0e7cf0b6",
+  "phase_values": {
+    "semi_markov_phase_enabled": true,
+    "phase_decode_mode": "bounded",
+    "phase_contact_minimum_frames": 4,
+    "phase_flight_max_frames": 20,
+    "phase_minimum_ball_speed_mps": 2.0,
+    "phase_contact_distance_metres": 1.5,
+    "phase_flight_weight": 0.25,
+    "phase_turnover_transition_cost": 10.0
+  },
+  "metrica_games": {
+    "Sample_Game_1_development": {
+      "exit_only_objective": 0.45063724390460297,
+      "exit_plus_bounded_phase_objective": 0.45360514631799204,
+      "passed_original_guards": "60/60",
+      "reproduces_frozen_exit_baseline_per_scenario": true
+    },
+    "Sample_Game_2_previously_inspected": {
+      "exit_only_objective": 0.39166577520013635,
+      "exit_plus_bounded_phase_objective": 0.39168976355500984,
+      "passed_original_guards": "60/60",
+      "reproduces_frozen_exit_baseline_per_scenario": true
+    },
+    "Sample_Game_3_previously_inspected": {
+      "exit_only_objective": 0.40275442323333066,
+      "exit_plus_bounded_phase_objective": 0.402502219306322,
+      "passed_original_guards": "58/60",
+      "failed_guards": [
+        "clean:none:recovery_accuracy",
+        "clean:degraded_restart_tags:recovery_accuracy"
+      ],
+      "reproduces_frozen_exit_baseline_per_scenario": true
+    }
+  },
+  "dfl_no_tag_provider_flags": {
+    "J03WMX_development_match_previously_inspected": {
+      "mean_live_spell_f1_iou_0_3_to_0_7": {"exit_only": 0.32234, "combined": 0.32234},
+      "combined_labels_byte_identical": false
+    },
+    "J03WN1_validation_match_previously_inspected": {
+      "mean_live_spell_f1_iou_0_3_to_0_7": {"exit_only": 0.262517, "combined": 0.262517},
+      "combined_labels_byte_identical": false
+    },
+    "real_smart_tagging_transfer_validated": false
+  },
+  "game3_recovery_diagnosis": {
+    "references": 247,
+    "clean_no_tag_correct_at_recovery": {"exit_only": 144, "combined": 141},
+    "clean_degraded_tag_correct_at_recovery": {"exit_only": 143, "combined": 140},
+    "changed_references_each_clean_mode": 3,
+    "previously_correct_references_lost": 3,
+    "newly_correct_references_gained": 0,
+    "all_three_combined_predictions_at_outgoing_team": true,
+    "all_three_raw_ball_observed": true,
+    "phase_kinds_at_lost_references": {"flight": 2, "unseen_in_editable_bracket": 1},
+    "clean_no_tag_external_mean_spell_f1_iou_0_3_to_0_7": {
+      "exit_only": 0.4659574468085107,
+      "combined": 0.46914893617021275
+    },
+    "interpretation": "The bounded two-pass phase decoder may change live H/A labels anywhere between baseline-agreeing contact endpoints, including an unseen interior. It preserves dead frames, but can carry the outgoing owner through a provider recovery. This is a provider-event timing diagnostic, not independently verified physical touch truth."
+  },
+  "local_reports_sha256": {
+    "game1_development": "c831f0c4b9d31131a483643a1c4de58f8ad8596d9fea33b8fa31de97d5510016",
+    "game2_previously_inspected": "8a0d80e9b9125d65d6f35f340868e2cb80bf3e089b0728026256220bf3d9c826",
+    "game3_previously_inspected": "35d0258d096226221fe8a847835cb30fc3908d7101a5ae961391209d22fce4da",
+    "dfl_J03WMX": "6c05ec208b6e17b6c1941d82a5e4605b795c0e7bfd3e80a8edb47e46224931f8",
+    "dfl_J03WN1": "74c6824882ea5b7b69d4755da88337ed3ec7d6cce7d01011ae0de16146ad5903"
+  },
+  "decision": "Retain the selected exit-only working default. The fixed combination is positive on Game 1, nearly neutral on previously inspected Game 2, negative on previously inspected Game 3 with two unchanged guard failures, and has no measured no-tag DFL spell-F1 gain. Do not waive guards or tune on the challenge public window.",
+  "selected_submission_csv_sha256_unchanged": "c9a2f41a76d7d070cc3afead3524fab90d21e87dd198259759b95b7a22536dac"
+}

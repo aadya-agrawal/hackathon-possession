@@ -1,0 +1,16 @@
+{
+  "base_player_reliability_protocol": "configs/metrica_player_reliability.json",
+  "base_player_reliability_protocol_sha256": "c8c04199cbabc5bb24afe3b9543825bebc1df8182be4d67a5cb7bf7fe6805f81",
+  "source_age_report": "artifacts/player_reliability_game1.json",
+  "source_age_report_sha256": "70127ff21584b19a14f7f7e17eb6dd41c5f2bebb7e9a8b60cbf70ed4285480d5",
+  "maximum_player_resume_gap_seconds": 0.2,
+  "source_player_stress_protocol": "configs/metrica_player_stress.json",
+  "source_player_stress_protocol_sha256": "0e2c9eb5ead98a5d21a5a66d84e8e8a57f07584a06421699c0e2e91ec5c7d47c",
+  "policy": {
+    "development_game": "Sample_Game_1",
+    "revision": "retain confidence age across short plausible same-slot gaps",
+    "no_missing_position_imputation": true,
+    "no_challenge_tuning": true,
+    "no_guard_relaxation": true
+  }
+}

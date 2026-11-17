@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "candidate_scope": "exit_bracket_release",
+  "baseline_config": "configs/compliant_tracking.json",
+  "baseline_sha256": "874c4c8ed85a98f13a29b954b08bbc7315b50ad85b57fd0231ae0f56355ccd5e",
+  "candidate_config": "configs/exit_bracket_release_candidate.json",
+  "candidate_sha256": "d19cc8b875b83ec5184e09390c83ee77019564b484739698a5958e7a8741b2a8",
+  "external_benchmark": "docs/benchmarks/exit_bracket_validation.json",
+  "external_benchmark_sha256": "ecced5417a3eca61c2e662bfc2405f7475311e4b7dfdf038f1425f3aeaafaf7b",
+  "external_revision": "e706dd506b360d69d9d123d5b8026e7294b13996",
+  "source_fps": 25,
+  "frozen_reports": {
+    "Sample_Game_1": {
+      "role": "development",
+      "path": "artifacts/exit_bracket_verified_Sample_Game_1.json",
+      "sha256": "b9f79a01839463081766a11bf951ff0abf2b57c92413c35cbdb972936893f508"
+    },
+    "Sample_Game_2": {
+      "role": "previously_inspected_diagnostic",
+      "path": "artifacts/exit_bracket_verified_Sample_Game_2.json",
+      "sha256": "8a9f2c7db7987d8aba995fdf5a5cb8f62cb0a496e4b9fba55bb14b7669a15c5b"
+    },
+    "Sample_Game_3": {
+      "role": "previously_inspected_diagnostic",
+      "path": "artifacts/exit_bracket_verified_Sample_Game_3_diagnostic.json",
+      "sha256": "a5dc07cef110e21ddba8bebdc91fa4cf6a38af3356b7622047619d4cc0bbd29c"
+    }
+  },
+  "independent_external": {
+    "dataset": "DFL official seven-match public CC-BY 4.0 tracking and events release",
+    "development": {
+      "match": "J03WMX",
+      "path": "artifacts/dfl_exit_development.json",
+      "sha256": "80274812a9f156183339917a64ae04b6384004eb488a4685b2c2c8d885ea1469"
+    },
+    "unseen_frozen_diagnostic": {
+      "match": "J03WN1",
+      "path": "artifacts/dfl_exit_holdout_J03WN1.json",
+      "sha256": "c8e93af727a359672b05e0c10962a12f0e5c07e5afa8cb5b6fac9a22ded2d75a"
+    },
+    "published_ball_status_codes": {"0": "Dead", "1": "Alive"},
+    "published_ball_possession_codes": {"1": "Home", "2": "Away"},
+    "synthetic_or_real_tagging_used": false,
+    "reselection_on_validation_match": false
+  },
+  "require_fresh_independent_external_validation": true,
+  "require_active_parameter_provenance": true,
+  "default_config_may_change_without_release_audit": false
+}

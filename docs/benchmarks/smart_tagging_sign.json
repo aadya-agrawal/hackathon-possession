@@ -1,0 +1,58 @@
+{
+  "name": "smart_tagging_defending_sign",
+  "issue": "tag_team_prior_mode=all credited the tagged team for defending phases (DEFENDING IN * THIRD, DEFENSIVE TRANSITION), but those tags name the team WITHOUT the ball.",
+  "evidence_input_only": {
+    "tagged_team_share_of_observed_ball_live_frames": {
+      "DEFENDING IN ATTACKING THIRD": 0.11,
+      "DEFENDING IN MIDDLE THIRD": 0.16,
+      "DEFENDING IN DEFENSIVE THIRD": 0.23,
+      "DEFENSIVE TRANSITION": 0.32,
+      "BUILD UP": 0.89,
+      "PROGRESSION": 0.84,
+      "ATTACKING TRANSITION": 0.68
+    },
+    "agreement_with_tag_free_decode(tag_weight=0)": {
+      "all": {
+        "ball_observed": 0.626,
+        "ball_unseen": 0.509,
+        "coverage_frames": 51106
+      },
+      "exclude_defending": {
+        "ball_observed": 0.713,
+        "ball_unseen": 0.521,
+        "coverage_frames": 63707
+      },
+      "signed": {
+        "ball_observed": 0.732,
+        "ball_unseen": 0.532,
+        "coverage_frames": 67062
+      }
+    }
+  },
+  "candidate": {
+    "config": "configs/signed_tags_trial.json",
+    "change": "tag_team_prior_mode=signed (defending phases vote for the opponent; exclude_defending now also covers DEFENSIVE TRANSITION)",
+    "challenge_effect": {
+      "graded_frames_changed": 3751,
+      "changed_where_ball_observed": 3182,
+      "changed_in_long_gaps": 564,
+      "dead_live_changes": 527,
+      "graded_live_spells": [
+        392,
+        366
+      ]
+    },
+    "external_guards": "unchanged by construction (Metrica/DFL have no Smart Tagging)",
+    "robustness": {
+      "passed": 131,
+      "total": 134,
+      "reference_default": 130,
+      "failures": [
+        "short_spell_increase_vs_reference",
+        "dead_share_difference_vs_reference",
+        "noise_0.10m frame agreement 0.9777"
+      ]
+    }
+  },
+  "also_fixed": "tests/run_validation_framework.py ignored tag_team_prior_mode when loading tags"
+}

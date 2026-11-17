@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-11-14",
+  "scope": "Input-only and external diagnosis of missed ball-out stoppages for the restart-dead default. DFL J03WMX/J03WN1/J03WOH/J03WOY (consumed), Metrica Sample Games 1-3 tagged scenario, challenge BAR-ATH inputs only (no labels, no public-window scores, no video).",
+  "dfl_reference_dead_spells_by_cause": {
+    "ball_observed_outside_beyond_1m": {
+      "spells": 64,
+      "covered_at_least_half": 64
+    },
+    "ball_outside_less_than_1m_only": {
+      "spells": 239,
+      "missed": 201,
+      "missed_minutes": 67.9
+    },
+    "ball_never_outside": {
+      "spells": 119,
+      "missed": 94,
+      "missed_minutes": 43.1
+    }
+  },
+  "dfl_shallow_exit_explanation": "DFL freezes the ball at the crossing point (95-100% frozen frames in outside episodes); every outside episode of at least 1 s is dead, every shorter one live. This is a provider encoding convention.",
+  "challenge_outside_episodes": "Challenge ball tracking never freezes; only 3-5 observed outside episodes are shallower than 1 m and last at least 1 s, so relaxing the 1 m exit margin would mainly fit the DFL convention.",
+  "challenge_tagged_restarts": {
+    "graded_restart_tags": 58,
+    "with_predicted_dead_nearby": 58,
+    "median_predicted_dead_before_tag_s": {
+      "throw-in": 5.2,
+      "corner kick": 11.5,
+      "goal kick": 10.2,
+      "free kick": 11.5
+    },
+    "throw_ins_with_at_most_3_2s_dead": "10/26"
+  },
+  "metrica_truth_vs_predicted_dead_before_throw_in_s": {
+    "Sample_Game_1": [
+      11.1,
+      8.3
+    ],
+    "Sample_Game_2": [
+      3.7,
+      4.4
+    ],
+    "Sample_Game_3": [
+      4.8,
+      5.2
+    ]
+  },
+  "finding": "Short throw-in stoppages match the Metrica dead-ball convention that defines challenge truth (truth p10 0-0.7 s), so lengthening them is not justified. The DFL exit headroom is dominated by a DFL-specific frozen-ball convention and does not transfer.",
+  "decision": "No exit-stoppage change; working default unchanged."
+}

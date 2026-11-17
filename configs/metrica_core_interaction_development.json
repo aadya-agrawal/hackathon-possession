@@ -1,0 +1,21 @@
+{
+  "base_protocol": "configs/metrica_core_development.json",
+  "base_protocol_sha256": "da223b82a4a91e477e318a30e63b4e86f87ef3de4ec73f19300aa8745d680bbf",
+  "resume_report": "artifacts/development_core_possession.json",
+  "resume_report_sha256": "4766f93a51b89c342ae17bd5b6394170f72fc038f2241f93591fbdc7c8986f3a",
+  "interaction_profiles": [
+    ["proximity_focused", "responsive"],
+    ["proximity_focused", "strict_responsive"],
+    ["density_free", "responsive"],
+    ["density_free", "strict_responsive"],
+    ["relative_margin", "persistent"],
+    ["relative_margin", "short_support_same_cost"]
+  ],
+  "policy": {
+    "development_game": "Sample_Game_1",
+    "excluded_games": ["Sample_Game_2", "Sample_Game_3"],
+    "acceptance_thresholds_relaxed": false,
+    "maximum_additional_parameter_vectors": 6,
+    "reason": "Check evidence/transition interactions without a new full grid or any diagnostic/challenge feedback."
+  }
+}

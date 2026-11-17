@@ -1,0 +1,18 @@
+{
+  "touch_control_protocol": "configs/metrica_touch_control.json",
+  "source_soft_contact_report": "artifacts/touch_control_softening.json",
+  "source_soft_contact_sha256": "e9a1eec68969ca325f7ba0ca0a23dddca20837e9bcdec7a50f4888b5f70ce8a1",
+  "owner_flight_horizon_source": "semi_markov_strong_transition_window_frames",
+  "owner_flight_weight_source": "restart_weight",
+  "owner_flight_speed_source": "strong_control_relative_speed_metres_per_second",
+  "owner_touch_motion_source": "metrica_touch_control clean matched q10",
+  "policy": {
+    "development_game": "Sample_Game_1",
+    "diagnostic_game": "Sample_Game_2",
+    "ball_flight_inference_automatic": true,
+    "scenario_or_guard_threshold_changed": false,
+    "challenge_output_review": false,
+    "parameters_retuned_on_game2": false,
+    "promotion_without_provenance_audit": false
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-11-07",
+  "scope": "Aggregate external Game 1 development and previously inspected Game 2 diagnostic; no frame-level data.",
+  "runtime_fps": 25,
+  "selected_submission_changed": false,
+  "challenge_spell_f1": null,
+  "source_reports": {
+    "owner_initial_game1": "3446bbad204667330c7d0e49b0598dc79f53eee3491bad0aa688fbf132f52ddf",
+    "owner_gap_reset_game1": "9bd3c5180205b65beb7e09a05fda19d75c77ab03a520db8d1341395e1745fcf7",
+    "owner_decoded_confirmation_game1": "c1319f48b755e0335c158c6d73a25ba7fd8b1490a231aceca40f68b1fad5e4ea",
+    "owner_sustained_player_game1": "1eb4c282fb133062666f932081af104607af29cdb5c590d24ad980d7b1b0a7c2",
+    "owner_weaker_sustained_game1": "9204abcb28950e2f9a94bdafa48012f951ed7b1bce15b70310d2a40bb98af2d9",
+    "owner_same_team_reception_game1": "80e978d03eddee76348430e52f83b892cd0f71dea36c0bf933fb94840125d14f",
+    "owner_stronger_reception_game1": "399df235b1a9e201e19fe4b1925761bd793cc88f5ceef5073f7c835995d7b29d",
+    "owner_weaker_sustained_game2_diagnostic": "db4635443daf03dc85317fea10f0fe65e4358004ac7769a9a79e16d0227c6196",
+    "owner_failure_game1": "59d01c29c62c71aaf42ce301a37d052101fb249fa2aaf6d81fd1739009ad22b3",
+    "owner_failure_game2": "38f613ff1c157dfd924f641c756a3dadb61b862e71ca6bb89de421f627352d85",
+    "player_stress_game1": "d990bba97806158a112804a4ca9cde939e6de801ef23268f87113096a4573245",
+    "player_stress_game2": "42afae3037c65f8df6b01d925766b1b3df8136a02540b021728b8083e9ec2a13",
+    "age_confidence_game1": "70127ff21584b19a14f7f7e17eb6dd41c5f2bebb7e9a8b60cbf70ed4285480d5",
+    "age_resume_game1": "c175adb502e0aa90b4455278954c2d29178021892404d8791a81ce3e23b53343",
+    "age_resume_stress_game1": "ac317538fd1961f6e46927571358f7cc950332dcf58f4e7c2f38206613864be9",
+    "age_resume_stress_game2": "ab7dbe4dfafed41d6931354a590fba97b50a5bc69992610f5d41c9b23d59d37a"
+  },
+  "owner_flight": {
+    "candidate": "weaker_sustained_owner_flight_continuity",
+    "game1": {
+      "baseline_objective": 0.40539123093620044,
+      "candidate_objective": 0.44508796237293125,
+      "clean_none_spell_f1_0.5": {"baseline": 0.43010752688172044, "candidate": 0.4407},
+      "clean_degraded_spell_f1_0.75": {"baseline": 0.3251, "candidate": 0.3490},
+      "masked_none_spell_f1_0.75": {"baseline": 0.2740740740740741, "candidate": 0.2491349480968858},
+      "passed_guards": 58,
+      "total_guards": 60
+    },
+    "game2": {
+      "baseline_objective": 0.34011922113977033,
+      "candidate_objective": 0.36737529693215176,
+      "clean_none_spell_f1_0.5": {"baseline": 0.3386, "candidate": 0.3842},
+      "clean_none_spell_f1_0.75": {"baseline": 0.2222, "candidate": 0.1970},
+      "clean_degraded_spell_f1_0.5": {"baseline": 0.3938, "candidate": 0.4293},
+      "clean_degraded_official_range_reference_mean": {"baseline": 0.4041, "candidate": 0.4234},
+      "passed_guards": 58,
+      "total_guards": 60,
+      "previously_inspected_diagnostic": true
+    },
+    "revisions": {
+      "initial_passed_game1_guards": 52,
+      "gap_reset_passed_game1_guards": 52,
+      "decoded_confirmation_passed_game1_guards": 59,
+      "same_player_sustained_passed_game1_guards": 57,
+      "weaker_sustained_passed_game1_guards": 58,
+      "same_team_reception_passed_game1_guards": 59,
+      "same_team_reception_labels_equal_to_soft_comparator": true
+    },
+    "instantaneous_touch_threshold_equals_future_contact_measurement": false,
+    "selected_for_submission": false
+  },
+  "player_stress": {
+    "selection": "40 nonoverlapping 0.2-second external near-ball windows per game; no event or possession labels enter selection.",
+    "modes": ["nearest_dropout", "near_player_jitter_0.25m", "temporary_wrong_team_slot"],
+    "measure": "Known-live accuracy in period-local windows extended by 20 frames around each corruption.",
+    "game1_wrong_team_local_accuracy_after": {
+      "frozen_soft_contact": 0.8676075268817204,
+      "age_confidence": 0.9146505376344086,
+      "age_and_plausible_short_gap_resume": 0.9146505376344086
+    },
+    "game2_wrong_team_local_accuracy_after": {
+      "frozen_soft_contact": 0.8558449424591157,
+      "age_confidence": 0.9061175045427013,
+      "age_and_plausible_short_gap_resume": 0.9254996971532404
+    },
+    "game2_dropout_local_accuracy_after": {
+      "frozen_soft_contact": 0.9103573591762568,
+      "age_confidence": 0.9061175045427013,
+      "age_and_plausible_short_gap_resume": 0.9103573591762568
+    },
+    "normal_game1_candidate_labels_equal_frozen_soft": true,
+    "normal_game2_stress_subset_labels_equal_frozen_soft": true,
+    "natural_game1_young_near_ball_team_frames": 7,
+    "natural_game1_observed_near_ball_team_frames": 66469,
+    "filled_player_positions": false,
+    "corrected_team_assignments": false
+  },
+  "decision": "No owner or player-confidence candidate clears development guards or the active-parameter provenance audit. Keep selected submission unchanged; retain opt-in components and diagnosed external errors.",
+  "limitations": [
+    "Provider-reference spell scores are not challenge spell F1.",
+    "Games 1-2 were previously inspected; Game 2 is diagnostic, not independent holdout.",
+    "The owner contact threshold came from a related but different future-contact measurement.",
+    "Synthetic 0.2-second player corruptions are not a model of actual challenge dropout lengths.",
+    "Brief stress can alter many local known-live labels without moving a whole-game spell score.",
+    "Source reports remain ignored locally; their source-code hashes reflect the revision at which each result was generated."
+  ]
+}

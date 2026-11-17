@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-11-08",
+  "source": "DFL and Bassek et al. (2025), CC BY 4.0, https://doi.org/10.6084/m9.figshare.28196177",
+  "match": "J03WOH",
+  "role": "first successful evaluation after frozen exit-only selection; now consumed for diagnostics, not a holdout for any candidate derived from these findings",
+  "published_file_sha256": {
+    "match_information": "f23b3ee13b988b1ff9a0bce438c416dac47e71355bbc7ee1dab21aaf3e33c18c",
+    "events": "abc27e3268e6126fb3e6e90bff5cca8d4586a5e0cefe9bd59bf32871e89d8544",
+    "positions": "ec4dcf30200aad694dea263d5289485fcd0ca42badddaeb7c81f5cd5a4229d4f"
+  },
+  "dfl_parser_sha256_at_first_score": "df9fb0e4ac7998097762179627fe3fd023c648c888380e562c5c33662b080a51",
+  "parser_adaptation": "Use the complete BALL FrameSet, not an optional or position-dependent referee FrameSet, to establish each 25-fps half timeline; regression tests cover referee-first, player-first and referee-absent ordering. Previously frozen J03WMX output hashes reproduce exactly.",
+  "selected_exit_config_sha256": "ea6db9d99ebe3bda68f19869bd4ec6da73b9eb49d3375ed9a9f11575f2471ac9",
+  "fresh_match_official_flags": {
+    "known_dead_frames": 65269,
+    "known_live_frames": 71945,
+    "reference_live_spells": 402,
+    "predicted_live_spells_original_and_exit": 206,
+    "original_tracking_config": {
+      "dead_recall": 0.10879590617291517,
+      "false_dead_on_known_live_frames": 203,
+      "mean_live_spell_f1_iou_0_3_to_0_7": 0.32171052631578945,
+      "live_team_accuracy": 0.859601
+    },
+    "selected_exit_config": {
+      "dead_recall": 0.10879590617291517,
+      "false_dead_on_known_live_frames": 238,
+      "mean_live_spell_f1_iou_0_3_to_0_7": 0.3223684210526315,
+      "f1_iou_0_75": 0.1579
+    },
+    "interpretation": "The exit cue slightly raises ranked-like provider spell-F1 but does not recover dead frames here, adds 35 false-dead known-live frames, and lowers the high-IoU score; this is not a challenge score."
+  },
+  "vendor_encoding_warning": {
+    "exactly_stationary_provider_dead_steps": 65268,
+    "provider_dead_frames": 65269,
+    "stationary_near_touchline_25_frame_cue": {
+      "speed_under_2_mps": true,
+      "border_within_2_metres": true,
+      "known_dead_recall": 0.6972069435719866,
+      "false_dead_fraction_live": 0.0007088748349433595
+    },
+    "independent_metrica_game1_same_fixed_cue": {
+      "cue_frames": 2124,
+      "known_dead_frames": 0,
+      "known_live_frames": 1896,
+      "unknown_reference_frames": 228
+    },
+    "challenge_input_only_same_fixed_cue": {
+      "within_half_observed_frames": 1712,
+      "distinct_runs": 27,
+      "possession_truth_used": false
+    },
+    "decision": "Reject the stationary-border dead cue before implementation: DFL freezes ball positions as a provider convention, whereas independently known-live Metrica frames dominate its activation."
+  },
+  "live_owner_geometry_diagnostic": {
+    "all_known_live_nearest_team_accuracy": 0.76495934394329,
+    "nearest_player_within_1_5m_accuracy": 0.8930955892210752,
+    "nearest_player_over_4m_accuracy": 0.5869580061454421,
+    "ball_speed_over_10mps_nearest_team_accuracy": 0.5536757489367669,
+    "interpretation": "Proximity is weakest during long or fast ball flight, but prior owner-flight policies already failed external high-IoU and masked-recovery guards. Do not equate provider possession flags with independently verified touches."
+  },
+  "local_reports_sha256": {
+    "first_score": "a76f1f7309929c14d0a71037f8858120e3d6bffb4a45dfb2a5d3e6cc4a5296e2",
+    "vendor_dead_feature_audit": "01f6bd4e0c05cee2b88ba7bc3b06ae3adcc6d0b1ca3fc33ac6900b66e9ac29bc",
+    "live_owner_geometry_audit": "1b2112a4060006b97aedd9aed06634b5308dfefa6baa733a6397355377cf74cd",
+    "previous_match_order_safe_parser_replay": "a3e2d24542ae6c652b64fb2470721627e9bd2b6ce618597986ef38cde0c36a7c"
+  },
+  "selected_submission_unchanged_sha256": "c9a2f41a76d7d070cc3afead3524fab90d21e87dd198259759b95b7a22536dac",
+  "next_gate": "Keep J03WOY, J03WPY, J03WQQ and J03WR9 uninspected. Develop any future cue on other development sources, predeclare a guard and freeze it before touching an untouched DFL match; never select by the hackathon public possession window."
+}

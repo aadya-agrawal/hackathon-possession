@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-11-07",
+  "scope": "Aggregate external Game 1 development and frozen previously inspected Game 2 diagnostic; no frame-level data.",
+  "source_reports_sha256": {
+    "bounded_game1": "d1fdf786d359c1a95bd0bbbe93e6c0d9e3c21eaca267f045af56e859bf80ea7f",
+    "bounded_game2_diagnostic": "909c420f9cfe6deba47af5e0dcd9a64eabcb19772bd2f21e60d11a2c78e62a04"
+  },
+  "runtime_source_fps": 25,
+  "development_game": "Sample_Game_1",
+  "previously_inspected_diagnostic_game": "Sample_Game_2",
+  "selected_submission_changed": false,
+  "challenge_spell_f1": null,
+  "external_revision": "e706dd506b360d69d9d123d5b8026e7294b13996",
+  "baseline_sha256": "874c4c8ed85a98f13a29b954b08bbc7315b50ad85b57fd0231ae0f56355ccd5e",
+  "scenario_protocol": "configs/metrica_core_development.json",
+  "scenario_protocol_sha256": "da223b82a4a91e477e318a30e63b4e86f87ef3de4ec73f19300aa8745d680bbf",
+  "model_files_sha256": {
+    "control_phase.py": "6735ad6a6e18334c5ee56e6eb7284fd2fcb841ac6b792d82f292075bd6f20f30",
+    "decoder.py": "c9b5d2229be71704566604f0935b40712a63bfd0a1d0726358f1ef09f938a319",
+    "external_guarded_calibration.py": "df833a8cf71fd48df982f43da5f2b47e80cfd845a8db198c8146eaf95cf4ffd7",
+    "external_metrica_validation.py": "ea1e667b8b75cbeee3960893c97ee0c313380fde697eb6bb6752fcde51f16140"
+  },
+  "values": {
+    "semi_markov_phase_enabled": true,
+    "phase_decode_mode": "bounded",
+    "phase_contact_minimum_frames": 4,
+    "phase_flight_max_frames": 20,
+    "phase_minimum_ball_speed_mps": 2.0,
+    "phase_contact_distance_metres": 1.5,
+    "phase_flight_weight": 0.25,
+    "phase_turnover_transition_cost": 10.0
+  },
+  "game1": {
+    "baseline_objective": 0.40539123093620044,
+    "candidate_objective": 0.4091868500235369,
+    "minimum_objective_gain": 0.002,
+    "passed_guards": 60,
+    "total_guards": 60,
+    "clean_no_tag_spell_f1_0.75": {
+      "baseline": 0.30824372759856633,
+      "candidate": 0.3154121863799283
+    },
+    "masked_no_tag_spell_f1_0.75": {
+      "baseline": 0.2740740740740741,
+      "candidate": 0.2740740740740741
+    },
+    "clean_no_tag_bounded_source_brackets": 372,
+    "clean_no_tag_baseline_agreeing_brackets": 275,
+    "clean_no_tag_changed_frames": 68,
+    "four_frame_contact_coverage": {
+      "paired_recoveries": 192,
+      "incoming_turnover_within_0.48_seconds": 39,
+      "pass_events": 799,
+      "same_team_reception_within_0.48_seconds_of_pass_end": 202
+    },
+    "negative_diagnostic": "In 5-second known-live gaps, recovery-instant accuracy drops by one of 192 references in both tag modes, within the unchanged guard."
+  },
+  "game2_frozen_diagnostic": {
+    "baseline_objective": 0.34011922113977033,
+    "candidate_objective": 0.34014930870432036,
+    "passed_guards": 60,
+    "total_guards": 60,
+    "clean_no_tag_spell_f1_0.75": {
+      "baseline": 0.2222222222222222,
+      "candidate": 0.2222222222222222
+    },
+    "clean_no_tag_changed_frames": 73,
+    "interpretation": "Nonnegative but negligible scored change; not an unseen holdout."
+  },
+  "decision": "Keep the candidate opt-in. It clears the original 60 Game 1 and 60 previously inspected Game 2 guards with a modest development gain, but does not establish challenge accuracy or resolve inherited active-parameter provenance.",
+  "limitations": [
+    "Four-frame same-player contact is an external development choice, not independent physical-touch ground truth.",
+    "A team-only slot fallback added only one reception at the eight-frame contact minimum; a 2 m/s relative-speed gate suppressed most receptions, so neither is active.",
+    "Bounded decoding only changes live H/A frames between observed source-derived contact and reception/turnover when both contacts agree with the baseline. It cannot repair unsupported recoveries or missing-ball periods.",
+    "Provider reference events score and diagnose predictions but are never features for no-tag inference.",
+    "Game 1 is development and Game 2 was previously inspected; neither is an unseen holdout.",
+    "Detailed frame-level reports remain ignored locally; old global-phase studies retain their original code hashes."
+  ]
+}

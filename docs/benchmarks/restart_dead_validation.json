@@ -1,0 +1,263 @@
+{
+ "schema_version": 1,
+ "snapshot_date": "2026-11-14",
+ "decision": "selected_working_default",
+ "user_selection": "keep",
+ "scope": "Opt-in Laws-of-the-Game dead-ball rules added to the handover working model: (1) dead ball before every corroborated kickoff, (2) dead ball from the first boundary sighting back from tagged throw-ins, corners and goal kicks.",
+ "working_config": "configs/submission_restart_dead.json",
+ "working_config_sha256": "6da6e5bf19fb5ea32d6044944484983a10de52d82b599bcd06294602a27a4a5d",
+ "trial_config": "configs/restart_dead_trial.json",
+ "trial_config_sha256": "fd50d089567c2dbb7c9831ee5b83704e26e779733625c86ed524443a49f49af3",
+ "working_csv": "submissions/possession_compliant.csv",
+ "working_csv_sha256": "fb4a4d7d510ca7f7b2a7604cc3247f5fd54230db255bc562b9299ed2e44c41ff",
+ "code_sha256": {
+  "possession/decoder.py": "81dccf6578462cae1e9c5e50b0e6dab9adc96cbb658eb4a368c2bfcbf0cf21fc",
+  "possession/tracking.py": "da34936cf15fd01f0963fdae07fa023d76e2ec01f335d58f3e17adb6fc0768dc",
+  "possession/cli.py": "fc10e26a1c534dbe7616e605b953ec7b0c6750a469cd0e564add0730cc76a71c"
+ },
+ "rollbacks": {
+  "handover": {
+   "config": "configs/submission_handover.json",
+   "config_sha256": "faf4b427a0a22451d767081e45ec74f698ca2ade231cfa5416d4e074685ec9b8",
+   "csv": "submissions/possession_handover_fallback.csv",
+   "csv_sha256": "a01547158cbbd2ec67a379ccea72ceb9f1b3e7332e7d6edcfb7097a503edc8f8"
+  },
+  "exit_only": {
+   "config": "configs/submission_tracking.json",
+   "csv": "submissions/possession_exit_only_fallback.csv",
+   "csv_sha256": "c9a2f41a76d7d070cc3afead3524fab90d21e87dd198259759b95b7a22536dac"
+  }
+ },
+ "rule_details": {
+  "kickoff": "Formation: >=16 tracked players, each team within 1 m of its own half allowing up to two stray tracks, at least 2 s after merging gaps <=10 s; corroborated by a Smart Tagging kick-off within 5 s or an observed ball inside the centre circle near the formation break. D from formation start (or a goal-mouth entry within 150 s) to formation break. Caller-supplied period starts extend D back to a half start only within 5 min; the CLI supplies the published graded half starts, external evaluation supplies none.",
+  "restart_anchor": "For each tagged throw-in, corner or goal kick, walk back up to 60 s while the ball is unseen, beyond the line, within 1.5 m of the relevant boundary or placed in the goal area (+1 m); require a boundary sighting; D starts at the first sighting beyond the line (else first placed-ball sighting), never bridging into earlier missing-ball live play. Free kicks and untagged stoppages are not inferred."
+ },
+ "development_history": [
+  "Strict all-players formation missed both half kickoffs because of stray tracks; order statistics allow two.",
+  "Unconstrained period-start fallback created a 148 s false stoppage on external Game 1 (periods start at kickoff); now opt-in per caller.",
+  "Placed-ball goal-line extension replaced after continuing 16 s past a tagged goal kick.",
+  "Bridged restart starts added only known-live frames on Game 1; first-sighting start removed that bias."
+ ],
+ "external_metrica": {
+  "Sample_Game_1": {
+   "objective_handover_vs_candidate": [
+    0.47716467862397494,
+    0.4777597778301896
+   ],
+   "guards": "60/60",
+   "clean_degraded_tag_ranking_iou_mean": [
+    0.5296,
+    0.5296
+   ],
+   "clean_no_tag_ranking_iou_mean": [
+    0.5245,
+    0.5245
+   ],
+   "clean_no_tag_known_dead_recall": [
+    0.3973,
+    0.4828
+   ],
+   "clean_no_tag_false_dead_known_live_frames": [
+    458,
+    544
+   ]
+  },
+  "Sample_Game_2": {
+   "objective_handover_vs_candidate": [
+    0.41447648887837263,
+    0.41832669606430084
+   ],
+   "guards": "60/60",
+   "clean_degraded_tag_ranking_iou_mean": [
+    0.4848,
+    0.497
+   ],
+   "clean_no_tag_ranking_iou_mean": [
+    0.4612,
+    0.4612
+   ],
+   "clean_no_tag_known_dead_recall": [
+    0.491,
+    0.5587
+   ],
+   "clean_no_tag_false_dead_known_live_frames": [
+    150,
+    386
+   ]
+  },
+  "Sample_Game_3": {
+   "objective_handover_vs_candidate": [
+    0.4480705560445087,
+    0.4511543408540178
+   ],
+   "guards": "60/60",
+   "clean_degraded_tag_ranking_iou_mean": [
+    0.555,
+    0.5665
+   ],
+   "clean_no_tag_ranking_iou_mean": [
+    0.5056,
+    0.5077
+   ],
+   "clean_no_tag_known_dead_recall": [
+    0.2379,
+    0.2705
+   ],
+   "clean_no_tag_false_dead_known_live_frames": [
+    242,
+    551
+   ]
+  }
+ },
+ "kickoff_only_metrica_guards": {
+  "Sample_Game_1": "60/60",
+  "Sample_Game_2": "60/60",
+  "Sample_Game_3": "60/60"
+ },
+ "dfl_no_tag_kickoff_rule_only": {
+  "J03WMX": {
+   "dead_recall": [
+    0.1675,
+    0.1923
+   ],
+   "f1_0.75": [
+    0.2228,
+    0.2251
+   ],
+   "false_dead_live": [
+    363,
+    460
+   ],
+   "labels_changed": true,
+   "live_team_accuracy": [
+    0.8678,
+    0.8667
+   ],
+   "predicted_spells": [
+    252,
+    253
+   ],
+   "ranking_iou_mean": [
+    0.3392,
+    0.3435
+   ]
+  },
+  "J03WN1": {
+   "dead_recall": [
+    0.247,
+    0.2745
+   ],
+   "f1_0.75": [
+    0.1616,
+    0.1585
+   ],
+   "false_dead_live": [
+    379,
+    550
+   ],
+   "labels_changed": true,
+   "live_team_accuracy": [
+    0.8234,
+    0.8214
+   ],
+   "predicted_spells": [
+    255,
+    257
+   ],
+   "ranking_iou_mean": [
+    0.293,
+    0.2922
+   ]
+  },
+  "J03WOH": {
+   "dead_recall": [
+    0.1084,
+    0.2053
+   ],
+   "f1_0.75": [
+    0.178,
+    0.1839
+   ],
+   "false_dead_live": [
+    238,
+    366
+   ],
+   "labels_changed": true,
+   "live_team_accuracy": [
+    0.8652,
+    0.8636
+   ],
+   "predicted_spells": [
+    216,
+    218
+   ],
+   "ranking_iou_mean": [
+    0.3405,
+    0.3497
+   ]
+  },
+  "J03WOY": {
+   "dead_recall": [
+    0.1423,
+    0.2293
+   ],
+   "f1_0.75": [
+    0.1895,
+    0.1924
+   ],
+   "false_dead_live": [
+    434,
+    552
+   ],
+   "labels_changed": true,
+   "live_team_accuracy": [
+    0.8295,
+    0.8285
+   ],
+   "predicted_spells": [
+    230,
+    230
+   ],
+   "ranking_iou_mean": [
+    0.3289,
+    0.3388
+   ]
+  }
+ },
+ "challenge_input_only": {
+  "graded_D_fraction": [
+   0.1561,
+   0.2127
+  ],
+  "second_half_documented_pre_kickoff_D_frames": "2934/2934 (was 640)",
+  "kickoffs_detected": 7,
+  "kickoffs_tag_corroborated": 6,
+  "restart_anchored_stoppages": 27,
+  "restart_anchor_abstentions": 21,
+  "live_possessions_all_frames": [
+   321,
+   311
+  ],
+  "challenge_labels_or_video_used": false
+ },
+ "automatic_validation": {
+  "official_format_validator_passed": true,
+  "two_default_runs_byte_identical": true,
+  "unit_tests": 226,
+  "original_robustness_policy": "134/135",
+  "robustness_report_sha256": "a79139f7b1ed999949ed5c8d220fff25380f77817fc0d9bd30e98f7b9c834a84",
+  "disclosed_exception": {
+   "check": "dead_share_difference_vs_reference",
+   "value": 0.06648638614482313,
+   "maximum": 0.05,
+   "reference": "submissions/possession_mvp.csv (early self-generated prototype, graded D 13.7%)",
+   "reason_accepted": "Drift guard against our own prototype, not correctness. The intended correction raises graded D 15.6% -> 21.3% toward ~38-48% known D in external provider references; all 180 external Metrica guards pass. User explicitly chose to keep."
+  }
+ },
+ "challenge_spell_f1": null,
+ "limitations": [
+  "External Metrica dead ball is encoded by a missing ball, DFL by a frozen ball; neither reproduces challenge automatic-tracking stoppage appearance.",
+  "Restart anchoring relies on automatic Smart Tagging; untagged restarts and whistle stoppages remain undetected.",
+  "One kickoff without a tag was accepted by ball corroboration only."
+ ]
+}

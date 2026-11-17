@@ -1,0 +1,26 @@
+{
+  "baseline_config": "configs/compliant_tracking.json",
+  "baseline_sha256": "874c4c8ed85a98f13a29b954b08bbc7315b50ad85b57fd0231ae0f56355ccd5e",
+  "scenario_protocol": "configs/metrica_core_development.json",
+  "scenario_protocol_sha256": "da223b82a4a91e477e318a30e63b4e86f87ef3de4ec73f19300aa8745d680bbf",
+  "soft_contact_report": "artifacts/touch_game2_diagnostic.json",
+  "soft_contact_report_sha256": "8b577c67df93903220c6c6e142d1a6e3907b4fdda08d452c0b1c1e5bedc0c7a8",
+  "games": {
+    "development": ["Sample_Game_1"],
+    "previously_inspected_diagnostic": ["Sample_Game_2"]
+  },
+  "seed": 2027,
+  "windows_per_game": 40,
+  "window_seconds": 0.2,
+  "near_ball_metres": 2.0,
+  "minimum_players_per_team": 8,
+  "jitter_std_metres": 0.25,
+  "modes": ["nearest_dropout", "near_player_jitter", "team_swap"],
+  "policy": {
+    "window_selection_uses_provider_events_or_labels": false,
+    "challenge_inputs_used_for_selection": false,
+    "player_perturbations_synthetic": true,
+    "selection_on_diagnostic_game": false,
+    "automatic_promotion": false
+  }
+}

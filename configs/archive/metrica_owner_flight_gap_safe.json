@@ -1,0 +1,14 @@
+{
+  "base_owner_protocol": "configs/metrica_owner_flight.json",
+  "base_owner_protocol_sha256": "b224c7bdda45d55510663dfac93b9c33aa1dfcc63218e09381ff71bbeb9f29c2",
+  "source_owner_report": "artifacts/owner_flight_game1.json",
+  "source_owner_report_sha256": "3446bbad204667330c7d0e49b0598dc79f53eee3491bad0aa688fbf132f52ddf",
+  "owner_flight_reset_on_gap": true,
+  "policy": {
+    "development_game": "Sample_Game_1",
+    "change": "invalidate previous owner on any unobserved ball frame",
+    "remaining_parameters_unchanged": true,
+    "no_challenge_output_review": true,
+    "game2_diagnostic_only_after_development_guards": true
+  }
+}

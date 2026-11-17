@@ -1,0 +1,69 @@
+# This repository is public. Nothing derived from the private ground truth or the licensed match
+# data may be committed; generated outputs and local tooling stay local.
+
+# -- private ground truth (the public 5-minute file in evaluation/gt/ is committed on purpose) ----
+*_possession_gt.csv
+*_possession_gt_meta.json
+*_possession_gt_reference.csv
+possession_by_frame.pkl
+
+# -- licensed match data: data/ ships with only its README ----------------------------------------
+data/*
+!data/README.md
+*.mp4
+*.gzip
+*.pl3container
+
+# -- generated outputs ---------------------------------------------------------------------------
+# Scored label files; the organisers' ATD-only baselines are the exception.
+evaluation/results/*.csv
+!evaluation/results/baseline_*.csv
+evaluation/reports/
+evaluation/scoreboard.csv
+artifacts/
+cache/
+# Submissions are generated locally and uploaded separately; none are committed.
+submissions/*
+*.log
+
+# -- arrays, archives and weights; our externally trained models and video evidence ship ---------
+*.npy
+*.npz
+*.pkl
+*.pickle
+*.pt
+*.pth
+*.onnx
+*.h5
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+!models/*.npz
+!evidence/*.npz
+
+# -- local configs, archives and documents --------------------------------------------------------
+configs/*_local.json
+.local-archive/
+*.pdf
+
+# -- credentials ---------------------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+.netrc
+*.pem
+*.key
+*.p12
+*.pfx
+
+# -- editors and Python build artifacts ----------------------------------------------------------
+.idea/
+.vscode/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.DS_Store

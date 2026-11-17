@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-11-14",
+  "scope": "Selection record for the contact-carry cue on top of the restart-dead working default. External only: Metrica Sample Games 1-3 (60 guards each), DFL J03WMX/J03WN1/J03WOH/J03WOY (development) and J03WPY/J03WQQ/J03WR9 (scored once before, never diagnosed). Challenge inputs used only for activation/debugging; no challenge labels, public-window scores, video or hand labels.",
+  "diagnosis": "Most unmatched reference spells are absorbed into a longer predicted spell; the dominant separator is a missed brief opponent possession (median 1.8 s DFL, 2.3 s Metrica) during which proximity emissions favour the original team (Metrica median -5.7). An opponent within 0.75 m at a sharp observed ball turn occurs at 30% of those starts but in 0.2% of seconds inside long uninterrupted spells.",
+  "rule": "Touch = observed ball for 11 frames, both 5-frame mean speeds >= 1 m/s, 1 - cos(turn) >= 0.3, touching team nearest player within 0.75 m (closer team if both). The touching team gets +0.5 emission per frame until the next touch, 2 s, or 5 frames before the ball is next unobserved, plus transition support within 2 frames of the touch.",
+  "configs": {
+    "baseline": "configs/submission_restart_dead.json",
+    "baseline_sha256": "6da6e5bf19fb5ea32d6044944484983a10de52d82b599bcd06294602a27a4a5d",
+    "trial": "configs/contact_carry_trial.json",
+    "trial_sha256": "5f21bfc74ad41d59113cf46b2d47429872f8152c29568871d740ce537f3d46ae",
+    "working": "configs/submission_contact_carry.json",
+    "working_sha256": "3d4815571076ebf9bd9d8bd0e6f171cb6147c33d8900b6b82a38487f7ab40950"
+  },
+  "metrica": {
+    "Sample_Game_1": {
+      "objective": [
+        0.4778,
+        0.62
+      ],
+      "guards": "58/60",
+      "failed": [
+        "recovery_masked:none:recovery_accuracy 0.4583 vs 0.4848",
+        "recovery_masked:degraded_restart_tags:recovery_accuracy 0.4479 vs 0.4796"
+      ]
+    },
+    "Sample_Game_2": {
+      "objective": [
+        0.4183,
+        0.6018
+      ],
+      "guards": "58/60",
+      "failed": [
+        "recovery_masked:none:recovery_accuracy 0.3972 vs 0.4226",
+        "recovery_masked:degraded_restart_tags:recovery_accuracy 0.3830 vs 0.4013"
+      ]
+    },
+    "Sample_Game_3": {
+      "objective": [
+        0.4512,
+        0.5951
+      ],
+      "guards": "58/60",
+      "failed": [
+        "recovery_masked:none:recovery_accuracy 0.4170 vs 0.4596",
+        "recovery_masked:degraded_restart_tags:recovery_accuracy 0.4170 vs 0.4515"
+      ]
+    }
+  },
+  "dfl_development_spell_f1_iou_0_3_to_0_7": {
+    "J03WMX": [
+      0.3435,
+      0.4343
+    ],
+    "J03WN1": [
+      0.2922,
+      0.4039
+    ],
+    "J03WOH": [
+      0.3497,
+      0.445
+    ],
+    "J03WOY": [
+      0.3388,
+      0.4033
+    ]
+  },
+  "dfl_previously_scored_undiagnosed_spell_f1": {
+    "J03WPY": [
+      0.3133,
+      0.425
+    ],
+    "J03WQQ": [
+      0.3792,
+      0.4688
+    ],
+    "J03WR9": [
+      0.372,
+      0.4376
+    ]
+  },
+  "dfl_live_team_accuracy": {
+    "J03WMX": [
+      0.8667,
+      0.8916
+    ],
+    "J03WN1": [
+      0.8214,
+      0.8559
+    ],
+    "J03WOH": [
+      0.8636,
+      0.8842
+    ],
+    "J03WOY": [
+      0.8285,
+      0.8582
+    ],
+    "J03WPY": [
+      0.866,
+      0.8913
+    ],
+    "J03WQQ": [
+      0.8725,
+      0.8827
+    ],
+    "J03WR9": [
+      0.8795,
+      0.8906
+    ]
+  },
+  "dfl_added_ball_noise_spell_f1": {
+    "sigma_0.10": {
+      "J03WMX": [
+        0.3584,
+        0.459
+      ],
+      "J03WN1": [
+        0.3222,
+        0.442
+      ],
+      "J03WOH": [
+        0.3713,
+        0.4416
+      ],
+      "J03WOY": [
+        0.3524,
+        0.4635
+      ]
+    },
+    "sigma_0.25": {
+      "J03WMX": [
+        0.3805,
+        0.4836
+      ],
+      "J03WN1": [
+        0.3391,
+        0.4579
+      ],
+      "J03WOH": [
+        0.3869,
+        0.478
+      ],
+      "J03WOY": [
+        0.361,
+        0.4853
+      ]
+    }
+  },
+  "sensitivity_only_not_selection": {
+    "weight_0.25_metrica_objective": {
+      "Sample_Game_1": 0.5651,
+      "Sample_Game_2": 0.5403,
+      "Sample_Game_3": 0.5209
+    },
+    "cap_25_frames_metrica_objective": {
+      "Sample_Game_1": 0.598,
+      "Sample_Game_2": 0.5632,
+      "Sample_Game_3": 0.5625
+    },
+    "cap_75_frames_metrica_objective": {
+      "Sample_Game_1": 0.6225,
+      "Sample_Game_2": 0.6107,
+      "Sample_Game_3": 0.6021
+    },
+    "cap_25_frames_dfl": {
+      "J03WMX": 0.402,
+      "J03WN1": 0.3662,
+      "J03WOH": 0.4159,
+      "J03WOY": 0.3911
+    },
+    "cap_75_frames_dfl": {
+      "J03WMX": 0.4324,
+      "J03WN1": 0.4088,
+      "J03WOH": 0.4521,
+      "J03WOY": 0.4111
+    }
+  },
+  "rejected_refinement": "Ending carry when the opponent gains strong control raised masked recovery accuracy slightly but lowered spell-F1 (Metrica objective 0.620/0.602/0.595 -> 0.603/0.550/0.546); reverted.",
+  "challenge_input_activation": {
+    "touches": 430,
+    "carry_frames": 19318,
+    "graded_frames_changed": 2501,
+    "graded_frames": 158857,
+    "graded_live_spells": [
+      274,
+      287
+    ],
+    "possessions": [
+      311,
+      327
+    ]
+  },
+  "robustness": {
+    "report": "artifacts/contact_carry_selected_robustness.json",
+    "passed": "132/134 (unit tests skipped in this run; 229 unit tests pass separately)",
+    "failures": {
+      "dead_share_difference_vs_reference": "0.0662 > 0.05, same disclosed prototype drift exception as restart-dead",
+      "noise_0.10m frame agreement": "0.9771 < 0.98 (restart-dead 0.9880); 0.25 m passes at 0.9702 >= 0.95. Added-noise DFL scoring shows the spell-F1 gain persists."
+    }
+  },
+  "disclosed_exceptions": [
+    "Metrica recovery_masked recovery_accuracy fails in both tag modes on all three games (drop 0.018-0.043 vs 0.01 allowance); frame traces show late (~0.3 s) switches at hidden turnovers and some baseline credit from early switching; spell-F1 in the same scenario rises.",
+    "Automatic robustness noise_0.10m frame agreement 0.9771 vs 0.98."
+  ],
+  "decision": "Promoted by the user as the working default with the exceptions disclosed.",
+  "csv": {
+    "working": "submissions/possession_compliant.csv",
+    "working_sha256": "44dd3c69e3c1f87e0dcff84cb57c8dd384af523b777d778bb4b1c43b27d8e73d",
+    "restart_dead_rollback": "submissions/possession_restart_dead_fallback.csv",
+    "restart_dead_rollback_sha256": "fb4a4d7d510ca7f7b2a7604cc3247f5fd54230db255bc562b9299ed2e44c41ff",
+    "deterministic_repeat": true,
+    "format_valid": true,
+    "state_counts": {
+      "H": 82166,
+      "A": 65851,
+      "D": 51302
+    },
+    "graded_dead_share": 0.213
+  }
+}

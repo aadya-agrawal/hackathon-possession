@@ -1,0 +1,25 @@
+{
+  "detector_evaluation": {
+    "checkpoint": "cache/yolo-sn-ball-opt.pt",
+    "eligible_source_splits": [],
+    "overlap_status": "unresolved",
+    "training_dataset": "SoccerNet-v3D snv3",
+    "training_list": "https://github.com/mguti97/SoccerNet-v3D/releases/download/v1.0.0/SNv3D-train.txt",
+    "test_list": "https://github.com/mguti97/SoccerNet-v3D/releases/download/v1.0.0/SNv3D-test.txt"
+  },
+  "deferred_target_splits": [
+    "test"
+  ],
+  "minimum_dataset_version": "1.3",
+  "split_mapping": {
+    "development": [
+      "train"
+    ],
+    "test": [
+      "test"
+    ],
+    "validation": [
+      "valid"
+    ]
+  }
+}

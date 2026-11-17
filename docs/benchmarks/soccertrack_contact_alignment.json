@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-11-08",
+  "dataset": "SoccerTrack v2",
+  "license": "CC BY 4.0; credit SoccerTrack v2 and Scott et al., https://arxiv.org/abs/2508.01802",
+  "authorized_huggingface_revision": "325bd4c57ee8e135ab652f3921d274526ada496b",
+  "match": "117092",
+  "source_split": "train",
+  "half": 1,
+  "source_file_sha256": {
+    "bas": "a14e98f80b07774484485fef90b0efde788b2f429c39c62817c036a150a74d9f",
+    "gsr": "a70260a403e4d3011c11faef6aeaf529367afa1410f19b5e5042884cdcd36dfb",
+    "video": "9fabe074b0c6fc5812a602dd4119f3e6cb724e2f06b8a3a1eb9358b9734c036e",
+    "raw_homography": "26dcb723a362e9be1acad852313e9f55565d49260a2a68f6e39481e4e0bf2cc3"
+  },
+  "adapter_code_sha256_at_packet_creation": "749f8283b80bbd2099856bf7e5977c8b98c894e01159b6cd3136a3d4bddeb50e",
+  "localhost_review_server_code_sha256": "4353f1d8d313bf1241710540b2d747d2dc5cfa7731da2700adfced22f8a8a068",
+  "ignored_local_report_sha256": "69580b306973b84ab82638a7263c71db40d9ed34137693cce827889e30bb8d52",
+  "video": {"frames": 67375, "fps": 25, "width": 3840, "height": 1906},
+  "shipped_schema_differences": [
+    "BAS uses actions rather than the published example's annotations array and uppercase labels.",
+    "BAS frame is one-based and equals the GSR image-id suffix; video frame is BAS frame minus one and round(position_ms / 40).",
+    "BAS player_id is numeric text while GSR attributes.player_id is an integer; identity matching needs type normalization.",
+    "GSR is a COCO-style info/images/annotations object, not the older documented flat-record array."
+  ],
+  "first_half": {
+    "bas_actions": 1029,
+    "actor_ids_present": 1022,
+    "actor_annotated_at_exact_gsr_frame": 1020,
+    "actor_annotated_within_three_frames": 1020,
+    "actor_team_agrees_at_exact_frame": 1015,
+    "gsr_frames": 67375,
+    "gsr_annotations": 1549568,
+    "gsr_player_annotations": 1347445,
+    "gsr_goalkeeper_annotations": 134748,
+    "gsr_ball_role_annotations": 0
+  },
+  "blinded_local_touch_review": {
+    "ignored_workspace": "artifacts/soccertrack_touch_review_v1",
+    "index_sha256": "9522cb4376de88778860c952a773af079205815a26ff11459eef62c7d59814b5",
+    "sealed_selection_sha256": "30be5102cca0bc3d1f170dfa04e378d7a877671346d67c1f1bc5eaedada358ed",
+    "summary_sha256": "74c26a2fd6165bcf3d32ca0f56ee861f8580c987069532b8cba3cfc9b085f308",
+    "review_cases": 24,
+    "window_frames_each_side": 25,
+    "minimum_separation_frames": 100,
+    "selection_groups": {
+      "pass_or_cross": 6,
+      "defensive_touch": 6,
+      "restart": 4,
+      "drive_control": 2,
+      "unannotated_control": 6
+    },
+    "control_limitation": "No BAS event within 50 frames is not proof no physical touch occurred.",
+    "review_status": {"unreviewed": 24},
+    "independently_verified_contacts": 0,
+    "sealed_event_context_visible_to_reviewer": false
+  },
+  "local_review_webpage": {
+    "url": "http://127.0.0.1:8765/",
+    "bind_address": "127.0.0.1",
+    "private_port_forwarding_only": true,
+    "authorized_video_http_range_supported": true,
+    "maximum_video_range_response_bytes": 4194304,
+    "case_review_validation_and_atomic_save": true,
+    "one_click_review_choices": ["touch_at_current_frame", "no_visible_touch", "cannot_tell"],
+    "confidence_optional": true,
+    "sealed_event_context_served": false,
+    "physical_labels_prefilled": false
+  },
+  "limitations": [
+    "BAS actions are event and actor/timing proxies, not independently reviewed physical first touches.",
+    "The event-interpolated SoccerTrack ball track must not be used as independent ball-position truth against BAS events.",
+    "This source has no challenge Smart Tagging or complete per-frame possession-spell truth.",
+    "No challenge video, output-video review, public possession reference or protected truth was used."
+  ],
+  "decision": "Keep the source-only exit-bracket submission. The blinded local physical-touch packet is prepared but all 24 cases are unreviewed; do not promote a flight-owner model on event alignment or an empty review packet.",
+  "selected_submission_csv_sha256_unchanged": "c9a2f41a76d7d070cc3afead3524fab90d21e87dd198259759b95b7a22536dac"
+}

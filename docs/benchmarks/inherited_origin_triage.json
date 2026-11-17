@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-11-08",
+  "scope": "Focused provenance review of selected baseline and its shared exit-bracket release candidate; not an organizer eligibility ruling.",
+  "baseline_sha256": "874c4c8ed85a98f13a29b954b08bbc7315b50ad85b57fd0231ae0f56355ccd5e",
+  "candidate_sha256": "d19cc8b875b83ec5184e09390c83ee77019564b484739698a5958e7a8741b2a8",
+  "source_release_audit_sha256": "2f138bac6eaaaf4891ce2e418fa8d880e13267bd5e5eab64e08edd9398c48fb8",
+  "strict_user_workflow": "Use external games for parameter selection; no manual labels, output-video review, or tuning on the provided match.",
+  "four_high_impact_blocks": {
+    "semi_markov_costs_and_support": {
+      "historical_source": [
+        "experiments/results.csv:9-10",
+        "docs/archive/IMPLEMENTATION_PLAN.md:135-152",
+        "tests/run_validation_framework.py:1-147"
+      ],
+      "selection_evidence": "30/10 switch costs and 8-of-20 strong support were promoted after 60 automated robustness and match-proxy checks using provided-match tracking/output; no protected possession truth is evidenced.",
+      "strict_workflow_status": "provided_match_proxy_selection_documented; external-only reselection needed"
+    },
+    "restart_localization": {
+      "historical_source": [
+        "experiments/results.csv:4",
+        "docs/archive/IMPLEMENTATION_PLAN.md:119-133"
+      ],
+      "selection_evidence": "Confidence-gated motion onset was promoted on provided-match tracking; the 88-frame fallback was retained for many tags. No protected possession truth is evidenced.",
+      "strict_workflow_status": "provided_match_proxy_selection_documented; external-only reselection needed"
+    },
+    "restart_ownership": {
+      "historical_source": [
+        "experiments/results.csv:5-7"
+      ],
+      "selection_evidence": "Strict geometry won a provided-match tag/team proxy and robustness comparison; the proxy is not independent possession truth.",
+      "strict_workflow_status": "provided_match_proxy_selection_documented; external-only reselection needed"
+    },
+    "prediction_history_and_horizon": {
+      "historical_source": [
+        "docs/archive/IMPLEMENTATION_PLAN.md:95-111"
+      ],
+      "selection_evidence": "Seven-frame history and ten-frame horizon came from masking originally observed ball tracks of the provided match; no human possession labels are evidenced.",
+      "strict_workflow_status": "provided_match_unlabeled_ball_selection_documented; external-only reselection needed"
+    }
+  },
+  "other_44_keys_by_function_not_provenance": {
+    "restart_tag_and_collective_motion": 19,
+    "live_control_geometry": 9,
+    "dead_or_pitch_geometry": 8,
+    "decoder_emissions": 6,
+    "density_weights": 2
+  },
+  "other_44_equal_legacy_default_values": 44,
+  "other_44_newly_selected_in_compliant_config": 0,
+  "other_44_newly_changed_in_exit_candidate": 0,
+  "what_44_means": "These keys are configured and not fully classified by the current release audit. They are not 44 proven prohibited tuning decisions; some may be fixed constants or externally justified, but their origins have not been established here.",
+  "verified_external_kinematics": [
+    "max_interpolation_gap_frames",
+    "max_ball_speed_metres_per_second",
+    "max_ball_acceleration_metres_per_second_squared"
+  ],
+  "candidate_only_changes": [
+    "tracking_exit_bracket_enabled",
+    "tracking_exit_bracket_maximum_frames",
+    "tracking_exit_bracket_minimum_frames",
+    "tracking_exit_bracket_minimum_outward_speed_mps"
+  ],
+  "selected_baseline_shares_inherited_origin_issue": true,
+  "protected_possession_truth_use_found_in_these_sources": false,
+  "absence_of_protected_truth_proven": false,
+  "decision_under_strict_user_workflow": "Exit bracket is the working primary candidate, not an asserted compliant default. Preserve baseline fallback; externally reselect genuinely selected inherited blocks before certifying or promoting.",
+  "unresolved": [
+    "The archived log cannot prove the absence of other unrecorded selection or review.",
+    "Original upstream rules allow some unlabeled methods on the provided match, but the user's stricter no-match-tuning workflow controls this release decision.",
+    "Real tagged-input semantics/timing have no independent tagged external counterpart."
+  ]
+}

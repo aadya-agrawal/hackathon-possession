@@ -1,0 +1,15 @@
+# Pinned environment for tools/: regenerating the video-derived evidence (GPU) and retraining the
+# ball-free models. Verified bit-for-bit on NVIDIA L40S, Python 3.9.25, CUDA 12.1 wheels.
+-r requirements-pinned.txt
+
+--extra-index-url https://download.pytorch.org/whl/cu121
+torch==2.4.1+cu121
+torchvision==0.19.1+cu121
+ultralytics==8.4.40
+ultralytics-thop==2.0.18
+opencv-python==4.11.0.86
+pillow==10.4.0
+scikit-learn==1.6.1
+scipy==1.13.1
+joblib==1.4.2
+threadpoolctl==3.6.0

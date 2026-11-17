@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-11-14",
+  "decision": "selected_working_default",
+  "user_selection": "promote",
+  "policy_basis": "Apply the same user-approved published-rule interpretation and historical-proxy disclosure as the previous exit-only working selection; no manual challenge labels, protected truth or public-window tuning.",
+  "working_config": "configs/submission_handover.json",
+  "working_config_sha256": "faf4b427a0a22451d767081e45ec74f698ca2ade231cfa5416d4e074685ec9b8",
+  "working_csv": "submissions/possession_compliant.csv",
+  "working_csv_sha256": "a01547158cbbd2ec67a379ccea72ceb9f1b3e7332e7d6edcfb7097a503edc8f8",
+  "frozen_handover_candidate_config_sha256": "6ceb85e6a0e92d287c142675aa7f89ccf4b3c6c66cd7420312a6ae2ff460bcb4",
+  "frozen_handover_candidate_csv_sha256": "a01547158cbbd2ec67a379ccea72ceb9f1b3e7332e7d6edcfb7097a503edc8f8",
+  "frozen_candidate_release_record_sha256": "0df55a636e51d1d96501a031f2478bbd676355371d77168a83dcb811dce6177f",
+  "external_validation_aggregate_sha256": "90bba548011ccc36ce95ccf37926aa2e088f2e96f7ebcea1f5d9628a8e8d08af",
+  "exit_only_rollback": {
+    "config": "configs/submission_tracking.json",
+    "config_sha256": "ea6db9d99ebe3bda68f19869bd4ec6da73b9eb49d3375ed9a9f11575f2471ac9",
+    "csv": "submissions/possession_exit_only_fallback.csv",
+    "csv_sha256": "c9a2f41a76d7d070cc3afead3524fab90d21e87dd198259759b95b7a22536dac",
+    "former_selection_record": "docs/benchmarks/working_submission_selection.json"
+  },
+  "original_baseline_fallback": {
+    "config": "configs/compliant_tracking.json",
+    "config_sha256": "874c4c8ed85a98f13a29b954b08bbc7315b50ad85b57fd0231ae0f56355ccd5e",
+    "csv": "submissions/possession_baseline_fallback.csv",
+    "csv_sha256": "4390fd4bd6509eb95fc35f24be69384feb6f365dc6dfb3cff087194d9e41dd72"
+  },
+  "automatic_validation": {
+    "official_format_validator_passed": true,
+    "frames": 199319,
+    "live_possessions": 321,
+    "shorter_than_one_second": 1,
+    "video_derived_ball_frames": 0,
+    "two_default_runs_byte_identical": true,
+    "working_csv_byte_identical_to_frozen_candidate": true,
+    "original_policy_passed": "135/135",
+    "promoted_default_robustness_report_sha256": "9fcdf820f393a01ebe573635ca7e79b17f29f0f5f06a6f44b2eb2359edb6643e",
+    "cli_code_sha256": "d77ecdb12b70124913ea702539ee1204f16460d34ac77508547a26ca49f17f1a"
+  },
+  "external_validation": {
+    "metrica_games1_to3_original_guards": "180/180",
+    "metrica_games2_and3_previously_inspected": true,
+    "first_untouched_dfl_no_tag_J03WOY_predeclared_gate_passed": true,
+    "dfl_J03WOY_reference_spell_f1_iou_0_3_to_0_7": [0.30369276218611524, 0.32886297376093293],
+    "source": "docs/benchmarks/observed_handover_validation.json"
+  },
+  "historical_public_window_not_used_for_new_selection": {
+    "exit_only_and_original_baseline_17_reference_possession_spell_f1": [0.412121, 0.412121],
+    "handover_public_window_scored_for_selection": false,
+    "not_full_match_private_score": true
+  },
+  "known_limitations": [
+    "Real external Smart Tagging team/code semantics are not independently validated; existing degraded tags are synthetic restart proxies.",
+    "One fresh DFL match has no Smart Tags and uses provider flags, not challenge possession truth or verified physical touches.",
+    "Active inherited parameter origins retain the previously disclosed unlabeled provided-match proxy selection.",
+    "Challenge input-only handover activation and automatic robustness are not possession-accuracy estimates.",
+    "The working CSV and both rollback CSVs are Git-ignored licensed-match-derived outputs and must be reproduced locally."
+  ],
+  "challenge_spell_f1": null
+}

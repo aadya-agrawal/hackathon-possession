@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "role": "Frozen opt-in external handover experiment; not the working submission.",
+  "baseline_config": "configs/submission_tracking.json",
+  "baseline_config_sha256": "ea6db9d99ebe3bda68f19869bd4ec6da73b9eb49d3375ed9a9f11575f2471ac9",
+  "source_protocol": "configs/metrica_core_development.json",
+  "source_protocol_sha256": "da223b82a4a91e477e318a30e63b4e86f87ef3de4ec73f19300aa8745d680bbf",
+  "source_fps": 25,
+  "candidate_overrides": {
+    "semi_markov_observed_handover_enabled": true,
+    "observed_handover_motion_window_frames": 4,
+    "observed_handover_motion_minimum": 0.25
+  },
+  "code_sha256_at_freeze": {
+    "possession/decoder.py": "b0340aa4d0f2439b9cdabf5aaed375885493ec51d61b2a818b891b788d6673dd",
+    "possession/cli.py": "9297c2ac21966441946e38250a8355aa11e7c2744e2b2f5af70eb887b7351b3b",
+    "possession/tracking.py": "bf2d6be8e5728f458114033d6bd76e4ad783058434fa133459ac7176f608b3fc"
+  },
+  "game1_development": {
+    "baseline_objective": 0.45063724390460297,
+    "candidate_objective": 0.47716467862397494,
+    "original_guards_passed": "60/60",
+    "candidate_clean_no_tag_label_sha256": "8bf3989ea61e6343894cb8b0fe9d3972e504c1864361ed18086d2e4fc108c0c1"
+  },
+  "predeclared_transfer": {
+    "previously_inspected_metrica_games": [
+      "Sample_Game_2",
+      "Sample_Game_3"
+    ],
+    "required_unchanged_guards_per_game": "60/60",
+    "no_retuning_on_transfer": true,
+    "first_untouched_dfl_match": "J03WOY",
+    "first_untouched_dfl_gate": "Require positive mean no-tag provider live-spell F1 change over IoU 0.3-0.7 and nondecreasing known-live team accuracy; also report dead recall and false-dead known-live frames without hiding regressions.",
+    "fresh_dfl_or_challenge_public_window_used_for_selection": false,
+    "real_smart_tagging_transfer_required_before_promotion": true
+  }
+}
