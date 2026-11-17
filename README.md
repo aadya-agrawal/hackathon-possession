@@ -33,7 +33,7 @@ folders, as described in [data/README.md](data/README.md).
 | `possession/` | The pipeline. Submission path: `cli`, `decoder`, `tracking`, `trajectory`, `tagging`, `broadcast`, `ballfree`, `ballfree_seq`, `control_phase`, `video`, `submission`. `external_*` modules are the external validation and calibration harness (Metrica, DFL and SoccerNet loaders, parameter calibration, transfer checks). |
 | `configs/` | `submission_pre_kickoff.json` (selected), the previous `submission_*` configurations with matching `*_trial` configs, and external validation protocols. |
 | `models/`, `evidence/` | Ball-free CNN weights trained on external data; per-frame video evidence produced by our detectors and kit-colour model. |
-| `tools/` | Regenerate `evidence/` (GPU) and `models/` from the data bundle and public weights. |
+| `tools/` | Regenerate `evidence/` (GPU) and `models/` from the data bundle and public weights. `render_possession_video.py` draws a submission (and optionally the public ground truth) over a clip of the tactical video for visual inspection; it needs ffmpeg, and the clip must not be committed. |
 | `validation/` | Metrica regression checks, simulated challenge conditions on DFL matches, the masking test and an error breakdown, used to evaluate every change. |
 | `tests/` | Unit tests and the automatic robustness framework. |
 | `docs/archive/`, `archive/research/`, `configs/archive/` | Superseded plan, retired research modules with their tests (`python -m unittest archive.research.test_research`) and research configs; not used by the submission. |
