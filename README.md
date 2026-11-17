@@ -22,6 +22,10 @@ python -m possession.cli --output Westside.csv   # ~20 s, CPU only
 cmp Westside.csv /path/to/uploaded/Westside.csv   # no output: byte-identical
 ```
 
+The run prints a short summary (label shares, possession count, ball coverage); add `--verbose`
+for the full JSON diagnostics. The bundle must be laid out as `tactical/` and `broadcast/`
+folders, as described in [data/README.md](data/README.md).
+
 ### Repository map
 
 | Path | Contents |
