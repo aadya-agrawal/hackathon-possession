@@ -2,6 +2,7 @@ import argparse
 import json
 import os
 import sys
+import warnings
 from dataclasses import fields, replace
 from types import SimpleNamespace
 
@@ -387,6 +388,7 @@ def run_pipeline(
     video_path_mode=None,
     video_class_id=None,
     video_confidence=None,
+    verbose=False,
 ):
     if (
         video_path_mode is not None
@@ -923,8 +925,51 @@ def run_pipeline(
             report["video_path_report"] = os.path.abspath(
                 video_path_report_path
             )
-    print(json.dumps(report, indent=2, sort_keys=True))
+    if verbose:
+        print(json.dumps(report, indent=2, sort_keys=True))
+    else:
+        print(format_summary(report))
     return report
+
+
+def format_summary(report):
+    """Short human-readable run summary; the full diagnostics stay behind --verbose."""
+    counts = report["counts"]
+    frames = report["frames"]
+    fps = GAMES[GAME]["fps"]
+
+    def share(label):
+        count = counts.get(label, 0)
+        return "{:>8,d} frames  {:5.1f}%".format(count, 100.0 * count / frames)
+
+    missing = report["remaining_missing_ball_frames"]
+    lines = [
+        "",
+        "=" * 60,
+        " Possession file written",
+        "=" * 60,
+        " output      {}".format(report["output"]),
+        " frames      {:,d}  ({:.0f} min at {} fps)".format(
+            frames, frames / fps / 60.0, fps),
+        "",
+        " Home (H)    {}".format(share("H")),
+        " Away (A)    {}".format(share("A")),
+        " Dead (D)    {}".format(share("D")),
+        " Abstain (X) {}".format(share("X")),
+        "",
+        " possessions {:,d}  (mean {:.1f} s, {} shorter than 1 s)".format(
+            report["possessions"], report["mean_possession_seconds"],
+            report["shorter_than_one_second"]),
+        " ball data   {:,d} observed, {:,d} still missing after repair".format(
+            report["observed_ball_frames"], missing),
+        " restarts    {:,d} localized, {:,d} owners inferred".format(
+            report["localized_restarts"], report["inferred_restart_owners"]),
+        "",
+        " Next: python evaluation/validate_submission.py <file>",
+        " Full diagnostics: re-run with --verbose",
+        "=" * 60,
+    ]
+    return "\n".join(lines)
 
 
 def run_ball_anchor_input_audit(
@@ -1172,7 +1217,14 @@ def main(argv=None):
         default="cpu",
         help="Ultralytics inference device, such as cpu or 0",
     )
+    parser.add_argument(
+        "--verbose",
+        action="store_true",
+        help="print the full JSON diagnostics report instead of the short summary",
+    )
     args = parser.parse_args(argv)
+    if not args.verbose:
+        warnings.simplefilter("ignore", RuntimeWarning)
     if args.video_detection_report and not args.video_report:
         parser.error(
             "--video-detection-report requires --video-report"
@@ -1230,6 +1282,7 @@ def main(argv=None):
             args.video_path_mode,
             args.video_class_id,
             args.video_confidence,
+            args.verbose,
         )
     except (IOError, OSError, RuntimeError, ValueError, KeyError) as error:
         parser.exit(1, "error: {}\n".format(error))
